@@ -1,0 +1,58 @@
+%
+% #1: Title
+% #2: Subtitle
+\newcommand{\DenKrTPTitleAndSubtitle}[2]{%
+%\hrule width \hsize \kern 1mm \hrule width \hsize height 2pt
+%\textcolor{gray!70}{\HRule}\\%PartHeadingColor
+\begin{minipage}{\textwidth}%
+{\textcolor{gray!60}{\hrule width \hsize height 0.2ex}\kern0mm}%
+{\textcolor{white}{\hrule width \hsize height 0.1ex}\kern0mm}%
+{\textcolor{PartHeadingColor}{\hrule width \hsize height 0.4ex}\kern0mm}%
+\end{minipage}\\%
+\vspace*{3ex}%
+\begin{minipage}{\textwidth}\centering%
+\setstretch{0}%
+{\huge\bfseries%
+\textcolor{SectionHeadingColor}{#1}%
+}\\%
+\vspace*{2ex}%
+\noindent\textcolor{gray!20}{\rule{0.6\textwidth}{0.3ex}}\\%
+\vspace*{2ex}%
+{\normalfont\Large%
+\textcolor{PartHeadingColor}{#2}%
+}%
+\end{minipage}\\%
+\vspace*{3ex}%
+\kern0pt\begin{minipage}{\textwidth}%
+{\textcolor{PartHeadingColor}{\hrule width \hsize height 0.4ex}\kern0mm}%
+{\textcolor{white}{\hrule width \hsize height 0.1ex}\kern0mm}%
+{\textcolor{gray!90}{\hrule width \hsize height 0.2ex}\kern0mm}%
+\end{minipage}\\%
+}
+
+
+
+% #1: Publication-Type
+% #2: Word for "by"
+\newcommand{\DenKrTPPublicationBy}[2]{%
+\textsc{\Large #1}\\%
+\vspace*{3\baselineskip}%
+{\Large #2}\\%
+\vspace*{4\baselineskip}%
+%
+% Author and supervisor
+\begin{minipage}[t]{\textwidth}%
+\centering\huge%
+\ifdefempty{\DenKrTPauthorAnrede}%
+	{}%
+	{\textcolor{PartHeadingColor}{\DenKrTPauthorAnrede}\ }%
+\ifdefempty{\DenKrTPauthorTitleBefore}%
+	{}%
+	{\textcolor{PartHeadingColor}{\DenKrTPauthorTitleBefore}\ }%
+\textcolor{ChapterHeadingColor}{\DenKrTPauthorFirst}\ \textsc{\textcolor{ChapterHeadingColor}{\DenKrTPauthorLast}}%
+\ifdefempty{\DenKrTPauthorTitleAfter}%
+	{}%
+	{, \textcolor{PartHeadingColor}{\DenKrTPauthorTitleAfter}}%
+\end{minipage}%
+\\%
+}

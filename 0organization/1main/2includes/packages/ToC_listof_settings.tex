@@ -1,0 +1,65 @@
+%
+% - - - - - - - - - - - - - - - -
+%  Removing the Printing of the Title (like "List of Figures") from commands like "\listoffigures"
+%
+% - - - - - - - - - -
+%   Variant 1)
+%      -> Instead of calling \listoffigures, use
+%        % \makeatletter%
+%        % \@starttoc{lof}% Print List of Figures
+%        % \makeatother%
+%
+%
+% - - - - - - - - - -
+%   Variant 2)
+%      -> Use the following boilerplate. Removes the header construction suggested by "tocloft"
+%        % {\makeatletter%
+%        % \let\@cftmakeloftitle\relax%
+%        % \listoffigures% Print List of Figures
+%        % \makeatother}%
+%
+%
+% - - - - - - - - - -
+%   Variant 3)
+%      -> As an extension to Variant 2), I defined the following command, which can then be used instead of \listoffigures
+\makeatletter%
+\newcommand{\listoffiguresDenKr}{%
+    \chapnt{\listfigurename}[chapnt:LoF]%
+    \let\@cftmakeloftitle\relax%
+    \listoffigures%
+}%
+\makeatother%
+\makeatletter%
+\newcommand{\listoftablesDenKr}{%
+    \chapnt{\listtablename}[chapnt:LoT]%
+    \let\@cftmakelottitle\relax%
+    \listoftables%
+}%
+\makeatother%
+\makeatletter%
+\newcommand{\listofalgorithmsDenKr}{%
+    %\chapnt{\listalgorithmname}[chapnt:LoA]%
+    %\let\@cftmakeloatitle\relax% \@listalgorithmcfname \@cftmakeloalgtitle
+	\addcontentsline{toc}{chapter}{\listalgorithmname}%
+    \listofalgorithms%
+}%
+\makeatother%
+%
+%
+% - - - - - - - - - -
+%   Variant 4)
+%      -> Redefine the following.
+%         - This the default definition of the "\listoffigures" command by "tocloft.sty". There you could remove the "\@cftmakeloftitle"
+%        % \renewcommand{\listoffigures}{%
+%        %   \@cfttocstart%
+%        %   \par%
+%        %   \begingroup%
+%        %     \parindent\z@ \parskip\cftparskip%
+%        %     \@cftmakeloftitle%
+%        %     \if@cfttocbibind%
+%        %       \@cftdobiblof%
+%        %     \fi%
+%        %     \@starttoc{lof}%
+%        %   \endgroup%
+%        %   \@cfttocfinish}%
+%        % \fi%

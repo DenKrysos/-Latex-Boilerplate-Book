@@ -1,0 +1,127 @@
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%							Setups für enumitem
+%					Lists - (itemize, enumerate, description)
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% \setlist[1]{\labelindent=\parindent} % < Usually a good idea
+%\setlist[description]{font=\sffamily\bfseries} % the Default
+\setlist[description]{%
+    topsep=0ex,itemsep=0ex,parsep=0ex,%
+    labelindent=0pt,%
+    leftmargin=0pt%
+}%
+\setlist[itemize]{%
+    topsep=0ex,itemsep=0ex,parsep=0ex,%
+    leftmargin=1em%
+}%
+\setlist[enumerate]{%
+    topsep=0ex,itemsep=0ex,parsep=0ex,%
+    leftmargin=1.5em%
+}%
+%\renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\normalfont\textbf{#1}:}%
+\renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\normalfont\textit{#1}:}%
+%
+% %  Additional new List-Style, "Enumeration-Inline-Roman" for enumerating with lower-case roman letters inline
+\newlist{enuminlrom}{enumerate*}{1}%
+\setlist[enuminlrom]{label=\textit{(\roman*)}}%
+%
+%
+% - - Templates
+%       For Templates, have a look into the corresponding File inside the "8templates" Directory
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							enumitem fertig
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%							Setups für Glossaries
+%       (Additionally defined cmds/macros are included "pre-Document")
+%       (Additional added keys are included in Preamble, with the package)
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+\input{"\DenKrLayoutMainRootDir/3settings/4customization/glossaries_style".tex}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							Glossaries fertig
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%		Spacing für
+%					- Equation Environment
+%					- floats
+%					- Some new Lengths & Variables
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%		Equation
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%------------------------------------------------------------------------
+% 	\begin{equation}\begin{split}
+% 	MRes_{K}^{3rd} = \delta_{3rd} + \delta_{K}
+% 	\end{split}\end{equation}
+%------------------------------------------------------------------------
+% Default for 'above' & 'below' Space:
+%		11.0pt plus 3.0pt minus 6.0pt
+% You can check this using (prints it into the Document):
+%		\the\abovedisplayskip
+%		\the\belowdisplayskip
+%------------------------------------------------------------------------
+% The ones with 'short' come in play if the last line immediately before an equation is, well, short.
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%		Floats
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\setlength\extrarowheight{1ex}%
+% The Spacing between floats and the surrounding text at top and bottom of the
+% float. The Defaults are somewhat complicated and depend on document type and
+% font-size%
+% \setlength{\intextsep}{\intextsep}%
+% Some more lenghts like this
+%     \textfloatsep — distance between floats on the top or the bottom and the text;
+%     \floatsep — distance between two floats;
+%     \intextsep — distance between floats inserted inside the page text (using h) and the text proper.
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%		New Lenghts & Variables
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\newlength\textheighttemp%
+% \setlength{\textheighttemp}{\textheight}%
+\newlength\textwidthtemp%
+% \setlength{\textwidthtemp}{\textwidth}%
+\newlength\textheightstd%
+\setlength{\textheightstd}{\textheight}%
+\newlength\textwidthstd%
+\setlength{\textwidthstd}{\textwidth}%
+\newlength\textheightold%
+\newlength\textwidthold%
+%
+\newlength\tempheight%
+\newlength\tempwidth%
+%\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+%			Spacing End
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%

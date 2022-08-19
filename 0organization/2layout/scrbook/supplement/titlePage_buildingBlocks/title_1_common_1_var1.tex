@@ -1,0 +1,61 @@
+\input{"./0organization/2layout/scrbook/supplement/titlePage_buildingBlocks/makros".tex}%
+%
+\vspace*{0.1\textheight}%
+%
+%
+% Title
+\DenKrTPTitleAndSubtitle{\DenKrTPtitle}{\DenKrTPsubtitle}%
+%
+\vspace*{3\baselineskip}%
+%
+\textsc{\Large\DenKrTPpublicationType}\\%
+\vspace*{0.08\textheight}%
+%
+% Author and supervisor
+\begin{minipage}[t]{0.47\textwidth}%
+\begin{flushleft} \large%
+{\textcolor{ChapterHeadingColor}{Author:}}\\%
+\ifdefempty{\DenKrTPauthorAnrede}%
+	{}%
+	{\textcolor{ChapterHeadingColor}{\DenKrTPauthorAnrede}\ }%
+\ifdefempty{\DenKrTPauthorTitleBefore}%
+	{}%
+	{\textcolor{ChapterHeadingColor}{\DenKrTPauthorTitleBefore}\ }%
+\textcolor{PartHeadingColor}{\DenKrTPauthorFirst}\ \textsc{\textcolor{PartHeadingColor}{\DenKrTPauthorLast}}%
+\ifdefempty{\DenKrTPauthorTitleAfter}%
+	{}%
+	{, \textcolor{ChapterHeadingColor}{\DenKrTPauthorTitleAfter}}%
+\end{flushleft}%
+\end{minipage}%
+\hfill%
+\begin{minipage}[t]{0.52\textwidth}%
+\begin{flushright} \large%
+% \vspace*{\baselineskip}%
+{\textcolor{ChapterHeadingColor}{Supervisor:}}\\%
+%{\ }\\%
+\ifdefempty{\DenKrTPsupervisorOneAnrede}%
+	{}%
+	{\textcolor{ChapterHeadingColor}{\DenKrTPsupervisorOneAnrede}\ }%
+\ifdefempty{\DenKrTPsupervisorOneTitleBefore}%
+	{}%
+	{\textcolor{ChapterHeadingColor}{\DenKrTPsupervisorOneTitleBefore}\ }%
+\textcolor{PartHeadingColor}{\DenKrTPsupervisorOneFirst}\ \textsc{\textcolor{PartHeadingColor}{\DenKrTPsupervisorOneLast}}%
+\ifdefempty{\DenKrTPsupervisorOneTitleAfter}%
+	{}%
+	{, \textcolor{ChapterHeadingColor}{\DenKrTPsupervisorOneTitleAfter}}%
+\\%
+\ifdefempty{\DenKrTPsupervisorTwoAnrede}%
+	{}%
+	{\DenKrTPsupervisorTwoAnrede\ }%
+\ifdefempty{\DenKrTPsupervisorTwoTitleBefore}%
+	{}%
+	{\DenKrTPsupervisorTwoTitleBefore\ }%
+\DenKrTPsupervisorTwoFirst\ \textsc{\DenKrTPsupervisorTwoLast}%
+\ifdefempty{\DenKrTPsupervisorTwoTitleAfter}%
+	{}%
+	{, \DenKrTPsupervisorTwoTitleAfter}%
+\\%
+\end{flushright}%
+\end{minipage}%
+\\%
+%

@@ -1,0 +1,155 @@
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Postamble, Addendum
+%				Some additional Appendices
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%
+%
+%
+%================================================================
+%----------------------------------------------------------------
+%      Part Anhang
+%           Glossar \& eigentlicher Anhang
+%================================================================
+\appendix%
+%
+\makeatletter\@openrighttrue%
+\part{Appendix}%
+\@openrightfalse\makeatother%
+\label{part:anhang}%
+%
+%
+%
+%================================================================
+%      Anhang
+%================================================================
+%
+\input{\DenKrSegmentationSubDir/0500_appendix.tex}%
+%
+%
+%
+%
+%
+%
+%
+\backmatter%
+%================================================================
+%      Glossar
+%================================================================
+%
+%
+% \chapter{Glossar}%Eigenes Chapter weg, wenn Option: section=chapter (bei usepackage)
+% \nopagebreak
+% \printglossaries%Stellt Glossar und Akronyme gemeinsam dar
+% Bei den beiden folgenden achtsam sein mit der Option: nomain
+% \glsaddall% Würde hier eine leere Seite erzeugen. Siehe weiter oben
+% \glsaddallunused%
+%
+\chapter{Glossary}%
+\secnt{Acronyms}%See Preamble, usepackage -> \renewcommand{\glossarysection}[2][]{} to remove the section-heading actually created by \printglossary
+\printglossary[type=\acronymtype,style=list]%Stellt Akronyme dar % [title=Special Terms, toctitle=List of terms]
+\clearpage%
+\secnt{Glossaries}%
+\printglossary[style=list+Deutsch+Untertitel+alternativ+url]%Stellt Glossar dar
+\clearpage%
+%
+%
+%
+%
+%
+%
+%================================================================
+%----------------------------------------------------------------
+%      List of Figures & Tables
+%================================================================
+%
+% Table of Contents is found in TitlePage_&_init
+\begingroup%
+  \renewcommand*{\chapterpagestyle}{empty}%
+  \pagestyle{plain}%
+%   \tableofcontents%
+%   \thispagestyle{empty}%
+%  \clearpage%
+  %\listoffigures%
+  \listoffiguresDenKr%
+  \clearpage%
+  %\listoftables%
+  \listoftablesDenKr%
+  \clearpage%
+  \listofalgorithmsDenKr%
+  \clearpage%
+\endgroup%
+%
+%
+%
+%
+%
+%
+%================================================================
+%----------------------------------------------------------------
+%      Literaturverzeichnis
+%================================================================
+%
+%#################################################################
+%##=========================================================######
+%##---------------------------------------------------------######
+%\chapter{References}
+%##=========================================================######
+%#################################################################
+% \input{./literaturverzeichnis.tex}
+%\nocite{*}
+%
+%\printbibliography%
+\begingroup%
+\pagestyle{plain}%
+\printbibliography[%
+	heading=literature,%
+	keyword=primary_literature,%
+]%
+% \printbibliography[%
+% 	heading=literature_secondary,%
+% 	keyword=secondary_literature,%
+% ]%
+% \printbibliography[%
+% 	heading=literature_figures,%
+% 	keyword=figure_literature,%
+% ]%
+% \printbibliography[%
+% 	heading=literature_tables,%
+% 	keyword=table_literature,%
+% ]%
+\endgroup%
+% \printbibliography[notkeyword=figure]
+% \thispagestyle{empty}
+% \printbibliography[title={Abbildungs-Quellen},keyword=figure]
+% \thispagestyle{empty}
+%
+%
+%
+%
+%#################################################################
+%##=========================================================######
+%##---------------------------------------------------------######
+%\section*{Biographies}
+%##=========================================================######
+%#################################################################
+\expandafter\ifstrequal\expandafter{\DenKrLayoutIncludeBiographies}{0}{}{%
+\input{"\DenKrSegmentationSubDir/0701_biographies".tex}%
+}%
+%
+%
+%
+%
+%
+%#################################################################
+%##=========================================================######
+%##---------------------------------------------------------######
+% - - - Tempory active while working state.
+% -  -  -  Deactivated before \begin{document}
+%##=========================================================######
+%#################################################################
+\disablewr{%
+\chapter{Draft-State}%
+\TempDisplayPreparation%
+}%
+%

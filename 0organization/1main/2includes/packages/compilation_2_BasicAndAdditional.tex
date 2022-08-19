@@ -1,0 +1,65 @@
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Various (Basic) Packages
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% \usepackage{amsmath}%
+\usepackage{mathtools}% Supersedes and internally loads 'amsmath'
+%
+\usepackage{soul}% Viele Texthervorhebungs-Kommandos
+%- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\usepackage{textcomp}%
+\usepackage{calc}%
+\usepackage{xkeyval}%Allows to extend Package's Key-Sets with prefixes
+% \usepackage{ifthen}
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%					
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Additional Packages
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% \usepackage{scrextend}%
+\usepackage{colortbl}%
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+% \usepackage[obeyFinal]{todonotes}
+%
+\usepackage{amssymb}% Loads 'amsfonts'
+\usepackage{units}%contains package 'nicefrac'. Supplies some nice Fraction formatting.
+\usepackage{xfrac}%
+%
+%------------------------------------------------------------------------
+% Zu Beachten, wenn Seiten manuell gewählt wird.
+\ifdef{\DenKrTikzStandaloneNotInclude}{}{%
+\usepackage{marginnote}%
+\usepackage{marginfix}%
+\renewcommand*{\marginfont}{\footnotesize}%
+}%
+\usepackage{hyphsubst}%
+%
+\usepackage{multicol}% Multicol defines a multicols environment which typesets text in multiple columns 
+\usepackage{xspace}% Define commands that appear not to eat spaces
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%					
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Pretty optional
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+\input{"\DenKrLayoutMainRootDir/2includes/packages/column_balancing".tex}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%					
+%------------------------------------------------------------------------
+%________________________________________________________________________

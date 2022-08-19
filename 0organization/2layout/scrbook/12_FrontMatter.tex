@@ -1,0 +1,40 @@
+%================================================================
+%----------------------------------------------------------------
+%      Inhaltsverzeichnis
+%================================================================
+%
+% Figures & Tables are put to the postamble, right before the Literature-References
+\begingroup%
+  \renewcommand*{\chapterpagestyle}{empty}%
+  \pagestyle{plain}%
+  \tableofcontents%
+%   \thispagestyle{empty}%
+  \clearpage%
+%   \listoffigures%
+%   \clearpage%
+%   \listoftables%
+%   \clearpage%
+\endgroup%
+%
+%
+%================================================================
+%----------------------------------------------------------------
+%      Aphorismus. Some witty brilliant quotation aka Fortune-Cookie Saying
+%================================================================
+\noindent%
+\settoheight{\tmpheight}{\begin{minipage}{\textwidth}\input{"\DenKrSegmentationSubDir/0020_aphorism".tex}\end{minipage}}%
+\setlength\tmpheight{\textheight-\tmpheight}%
+\setlength\tmpheight{\tmpheight/3}% \tmpheight/3-\baselineskip
+\setlength\tmpheight{0.75\tmpheight}%
+\vspace*{\tmpheight}\\%
+\input{"\DenKrSegmentationSubDir/0020_aphorism".tex}%
+\clearpage%
+%
+%================================================================
+%----------------------------------------------------------------
+%      Front-Matter
+%================================================================
+\chapter{Abstract}%
+\input{"\DenKrSegmentationSubDir/0100_abstract".tex}%
+\chapter{Kurzfassung}%
+\input{"\DenKrSegmentationSubDir/0101_abstract_Ger".tex}%

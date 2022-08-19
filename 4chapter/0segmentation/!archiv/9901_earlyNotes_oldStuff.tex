@@ -1,0 +1,188 @@
+
+
+
+%
+% \tikzabb%[tex]%
+% {Handover-Messung1}%
+% {Handover-Messung 1}{1}%
+% {fig:messung1}%
+%
+
+
+\chapter{Early Notes}
+
+\section{Network Setup, Resilience}
+
+TCP Performance and the Mathis Equation\cite{mathis1997macroscopic}\nl%
+Rate < (MSS/RTT)*(1 / sqrt(p))\nl%
+where p is the probability of packet loss.
+
+\wdiv%
+FROM: \url{https://www.netcraftsmen.com/tcp-performance-and-the-mathis-equation/}:
+
+Additional References
+
+There is a good tutorial on TCP performance, with examples of fiber BER and different delays at\nl%
+\url{http://www.linuxsa.org.au/meetings/2003-09/tcpperformance.print.pdf}
+
+A validation was reported in Modelling TCP throughput: A simple model and its empirical validation by J. Padhye, V. Firoiu, D. Townsley and J. Kurose, in Proc. SIGCOMM Symp. Communications Architectures and Protocols Aug. 1998, pp. 304-314.  While this may be a more accurate analysis, it is certainly beyond the level of detail that most network engineers wish to go.
+
+Pete Welcher also took a look at this and posted his own view and links on the topic at:  TCP/IP Performance Factors
+
+I also recommend that you read RFC1323 (May 1992) to learn more about the fundamental mechanisms that have been in place for a long time.  There are also some great references on the Internet on how to tune various TCP stacks for optimum operation over LFNs.  Understanding how to measure performance and what to do about it when it seems slow is valuable knowledge.
+
+
+\wdiv%
+Real-Time Protocol  (UDP encapsulation)
+
+(The reason for less than 100\% is to allow for overhead on the link, such as routing protocol packets, CDP/LLDP packets, inter-frame gaps, etc.)
+
+
+
+\wdiv%
+
+
+
+\section{Routing}
+Some Routing Algorithms
+
+
+
+
+
+
+
+
+\section{Processing Delay}
+
+Diese Switch-Delay-Mess-Dinger von \textit{Beckhoff} und \textit{Kunbus}.\nl%
+
+Beckhoff ET2000\nl%
+\url{https://infosys.beckhoff.com/index.php?content=../content/1031/et2000/1153190283.html&id=}\nl%
+
+Kunbus-TAP 2100\nl%
+\url{https://www.kunbus.de/test-access-point.html}%
+
+\npi%
+$Dev_B$: Beckhoff-Device\nl%
+$Dev_K$: Kunbus-Device\nl%
+$Dev_{3rd}$: Some random third-party, customary Switching-Device.%
+\npi%
+$\delta_B$: Additional Delay introduced by the Beckhoff Measurement-Device, during capturing.\nl%
+$\delta_K$: Additional Delay introduced by the Kunbus Measurement-Device, during capturing.\nl%
+$\delta_{3rd}$: The actual Processing-Delay caused by the measured Switching-Device. A Delay in the transmission Time that a packet suffers while processed by this Switching-Device.
+\npi%
+$MRes_i^j$: The Result of a Metering Process. Measured using Index $i$, representing the Delay of $j$.
+
+\subsection{Metering Procedure}
+
+\subsubsection{Measuring the \mbox{3\textsubscript{rd}} Party Device}
+
+\paragraph{Using $Dev_B$:}
+\begin{equation}\begin{split}
+\label{eq:MRes3B}
+MRes_{B}^{3rd} = \delta_{3rd} + \delta_{B}
+\end{split}\end{equation}
+
+\paragraph{Using $Dev_K$:}
+\begin{equation}\begin{split}
+\label{eq:MRes3K}
+MRes_{K}^{3rd} = \delta_{3rd} + \delta_{K}
+\end{split}\end{equation}
+
+
+
+\subsubsection{Measuring the Beckhoff Device}
+Using the Kunbus Device
+
+\begin{equation}\begin{split}
+\label{eq:MResBK}
+MRes_{K}^{B} = \delta_{B} + \delta_{K}
+\end{split}\end{equation}
+
+
+
+\subsubsection{Measuring the Kunbus Device}
+Using the Beckhoff Device
+
+\begin{equation}\begin{split}
+\label{eq:MResKB}
+MRes_{B}^{K} = \delta_{K} + \delta_{B}
+\end{split}\end{equation}
+
+
+
+
+\subsection{Derive Formula for the Delay of the Measurement Devices}
+\begin{align}%\begin{split}
+\label{eq:deltaB}
+\text{Using: } (\ref{eq:MRes3B})\;\&\;(\ref{eq:MRes3K}){}&\notag\\
+(\ref{eq:MRes3B}) {}&\Rightarrow \delta_{3rd} = MRes_{B}^{3rd} - \delta_B\notag\\
+\text{in } (\ref{eq:MRes3K}) {}&\Rightarrow MRes_{K}^{3rd} = MRes_{B}^{3rd} - \delta_B + \delta_K\notag\\
+{}&\Rightarrow \delta_B = \delta_K + MRes_{B}^{3rd} - MRes_{K}^{3rd}
+%\end{split}
+\end{align}
+
+\npi%
+
+\begin{subequations}
+	\begin{align}
+	\label{eq:deltaK}
+	\text{Using: } (\ref{eq:deltaB})\;\&\;\{(\ref{eq:MResBK}) or (\ref{eq:MResKB})\},{}& here: (\ref{eq:deltaB})\;\&\;(\ref{eq:MResKB})\notag\\
+	(\ref{eq:MResKB}) {}&\Rightarrow \delta_K = MRes_{B}^{K} - \delta_B\\
+% 	\end{align}
+% \vspace{0.5\baselineskip}
+% 	\begin{align}
+	\text{in } (\ref{eq:deltaB}) {}&\Rightarrow \delta_B = MRes_{B}^{K} - \delta_B + MRes_{B}^{3rd} - MRes_{K}^{3rd}\notag\\
+	{}&\Rightarrow \delta_B = \frac{1}{2} \left( MRes_{B}^{K} + MRes_{B}^{3rd} - MRes_{K}^{3rd} \right)
+	\end{align}
+\end{subequations}
+
+
+
+
+\subsection{Measured Values}
+
+
+\subsubsection{Measurement Series 1: Eth-Cable}
+
+Using as measured 3$_{rd}$ Party Device an \textit{Ethernet Cable}. Expected minimum Delay ~0ns. Should inflict no additional influences and thus deliver precise Measurement of the \textit{actual Object of Interest}, that are the Measurement Devices.
+
+\paragraph{Beckhoff-Device:}
+
+Captured Packets: 4152.\nl%
+Measured Delay: $MRES_B^{EthC}=600ns$.
+
+
+\paragraph{Kunbus-Device:}
+
+Captured Packets: 6284.\nl%
+Measured Delay: $MRES_K^{EthC}=10-20ns$.
+12,
+
+
+
+
+\subsubsection{Measurement Series 2: Switch}
+
+Using as measured 3$_{rd}$ Party Device a simple \textit{IP Network Switch} (TP-Link \ldots). To aquire a counter-measurement to compare with measurement series 1.
+
+
+
+
+\subsubsection{Measurement Series 3: Metering the Kunbus-Device, using the Beckhoff-Device}
+
+Captured Packets: .\nl%
+Measured Delay: $MRES_B^{K}=ns$.
+
+
+
+
+\subsection{Calculating actual Delay of the Measurement Devices}
+
+
+
+ 
+
+
+

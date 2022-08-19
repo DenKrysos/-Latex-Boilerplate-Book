@@ -1,0 +1,120 @@
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%							Dokument Formatierungen
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%---------------------------------------------------------
+%					Non-KOMA
+%---------------------------------------------------------
+% Set Page-Numbering to Capital-Roman in the Front-Matter, to Arabic in the Main-Matter and prevent both from resetting the Page-Number-Counter
+%       % Remark that \pagenumbering resets the Page Counter. Hence, not done like:
+%        % \renewcommand{\frontmatter}{\cleardoublepage\@mainmatterfalse\pagenumbering{Roman}}
+%        % \renewcommand{\mainmatter}{\cleardoublepage\@mainmattertrue\pagenumbering{arabic}}
+\makeatletter%
+\renewcommand{\frontmatter}{\cleardoublepage\@mainmatterfalse\renewcommand{\thepage}{\Roman{page}}}%
+\renewcommand{\mainmatter}{\cleardoublepage\@mainmattertrue\renewcommand{\thepage}{\arabic{page}}}%
+\makeatother%
+%
+%
+%
+%---------------------------------------------------------
+%					KOMA
+%---------------------------------------------------------
+\KOMAoptions{%
+% 	BCOR=8mm,% Bindeverlust von 8mm am Innenrand einbeziehen
+	DIV=last,%
+}%
+%
+%________________________________________________________________________
+% Nummerierungen, Counter
+%========================================================================
+% \setcounter{secnumdepth}{5}%Wie viele Gliederungsebenen tief Nummerierungen hinzugefügt werden
+% \setcounter{tocdepth}{5}%Wie viele Ebenen tief ins Inhaltsverzeichnis übernommen werden
+% - - - - - - -
+% \renewcommand\thesection{\arabic{section}}
+% \renewcommand\thefigure{\arabic{section}.\arabic{figure}}
+\renewcommand\theequation{\arabic{chapter}.\arabic{equation}}%
+%
+%________________________________________________________________________
+%							Für Kopf und Fußzeilen der Seiten (Alles auf KOMA basierend)
+%========================================================================
+% \usepackage{scrpage2} %Älter
+\usepackage{scrlayer-scrpage}%
+\PreventPackageFromLoading{fancyhdr}%
+%------------------------------------------------------------------------
+%							Font-Formatierung von Kopf und Fußzeile
+% \setkomafont{Element}{Befehle}
+% \addtokomafont{Element}{Befehle}
+\definecolor{HeadLineColor}{RGB}{40,60,150}%
+\definecolor{FootLineColor}{named}{HeadLineColor}%
+\addtokomafont{pageheadfoot}{\color{HeadLineColor}}%
+\definecolor{PageNumberColor}{RGB}{0,60,150}%
+\addtokomafont{pagenumber}{\color{HeadLineColor}}%
+%
+%________________________________________________________________________
+% Chapter, Section, etc. Heading Format Definition. According to KOMA-Script
+%========================================================================
+% Default Values are
+%\newcommand*{\partformat}{\partname~\thepart\autodot}
+%\newcommand*{\chapterformat}{\mbox{\chapappifchapterprefix{\nobreakspace}\thechapter\autodot\IfUsePrefixLine{}{\enskip}}}
+%\newcommand*{\sectionformat}{\thesection\autodot\enskip}
+%\newcommand*{\subsectionformat}{\thesubsection\autodot\enskip}
+%\newcommand*{\subsubsectionformat}{\thesubsubsection\autodot\enskip}
+%\newcommand*{\paragraphformat}{\theparagraph\autodot\enskip}
+%\newcommand*{\subparagraphformat}{\thesubparagraph\autodot\enskip}
+%\newcommand*{\othersectionlevelsformat}[3]{#3\autodot\enskip}
+% - - - - - - - -
+%KOMA-Script default Heading font setting
+%\sffamily\bfseries
+%\setkomafont{chapter}{\sffamily\bfseries\huge}
+%\setkomafont{section}{\sffamily\bfseries\Large}
+%\setkomafont{subsection}{\sffamily\bfseries\large}
+%\setkomafont{subsubsection}{\sffamily\bfseries\normalsize}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - -
+\definecolor{PartHeadingColor}{RGB}{40,0,100}%
+\definecolor{ChapterHeadingColor}{RGB}{60,0,150}%
+\definecolor{SectionHeadingColor}{named}{ChapterHeadingColor}%
+\definecolor{SubSectionHeadingColor}{RGB}{80,0,180}%
+\definecolor{SubSubSectionHeadingColor}{RGB}{80,100,180}%
+\definecolor{ParagraphHeadingColor}{RGB}{130,150,210}%
+\definecolor{SubParagraphHeadingColor}{RGB}{130,150,210}%
+% - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%\setkomafont{disposition}{\normalcolor\bfseries}%
+\addtokomafont{disposition}{\color{ChapterHeadingColor}}%
+% - - - - - - - -
+\renewcommand*{\partformat}{%
+    \color{PartHeadingColor}\partname~\thepart\autodot\\%
+    \textcolor{gray!50}{\rule[-0.2\baselineskip]{0.4\textwidth}{0.3ex}}%
+}%
+\setkomafont{part}{\sffamily\bfseries\huge\color{PartHeadingColor}}%
+% - - - - - - - -
+\renewcommand*{\chapterformat}{%
+    \thechapter\enskip%
+    \textcolor{gray!50}{\rule[-\dp\strutbox]{2pt}{\baselineskip}}\enskip%
+}%
+\setkomafont{chapter}{\sffamily\bfseries\huge\color{ChapterHeadingColor}}%
+% - - - - - - - -
+\setkomafont{section}{\sffamily\bfseries\Large\color{SectionHeadingColor}}%
+% - - - - - - - -
+\setkomafont{subsection}{\sffamily\bfseries\large\color{SubSectionHeadingColor}}%
+% - - - - - - - -
+\renewcommand*{\subsubsectionformat}{%
+    \thesubsubsection\enskip%
+    \textcolor{gray!50}{\rule[-\dp\strutbox]{1em}{2pt}} af\enskip%
+}%
+\setkomafont{subsubsection}{\normalsize\color{SubSubSectionHeadingColor}%
+    \textcolor{gray!50}{\rule[0.6ex]{1em}{0.3ex}}\enskip%Sehr unsauber, Textausgabe im Font zu ergänzen
+}%
+% - - - - - - - -
+\setkomafont{paragraph}{\normalsize\color{ParagraphHeadingColor}}%
+% - - - - - - - -
+\setkomafont{subparagraph}{\normalsize\itshape\color{SubParagraphHeadingColor}}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							Dokument Formatierungen fertig
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+\usepackage{scrhack}%

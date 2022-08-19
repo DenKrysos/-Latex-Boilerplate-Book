@@ -1,0 +1,66 @@
+%==================================================================================
+% ----  Project-Settings
+%----------------------------------------------------------------------------------
+%
+%Valid Layout Values
+% - scrbook % Optimized "book" for Using KOMA-Script.
+% - scrbook_print % Pretty much the same as "scrbook" but optimized for a print-Version in that it uses a different Page-Geometry and perhaps font-size
+%  %  %  %  %
+% - tikz_standalone % Sort of a special layout type. Used for Tikz-Pictures compiled in standalone-mode
+% = = = Not for Paper but big Documents, like books = = = = =
+% - scrbook
+\newcommand{\DenKrLayout}{scrbook}%
+\newcommand{\DenKrLayoutLanguage}{english}% en_ger, english, ngerman
+\newcommand{\DenKrLayoutUseHyperref}{1}% 0: false aka NOT use Hyperref  |  1: true aka USE Hyperref
+%
+% _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+% --  Some Stuff to help during working state
+% Enables you this infamous comments that helps gratuitously while concurrent working / reviewing among several Co-Authors.
+% Have a look into the File  {"\DenKrSupplyRootDir/DenKr_comments".tex}  to adjust Author-&-Macro-Names to the needs of your project
+% During writing, set the following to '1' to have the Comment-Macros be printed.
+% After finishing the work, you can just set it to '0' to make every Comment-Output disappear.
+% Additional Feature: The Macro \disablewr{}. Its Argument is eaten away / vanishes / has no effect when \DenKrCommentsUsage is set to '0'
+\newcommand{\DenKrCommentsUsage}{1}% 1: Enabled  |  0: Disabled, Comment-Macros don't do anything
+%----------------------------------------------------------------------------------
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%==================================================================================
+%
+%
+%
+%
+%==================================================================================
+% ----  Project-Setup
+% ----     (In most cases, you shouldn't be required to touch anything below)
+%----------------------------------------------------------------------------------
+%
+\newcommand{\DenKrOrgaRootDir}{./0organization}%
+\newcommand{\DenKrLayoutMainRootDir}{\DenKrOrgaRootDir/1main}%
+\newcommand{\DenKrLayoutBaseRootDir}{\DenKrOrgaRootDir/2layout}%
+\newcommand{\DenKrLayoutRootDir}{\DenKrLayoutBaseRootDir/\DenKrLayout}%
+\newcommand{\DenKrSupplyRootDir}{./1supply}%
+\newcommand{\DenKrContentRootDir}{./4chapter}%
+\newcommand{\DenKrTablesRootDir}{./5tables}%
+\newcommand{\DenKrListingsRootDir}{./6listings}%
+\newcommand{\DenKrTikzRootDir}{./7Tikz}%
+\newcommand{\DenKrGraphicsRootDir}{./8graphics}%
+\newcommand{\DenKrAlgorithmRootDir}{\DenKrListingsRootDir}%
+\newcommand{\DenKrLiteratureDir}{\DenKrSupplyRootDir}%
+%=========================================================================
+% ----  Project-Setup (Some little additional for further Structuring)
+%-------------------------------------------------------------------------
+\newcommand{\DenKrSegmentationSubDir}{\DenKrContentRootDir/0segmentation}%
+\newcommand{\DenKrLayoutIncludeBiographies}{1}% 1: Print the Biographies after Literature-References  |  0: Don't print Biographies
+%
+%
+%
+%==================================================================================
+% ----  More on LaTeX
+%----------------------------------------------------------------------------------
+\newcommand{\DenKrCompiler}{LuaLaTeX}% LuaLaTeX, pdfLaTeX
+% correct bad hyphenation here
+\hyphenation{%
+	op-ti-cal
+    net-works
+    semi-con-duc-tor
+    time-stamp
+}%

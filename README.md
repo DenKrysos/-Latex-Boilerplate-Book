@@ -33,6 +33,26 @@ Just saying, there are also Boilerplates for Article-type Documents:<br/>
 * For sure some more features I can't quite recall. That thing is huge...
 
 
+### Templates, Examples
+A File that provides Templates for proper Bibtex-Entry-Definition is
+  > "./0organization/1main/8templates/literature_1Template.tex"
+
+
+## Modus Operandi, Nodes, Tipps, Tricks
+
+## Project Divergence
+A lot of Files in here are linked from other Projects.<br/>
+When working "Git-based", this won't be an issue anytime, because then already distinct standalone copies of these files are created.<br/>
+
+But when working with an Overleaf-Project that you created as a Copy of this Overleaf-Project directly inside Overleaf, the files are still links. This is partly cool, because then you always have updates right at hand, whenever I perform such. But on the other hand, sometimes you might want to change things, like Package-Options. And it appears like that's not possible, because you can't modify linked files.<br/>
+In that case, create the project divergence yourself: Go into the file in question (e.g. "./0organization/1main/2includes/packages/figure_subfigure_caption.tex"), copy its content, remove (delete) the linked file, create a new one with the same file-name and paste the content into. Then adjust to your needs (e.g. modify the caption formatting).
+
+### Recommendation
+Actually, for most cases, I would recommend performing a "Deep Copy" of the Project. I.e. not taking over the links referring to files in other projects, but having own duplicates so that the new Project works fully standalone.<br/>
+
+You can achieve this for example via downloading the Project as .zip from the GitHub-Repository, then in Overleaf choose "New Project -> Upload Project" and give the downloaded .zip.
+
+
 
 ## Overleaf
 The Basis for this is actually an Overleaf Project. This is linked with a GitHub-Repository and every now and then synchronized to this. So the Git-Repo is actually "only" a fork of the Overleaf-Project.

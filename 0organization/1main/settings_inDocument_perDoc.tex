@@ -1,3 +1,12 @@
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%               File Split Notice
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%   More inside "./0organization/1main/3settings/" in the File "settings_inDocument_basic.tex"
+%       (Linked/Shared for every Project Commonly from the "-Latex-Essentials-Setup_Setting_STY_AddOn" Project)
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%------------------------------------------------------------------------
+%________________________________________________________________________
 %
 %
 %
@@ -7,6 +16,8 @@
 %							Setups für enumitem
 %					Lists - (itemize, enumerate, description)
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%  More in the "_basic.tex" File inside "./0organization/1main/3settings/"
+%
 % \setlist[1]{\labelindent=\parindent} % < Usually a good idea
 %\setlist[description]{font=\sffamily\bfseries} % the Default
 \setlist[description]{%
@@ -25,11 +36,6 @@
 %\renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\normalfont\textbf{#1}:}%
 \renewcommand{\descriptionlabel}[1]{\hspace{\labelsep}\normalfont\textit{#1}:}%
 %
-% %  Additional new List-Style, "Enumeration-Inline-Roman" for enumerating with lower-case roman letters inline
-\newlist{enuminlrom}{enumerate*}{1}%
-\setlist[enuminlrom]{label=\textit{(\roman*)}}%
-%
-%
 % - - Templates
 %       For Templates, have a look into the corresponding File inside the "8templates" Directory
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
@@ -40,31 +46,13 @@
 %
 %
 %
-%
-%
-%
-%________________________________________________________________________
-%------------------------------------------------------------------------
-%							Setups für Glossaries
-%       (Additionally defined cmds/macros are included "pre-Document")
-%       (Additional added keys are included in Preamble, with the package)
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-\input{"\DenKrLayoutMainRootDir/3settings/4customization/glossaries_style".tex}%
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%							Glossaries fertig
-%------------------------------------------------------------------------
-%________________________________________________________________________
-%
-%
-%
-%
-%
 %________________________________________________________________________
 %------------------------------------------------------------------------
 %		Spacing für
 %					- Equation Environment
 %					- floats
 %					- Some new Lengths & Variables
+%					- Basic Layout, Typesetting, LaTeX
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -94,32 +82,30 @@
 %		Floats
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \setlength\extrarowheight{1ex}%
-% The Spacing between floats and the surrounding text at top and bottom of the
-% float. The Defaults are somewhat complicated and depend on document type and
-% font-size%
+% The Spacing between floats and the surrounding text at top and bottom of the float. The Defaults are somewhat complicated and depend on document type and font-size%
 % \setlength{\intextsep}{\intextsep}%
-% Some more lenghts like this
+% Some more lengths like this
 %     \textfloatsep — distance between floats on the top or the bottom and the text;
 %     \floatsep — distance between two floats;
 %     \intextsep — distance between floats inserted inside the page text (using h) and the text proper.
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%				More on Spacing around Floats
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% You can modify the following lengths, which affect all floats.;
+%    \floatsep: space left between floats (12.0pt plus 2.0pt minus 2.0pt).
+%    \textfloatsep: space between last top float or first bottom float and the text (20.0pt plus 2.0pt minus 4.0pt).
+%    \intextsep : space left on top and bottom of an in-text float (12.0pt plus 2.0pt minus 2.0pt).
+%    \dbltextfloatsep is \textfloatsep for 2 column output (20.0pt plus 2.0pt minus 4.0pt).
+%    \dblfloatsep is \floatsep for 2 column output (12.0pt plus 2.0pt minus 2.0pt).
+%    \abovecaptionskip: space above caption (10.0pt).
+%    \belowcaptionskip: space below caption (0.0pt).
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-%		New Lenghts & Variables
+%		Layout
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\newlength\textheighttemp%
-% \setlength{\textheighttemp}{\textheight}%
-\newlength\textwidthtemp%
-% \setlength{\textwidthtemp}{\textwidth}%
-\newlength\textheightstd%
-\setlength{\textheightstd}{\textheight}%
-\newlength\textwidthstd%
-\setlength{\textwidthstd}{\textwidth}%
-\newlength\textheightold%
-\newlength\textwidthold%
-%
-\newlength\tempheight%
-\newlength\tempwidth%
+%\setlength{\parindent}{0em}%
+%\setlength{\parskip}{0ex plus 0pt minus 0pt}% Default value is 0pt plus 1pt   %Latex Std is \setlength\parskip{0\p@ \@plus \p@}
 %\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 %			Spacing End
 %------------------------------------------------------------------------

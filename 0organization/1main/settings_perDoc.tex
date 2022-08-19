@@ -1,19 +1,12 @@
 %________________________________________________________________________
 %------------------------------------------------------------------------
-%					Part (I)
+%               File Split Notice
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%
-%
-% Setups
-%
-%
-%  Some Variables
-\newlength{\tmpwidth}%
-\newlength{\tmpheight}%
-%
-%
-%
-%
+%   More inside "./0organization/1main/3settings/" in the File "settings_basic.tex"
+%       (Linked/Shared for every Project Commonly from the "-Latex-Essentials-Setup_Setting_STY_AddOn" Project)
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%------------------------------------------------------------------------
+%________________________________________________________________________
 %
 %
 %
@@ -21,24 +14,18 @@
 %
 %________________________________________________________________________
 %------------------------------------------------------------------------
-%					Spacing around Floats
+%		Spacing für
+%					- Equation Environment
+%					- floats
+%					- Some new Lengths & Variables
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-% You can modify the following lengths, which affect all floats.;
-%    \floatsep: space left between floats (12.0pt plus 2.0pt minus 2.0pt).
-%    \textfloatsep: space between last top float or first bottom float and the text (20.0pt plus 2.0pt minus 4.0pt).
-%    \intextsep : space left on top and bottom of an in-text float (12.0pt plus 2.0pt minus 2.0pt).
-%    \dbltextfloatsep is \textfloatsep for 2 column output (20.0pt plus 2.0pt minus 4.0pt).
-%    \dblfloatsep is \floatsep for 2 column output (12.0pt plus 2.0pt minus 2.0pt).
-%    \abovecaptionskip: space above caption (10.0pt).
-%    \belowcaptionskip: space below caption (0.0pt).
+%	Is found in
+%		\input{./0organization/1main/settings_inDocument.tex}
+% ( '\setlength' must come after \begin{document} )
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%					Float-Spacing done
+%			Spacing End
 %------------------------------------------------------------------------
 %________________________________________________________________________
-%
-%
-%
-%
 %
 %
 %
@@ -71,97 +58,22 @@
 %
 %
 %
-%
-%
 %________________________________________________________________________
 %------------------------------------------------------------------------
-%						Redefinition of \texttt
-%				to allow a proper hyphenation (Silbentrennung)
-% other breakpoint symbols can be added, for example, below I also make [ a breakpoint:
+%					Layout
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%\let\stdtexttt\texttt
-% \newcommand{\newtexttt}[1]{%
-%   \begingroup
-%   \ttfamily
-%   \begingroup\lccode`~=`/\lowercase{\endgroup\def~}{/\discretionary{}{}{}}%
-%   \begingroup\lccode`~=`[\lowercase{\endgroup\def~}{[\discretionary{}{}{}}%
-%   \begingroup\lccode`~=`.\lowercase{\endgroup\def~}{.\discretionary{}{}{}}%
-%   \catcode`/=\active\catcode`[=\active\catcode`.=\active
-%   \scantokens{#1\noexpand}%
-%   \endgroup
-% }
-% Oh noes, better way: Look at the Schriftart Segment in the Header
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%						Redef fertig
-%------------------------------------------------------------------------
-%________________________________________________________________________
-%
-%
-%
-%
-%
-%
-%________________________________________________________________________
-%------------------------------------------------------------------------
-%					Part (II)
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%
-%
-%
-%
-% Setups
-%
 \interfootnotelinepenalty=6000 %Gibt die Dringlichkeit an, mit der Fussnoten
 					%nicht umgebrochen werden (bis 10000)
 					%Standard: 100
 %
 % \newcolumntype{L}{>{\raggedright\arraybackslash}X}
-%\setlength{\parindent}{0em}
-%\setlength{\parskip}{0ex plus 0pt minus 0pt}
-% Default value is 0pt plus 1pt
-%Latex Std is \setlength\parskip{0\p@ \@plus \p@}
-%
-%
-%
-%
-%
-%
-%
-%________________________________________________________________________
-%------------------------------------------------------------------------
-%		Spacing für
-%					- Equation Environment
-%					- floats
-%					- Some new Lengths & Variables
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%	Is found in
-%		\input{./0organization/1main/settings_inDocument.tex}
-% ( '\setlength' must come after \begin{document} )
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%			Spacing End
+%\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+%					Layout Done
 %------------------------------------------------------------------------
 %________________________________________________________________________
 %
 %
 %
-%
-%
-%________________________________________________________________________
-%------------------------------------------------------------------------
-%						Definitionen allgemeiner Farben
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-\definecolor{textFlowEmphColor}{RGB}{20,20,180}%
-\definecolor{textFlowHighEmphColor}{RGB}{80,0,180}%
-%
-\definecolor{optionalargscolor}{RGB}{255,125,25}%
-\definecolor{ColorRegExCmdID}{RGB}{25,0,255}%
-\definecolor{ColorRegExCmdSelect}{RGB}{255,125,25}%
-\definecolor{ColorRegExCmdMultiSelect}{RGB}{30,150,0}%
-\definecolor{ColorRegExCmdOption}{RGB}{100,100,100}%
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%							Farben fertig
-%------------------------------------------------------------------------
-%________________________________________________________________________
 %
 %
 %
@@ -189,22 +101,3 @@
 %------------------------------------------------------------------------
 %________________________________________________________________________
 %
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-% 
-% 
-%
-%
-\input{"\DenKrLayoutMainRootDir/3settings/listings_listings".tex}%
-% \input{"\DenKrLayoutMainRootDir/3settings/listings_minted".tex}%

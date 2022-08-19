@@ -5,9 +5,9 @@ A quite nice Boilerplate/Template together with some Macros and ready-to-use set
 
 Just saying, there are also Boilerplates for Article-type Documents:<br/>
 
-> [https://github.com/DenKrysos/-Latex-Boilerplate_Paper](https://github.com/DenKrysos/-Latex-Boilerplate_Paper "DenKr Latex Paper/Poster-Boilerplate Sophisticated")
+> [https://github.com/DenKrysos/-Latex-Boilerplate-Paper_Poster](https://github.com/DenKrysos/-Latex-Boilerplate-Paper_Poster "DenKr Latex Paper/Poster-Boilerplate Sophisticated")
 
-> [https://github.com/DenKrysos/-Latex-Boilerplate_Paper-Modest](https://github.com/DenKrysos/-Latex-Boilerplate_Paper-Modest "DenKr Latex Paper-Boilerplate Modest")
+> [https://github.com/DenKrysos/-Latex-Boilerplate-Paper-Modest](https://github.com/DenKrysos/-Latex-Boilerplate-Paper-Modest "DenKr Latex Paper-Boilerplate Modest")
 <br/>
 
 * Layout and Skeleton Setup is well separated from the content

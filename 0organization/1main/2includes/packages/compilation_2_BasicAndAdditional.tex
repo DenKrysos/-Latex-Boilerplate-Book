@@ -2,15 +2,17 @@
 %------------------------------------------------------------------------
 %					Various (Basic) Packages
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-% \usepackage{amsmath}%
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
 \usepackage{mathtools}% Supersedes and internally loads 'amsmath'
+\usepackage{amssymb}% Loads 'amsfonts'
 %
-\usepackage{soul}% Viele Texthervorhebungs-Kommandos
+\usepackage{soul}%
 %- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \usepackage{textcomp}%
 \usepackage{calc}%
-\usepackage{xkeyval}%Allows to extend Package's Key-Sets with prefixes
-% \usepackage{ifthen}
+\usepackage{xkeyval}%
+\usepackage{ifthen}%
 \usepackage{setspace}%
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %					
@@ -25,13 +27,8 @@
 %------------------------------------------------------------------------
 %					Additional Packages
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-% \usepackage{scrextend}%
 \usepackage{colortbl}%
-\usepackage{amssymb}% http://ctan.org/pkg/amssymb
-\usepackage{pifont}% http://ctan.org/pkg/pifont
-% \usepackage[obeyFinal]{todonotes}
 %
-\usepackage{amssymb}% Loads 'amsfonts'
 %\usepackage{units}% Better don't use anymore. Instead siunitx.sty since it is newer and still maintained  %contains package 'nicefrac'.
 \usepackage{nicefrac}% Supplies some nice Fraction formatting. \nicefrac{<Numerator>}{<Denominator>}
 \usepackage{xfrac}% Another Fraction Formator. \sfrac[⟨instance⟩]{⟨num⟩}[⟨sep⟩]{⟨denom⟩}
@@ -43,17 +40,6 @@
 %     $2\frac{7}{2}$, \nicefrac{7}{2}. \num[parse-numbers=false]{\frac{7}{2}}, \num[parse-numbers=false]{\nicefrac{1}{3}}.
 %     \sfrac{1}{2}, $\sfrac{1}{2}$, $\mathbf{3\times\sfrac{1}{2}}$; \quad \fontfamily{ppl}\selectfont Palatino: \sfrac{1}{2}, \quad \fontfamily{ptm}\selectfont Times: \sfrac{1}{2}
 %
-%------------------------------------------------------------------------
-% Zu Beachten, wenn Seiten manuell gewählt wird.
-\ifdef{\DenKrTikzStandaloneNotInclude}{}{%
-\usepackage{marginnote}%
-\usepackage{marginfix}%
-\renewcommand*{\marginfont}{\footnotesize}%
-}%
-\usepackage{hyphsubst}%
-%
-\usepackage{multicol}% Multicol defines a multicols environment which typesets text in multiple columns 
-\usepackage{xspace}% Define commands that appear not to eat spaces
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %					
 %------------------------------------------------------------------------

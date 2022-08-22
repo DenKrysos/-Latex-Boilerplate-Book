@@ -5,19 +5,43 @@
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 \usepackage{boxedminipage}%
 \usepackage{ocgx2}% Package ocgx2 serves as a drop-in replacement for ocg-p, ocg and ocgxpackages.
-%\usepackage{scrextend}% The pack­age makes some fea­tures of the KOMA-Script classes avail­able for other classes, e.g., for the stan­dard classes.
 \usepackage{emoji}%
+%
+\usepackage{multicol}% Multicol defines a multicols environment which typesets text in multiple columns
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %					
 %------------------------------------------------------------------------
 %________________________________________________________________________
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%					Writing aids
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% Zu Beachten, wenn Seiten manuell gewählt wird.
+\ifdef{\DenKrTikzStandaloneNotInclude}{}{%
+\usepackage{marginnote}%
+\usepackage{marginfix}%
+\renewcommand*{\marginfont}{\footnotesize}%
+}%
+\usepackage{hyphsubst}%
+%
+% \usepackage[obeyFinal]{todonotes}
+%\usepackage{lipsum}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%					
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
 %
 \usepackage{pict2e}%
 % \usepackage{ragged2e}%
 % \usepackage[htt]{hyphenat}%
 % \usepackage{import}%
 %
+%\usepackage{expl3}%
+%\usepackage{tcolorbox}%
+% \usepackage{bigfoot}%
 %
-%
-%\usepackage{todonotes}%
-%\usepackage{lipsum}%

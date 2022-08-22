@@ -1,0 +1,31 @@
+%
+\DeclareLanguageMapping{ngerman}{ngerman-apa}%
+\DeclareLanguageMapping{english}{english-apa}%
+%-------------------------------------------------
+%
+\addbibresource{\DenKrLiteratureDir/literature_own.bib}%
+\addbibresource{\DenKrLiteratureDir/literature_misc.bib}%
+\addbibresource{\DenKrLiteratureDir/literature_thirdParty.bib}%
+% \addbibresource{\DenKrLiteratureDir/literature.bib}%
+% \addbibresource{\DenKrLiteratureDir/literature_secondary.bib}%
+% \addbibresource{\DenKrLiteratureDir/literature_figures.bib}%
+% \addbibresource{\DenKrLiteratureDir/literature_tables.bib}%
+% \addbibresource{\DenKrLiteratureDir/literature_querries.bib}%
+%
+% % % %
+% defbibheading is performed inside "settings.tex" in order to occur after "makros.tex"
+%\defbibheading{literature}{\chapnt{Literature}{chap:literature}\addtocounter{chapter}{-1}}%
+\defbibheading{literature}{\chapnt{Literature}[chap:literature]\addtocounter{chapter}{-1}}%
+\defbibheading{literature_secondary}{\chapnt{Zusätzliche Literatur}[chap:literatur_secondary]\addtocounter{chapter}{-1}}%
+\defbibheading{literature_figures}{\chapnt{Abbildungs-Quellen}[chap:abb-quellen]\addtocounter{chapter}{-1}}%
+\defbibheading{literature_tables}{\chapnt{Tabellen-Quellen}[chap:tab-quellen]\addtocounter{chapter}{-1}}%
+%========================================================================================================
+%      Alternative Methods
+%--------------------------------------------------------------------------------------------------------
+% % % % % % % \DeclareBibliographyCategory{literatur}%
+% % % % % % % \DeclareBibliographyCategory{literatur_abbildung}%
+% % % % % % % \addtocategory{literatur}{Key1,Key2,..}%
+% % % % % % % \addtocategory{literatur_abbildung}{Key1,Key4,..}%
+% % % % % % \bibliography{./literatur/literatur}%
+%========================================================================================================
+%\input{./organization/biblatex-customization.tex}%

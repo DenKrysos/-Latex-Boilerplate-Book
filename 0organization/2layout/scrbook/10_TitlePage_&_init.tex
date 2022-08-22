@@ -8,7 +8,10 @@
 \pagestyle{empty}%
 % Hm, settings vlt. doch besser in Präambel
 % \input{./organization/settings.tex}%
+\providecommand{\DenKrMicrotypeLoaded}{0}%
+\expandafter\ifstrequal\expandafter{\DenKrMicrotypeLoaded}{1}{%
 \microtypesetup{activate=false}%
+}{}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Tracking, Spacing & Kerning werden seit Lua(La)Tex von 'fontspec' verwaltet
 % 				% \microtypesetup{tracking=false}%
@@ -41,7 +44,9 @@
 %
 %\sloppy % Würde die Dehnung der Zwischenräume etwas lockerer machen
 %\fussy % Schaltet \sloppy wieder aus. Ist der Latex-Standart
+\expandafter\ifstrequal\expandafter{\DenKrMicrotypeLoaded}{1}{%
 \microtypesetup{activate=true}%
+}{}%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Tracking, Spacing & Kerning werden seit Lua(La)Tex von 'fontspec' verwaltet
 % 					% \microtypesetup{tracking=true}%

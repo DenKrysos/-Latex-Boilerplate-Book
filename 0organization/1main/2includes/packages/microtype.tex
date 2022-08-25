@@ -27,3 +27,8 @@
 \AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\bfseries\scshape}\microtypesetup{reactivate}}}
 \AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\sffamily\scshape}\microtypesetup{reactivate}}}
 \AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\ttfamily\scshape}\microtypesetup{reactivate}}}
+%
+%
+\expandafter\ifstrequal\expandafter{\DenKrLanguageStringCmd}{ngerman}{}{%
+\microtypecontext{spacing=nonfrench}%
+}%

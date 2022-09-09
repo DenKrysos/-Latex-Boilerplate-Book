@@ -14,6 +14,13 @@
 \renewcommand{\mainmatter}{\cleardoublepage\@mainmattertrue\renewcommand{\thepage}{\arabic{page}}}%
 \makeatother%
 %
+% - - - - - - - -
+% Block-Stretching across page
+% - - - - - - - -
+%     LaTeX uses \flushbottom for two-sided documents (book by default). Odd pages and even pages are forced to be aligned. In one-sided documents (article, report by default) LaTeX uses \raggedbottom, extra spaces will be gone. cf. classes document.
+%     One can use \raggedbottom if met too many bad page breaks. However, it is preferred to prevent big boxes in your document. Use floats instead of put big tabulars and figures directly. For lists and section titles, it is often not too serious, be sure you put enough text for each sections.
+\raggedbottom%
+%
 %
 %
 %---------------------------------------------------------

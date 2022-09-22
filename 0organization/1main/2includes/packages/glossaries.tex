@@ -24,18 +24,10 @@
 % \ifdef{\DenKrTikzStandaloneNotInclude}{}{%
 \makeglossaries%
 % }%
-\loadglsentries{\DenKrSupplyRootDir/glossaries.tex}%
-%\glsdisablehyper% Disables Hyperlinks
-\renewcommand{\glossarysection}[2][]{}%Completely removes the section heading (re-defines the internally used command to just do nothing)
-% }%
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %					glossaries fertig
 %------------------------------------------------------------------------
 %________________________________________________________________________
-%
-%
-%
-%
 %
 %
 %
@@ -46,6 +38,11 @@
 %       (Additional added keys are included in Preamble, with the package)
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 \input{"\DenKrLayoutMainRootDir/3settings/4customization/glossaries_cmds".tex}%
+%
+\loadglsentries{\DenKrSupplyRootDir/glossaries.tex}%
+%\glsdisablehyper% Disables Hyperlinks
+\renewcommand{\glossarysection}[2][]{}%Completely removes the section heading (re-defines the internally used command to just do nothing)
+% }%
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %							Glossaries fertig
 %------------------------------------------------------------------------

@@ -1,4 +1,3 @@
-
 %________________________________________________________________________
 %------------------------------------------------------------------------
 %							Font/Schriftarten Setup
@@ -6,9 +5,48 @@
 %####################################
 % With Lua(La)Tex, now better: 'fontspec'
 %####################################
+\usepackage{lmodern}% Lädt Latin Modern Font und setzt als mainfont für fontspec. Verbessert außerdem einige Font-Restrictions
 \usepackage{fontspec}%
 % - - - - Fonts - - - 
 %  --  --  The lower, the better i like them
+\setmainfont{Latin Modern Roman}[%
+SmallCapsFont=Latin Modern Roman Caps,% A Patch, because LMR does not provide Small Caps Bold
+%SmallCapsFeatures={Letters=SmallCaps},%
+ItalicFeatures={SmallCapsFont=LMRomanCaps10-Oblique},%
+]%
+% For Japanese Characters
+\usepackage{luatexja}
+\usepackage[match,%
+]{luatexja-fontspec}
+%
+\newcommand{\JPFontDir}{\DenKrLayoutMainRootDir/4aids/fonts/JP/}%
+\setmainjfont%[\JPFontDir]
+{Harano Aji Mincho}%
+\setsansjfont[Path=\JPFontDir,
+	BoldFont=NotoSansCJKJP-Bold
+]{NotoSansCJKJP-Light}%
+\setmonojfont%[Path=\JPFontDir]
+{Harano Aji Gothic}%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%							Font/Schriftarten done
+%------------------------------------------------------------------------
+%________________________________________________________________________
+%
+%
+%
+%
+%
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%				Some Notes & Relocated Backups
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+% Notes about the families and how they are named in Japanese
+% Mincho; Japanese Serif
+% Gothic; Japanese Sans Serif
+% Emphasized Text is done via Kenten; 圏点
+%
+%
+%- - - Basic Fontspec
 % \setmainfont{Times New Roman}%
 % \setmainfont{Gungsuh}%
 % \setmainfont{Malgun}%
@@ -33,16 +71,14 @@
 % 		 +		% 	\setsansjfont{Malgun} % \gtfamily
 % \setmainfont{Times New Roman}%
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% For Japanese Characters
-\usepackage{luatexja}
-\usepackage{luatexja-fontspec}
+%
+%- - - CJK
 % \setmainjfont{Yu Gothic UI}% \mcfamily
-% \setmainjfont{Meiryo UI}[Path=./0organization/1main/4aids/fonts/fonts/]% \mcfamily
-% \setsansjfont{Malgun}[Path=./0organization/1main/4aids/fonts/fonts/]% \gtfamily
-\setmainjfont[Path=\DenKrLayoutMainRootDir/4aids/fonts/]{HanaMinA}% \mcfamily  % Font available for free download and installation on system "Hanazono Mincho". (Copy here in "./0organization/1main/4aids/fonts/")
-\setsansjfont{Harano Aji Mincho}% \gtfamily  % Font available via Latex-Package "haranoaji" (Harano Aji Fonts)
+% \setmainjfont{Meiryo UI}[Path=\JPFontDir]% \mcfamily
+% \setsansjfont{Malgun}[Path=\JPFontDir]% \gtfamily
+% \setmainjfont[Path=\JPFontDir]{HanaMinA}% \mcfamily  % Font available for free download and installation on system "Hanazono Mincho". (Copy here in "\JPFontDir")
+% \setsansjfont{Harano Aji Mincho}% \gtfamily  % Font available via Latex-Package "haranoaji" (Harano Aji Fonts)
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%							Font/Schriftarten done
+%				Note done
 %------------------------------------------------------------------------
 %________________________________________________________________________
-%

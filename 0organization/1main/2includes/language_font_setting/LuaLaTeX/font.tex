@@ -20,13 +20,23 @@ ItalicFeatures={SmallCapsFont=LMRomanCaps10-Oblique},%
 ]{luatexja-fontspec}
 %
 \newcommand{\JPFontDir}{\DenKrLayoutMainRootDir/4aids/fonts/JP/}%
-\setmainjfont%[\JPFontDir]
-{Harano Aji Mincho}%
-\setsansjfont[Path=\JPFontDir,
-	BoldFont=NotoSansCJKJP-Bold
-]{NotoSansCJKJP-Light}%
-\setmonojfont%[Path=\JPFontDir]
-{Harano Aji Gothic}%
+% \setmainjfont{Harano Aji Mincho}%
+% \setmonojfont{Harano Aji Gothic}%
+\setmainjfont[Path=\JPFontDir,%
+	SmallCapsFont=NotoSerifJP-Medium,%
+	ItalicFont=NotoSerifJP-ExtraLight,%
+	BoldFont=NotoSerifJP-Bold%
+]{NotoSerifJP-Regular}%
+\setsansjfont[Path=\JPFontDir,%
+	SmallCapsFont=NotoSansJP-Light,%
+	ItalicFont=NotoSansJP-Light,%
+	BoldFont=NotoSansJP-Bold%
+]{NotoSansJP-Regular}%
+\setmonojfont[Path=\JPFontDir,%
+	SmallCapsFont=NotoSansJP-Light,%
+	ItalicFont=NotoSerifJP-SemiBold,%
+	BoldFont=NotoSansJP-Black%
+]{NotoSansJP-Medium}%
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %							Font/Schriftarten done
 %------------------------------------------------------------------------

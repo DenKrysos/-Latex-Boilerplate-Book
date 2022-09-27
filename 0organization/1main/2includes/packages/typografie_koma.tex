@@ -21,6 +21,56 @@
 %     One can use \raggedbottom if met too many bad page breaks. However, it is preferred to prevent big boxes in your document. Use floats instead of put big tabulars and figures directly. For lists and section titles, it is often not too serious, be sure you put enough text for each sections.
 \raggedbottom%
 %
+% - - - - - - - -
+% Reset the Chapter-Counter with every Part
+%  (When doing this, make sure to turn the Chapter-ID (\thechapter) into something Part-specific. Similar to how it is done with Sections and below.)
+% With issuing the cmd, the document is changed from this spot on. Just like \mainmatter and alike
+% - - - - - - - -
+% USAGE:
+%  When intending to use this, also make sufficient Space in the printing of the Table-Of-Contents. For that just utilize the provided Macro below.
+% -> Remove the comment-percent in Front of the pasted Macro right at the bottom of the definition
+% - - - - - - - -
+\makeatletter%
+\newcounter{matterPartSeparationStatus}%
+\setcounter{matterPartSeparationStatus}{0}%
+\newcounter{PartSeparationChapterBkp}%
+\newcommand{\matterPartSeparatedActivate}{%
+    \ifnumcomp{\value{matterPartSeparationStatus}}{>}{0}{}{%
+        \setcounter{matterPartSeparationStatus}{1}%
+        \setcounter{PartSeparationChapterBkp}{\value{chapter}}%
+        \@addtoreset{chapter}{part}%
+        \renewcommand{\thechapter}{\Alph{part}\arabic{chapter}}%
+    }%
+}%
+\newcommand{\matterPartSeparatedRestore}{%
+    \ifnumcomp{\value{matterPartSeparationStatus}}{>}{0}{%
+        \@removefromreset{chapter}{part}%
+        \setcounter{chapter}{\value{PartSeparationChapterBkp}}%
+        \renewcommand{\thechapter}{\arabic{chapter}}%
+        \setcounter{matterPartSeparationStatus}{0}%
+    }{}%
+}%
+\makeatother%
+\newcommand{\addSpaceToTocNumForPartSeparationMatter}{%
+    \AddToHook{begindocument/before}{%
+        \newlength{\partnumTOClength}%
+        \setlength{\partnumTOClength}{1.5em}%
+        \addtolength{\cftpartnumwidth}{\partnumTOClength}%
+        \addtolength{\cftchapnumwidth}{\partnumTOClength}%
+        \addtolength{\cftsecnumwidth}{\partnumTOClength}%
+        \addtolength{\cftsubsecnumwidth}{\partnumTOClength}%
+        \addtolength{\cftsubsubsecnumwidth}{\partnumTOClength}%
+        \addtolength{\cftparanumwidth}{\partnumTOClength}%
+        \addtolength{\cftsubparanumwidth}{\partnumTOClength}%
+        \addtolength{\cftfignumwidth}{\partnumTOClength}%
+        %\addtolength{\cftsubfignumwidth}{\partnumTOClength}%
+        \addtolength{\cfttabnumwidth}{\partnumTOClength}%
+        %\addtolength{\cftsubtabnumwidth}{\partnumTOClength}%
+        \let\partnumTOClength\undefined%
+    }%
+}%
+% \addSpaceToTocNumForPartSeparationMatter%
+%
 %
 %
 %---------------------------------------------------------
@@ -40,6 +90,9 @@
 % \renewcommand\thesection{\arabic{section}}
 % \renewcommand\thefigure{\arabic{section}.\arabic{figure}}
 \renewcommand\theequation{\arabic{chapter}.\arabic{equation}}%
+% - - - - - - -
+%  Regarding Document Structure
+\renewcommand{\thepart}{\Alph{part}}% \Roman \Alph
 %
 %________________________________________________________________________
 %							Für Kopf und Fußzeilen der Seiten (Alles auf KOMA basierend)

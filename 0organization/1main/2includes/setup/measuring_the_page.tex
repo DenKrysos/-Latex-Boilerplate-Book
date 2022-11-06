@@ -1,0 +1,35 @@
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%			Some Macros for Measuring Positions on the Page / the Page
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%
+% - - - - - - - - - - - - - - -
+%  Get in which column, the current text is, when compiling in "twocolumn" mode
+% Usage:
+% \getColumnNum\the\value{columnCur}
+%
+\newcounter{columncheck}%
+\newcounter{columnCur}%
+\usepackage{tikz}%
+\usetikzlibrary{calc, tikzmark}%
+\makeatletter%
+\newcommand{\getColumnNum}{%
+  \stepcounter{columncheck}%
+  \pgfmark{columnNum-\thecolumncheck}%
+  \noindent\begin{tikzpicture}[remember picture,overlay]%
+    \coordinate(PageM)at($(current page.north east)!.5!(current page.south west)$);%
+    \coordinate(columnNum-\thecolumncheck)at(pic cs:columnNum-\thecolumncheck);%
+    \coordinate(midDist)at($(PageM)-(columnNum-\thecolumncheck)$);%
+    \newdimen\midOffsetX%
+    \pgfextractx{\midOffsetX}{\pgfpointanchor{midDist}{center}}%
+    \ifnumcomp{0}{<}{\midOffsetX}{% Offset positive: Left Column
+        \setcounter{columnCur}{1}%
+    }{%
+        \setcounter{columnCur}{2}%
+    }%
+  \end{tikzpicture}%
+  %\the\value{columnCur}%
+}%
+\makeatother%
+% - - - - - - - - - - - - - - -
+

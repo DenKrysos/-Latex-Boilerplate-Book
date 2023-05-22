@@ -3,7 +3,13 @@
 %------------------------------------------------------------------------
 %					Additional Packages
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-% \usepackage{scrextend}% The package makes some features of the KOMA-Script classes available for other classes, e.g., for the standard classes.
+% The scrextend-package makes some features of the KOMA-Script classes available for other classes, e.g., for the standard classes.
+\makeatletter%
+\@ifundefined{KOMAClassName}%
+{\usepackage{scrextend}}%
+{}%
+\makeatother%
+%
 \usepackage{boxedminipage}%
 % \usepackage{ocgx2}% Optional-Content-Group. For dynamic displaying/hiding of content in .pdf-files ("Spoiler-Environment") % Package ocgx2 serves as a drop-in replacement for ocg-p, ocg and ocgxpackages.
 \usepackage{emoji}%

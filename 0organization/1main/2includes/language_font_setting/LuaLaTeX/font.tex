@@ -8,38 +8,70 @@
 \usepackage{lmodern}% Lädt Latin Modern Font und setzt als mainfont für fontspec. Verbessert außerdem einige Font-Restrictions
 \usepackage{fontspec}%
 % - - - - Fonts - - - 
-%  --  --  The lower, the better i like them
+%  --  --  The lower, the better I like them
 \setmainfont{Latin Modern Roman}[%
-SmallCapsFont=Latin Modern Roman Caps,% A Patch, because LMR does not provide Small Caps Bold
+SmallCapsFont={Latin Modern Roman Caps},% A Patch, because LMR does not provide Small Caps Bold
 %SmallCapsFeatures={Letters=SmallCaps},%
 ItalicFeatures={SmallCapsFont=LMRomanCaps10-Oblique},%
 ]%
+%=================================
 % For Japanese Characters
+%=================================
+\ifdef{\DenKrJPFont}{\ifnumcomp{\number\numexpr\DenKrJPFont\relax}{>}{0}{%
 \usepackage{luatexja}
 \usepackage[match,%
 ]{luatexja-fontspec}
 %
-\newcommand{\JPFontDir}{\DenKrLayoutMainRootDir/4aids/fonts/JP/}%
+\typeout{»DenKr:  Resolving FontDir for Japanese Fonts. Operating in: "\currfiledir"}%
+\newcommand{\JPFontDir}{}%
+\newcommand{\JPFontSubDir}{\DenKrLayoutMainRootDirPATH/4aids/fonts/JP}
+\newcommand{\checkAndPrependJPFontDir}{%
+    \ifboolexpr{test {\IfFontExistsTF{\JPFontDir\JPFontSubDir/NotoSansJP-Regular.otf}}}{%
+        \typeout{»DenKr:  Working JPFontDir found: "\JPFontDir\JPFontSubDir/NotoSansJP-Regular.otf"}
+        \edef\JPFontDir{\expandonce{\JPFontDir\JPFontSubDir/}}%
+    }{%
+        \typeout{»DenKr:  Iterating over JPFontDir: \JPFontDir}
+        \edef\JPFontDir{\expandonce{\JPFontDir../}}%
+        \checkAndPrependJPFontDir%
+    }%
+}%
+\checkAndPrependJPFontDir%
+% \edef\JPFontDir{\expandonce{./../\JPFontSubDir/}}%
+\typeout{»DenKr:  Using JPFontDir: \JPFontDir}
 % \setmainjfont{Harano Aji Mincho}%
 % \setmonojfont{Harano Aji Gothic}%
-\setmainjfont[Path=\JPFontDir,%
-	SmallCapsFont=NotoSerifJP-Medium,%
-	BoldItalicFont=NotoSerifJP-SemiBold,%
-	ItalicFont=NotoSerifJP-ExtraLight,%
-	BoldFont=NotoSerifJP-Bold%
-]{NotoSerifJP-Regular}%
-\setsansjfont[Path=\JPFontDir,%
-	SmallCapsFont=NotoSansJP-Light,%
-	BoldItalicFont=NotoSansJP-Bold,%
-	ItalicFont=NotoSansJP-Light,%
-	BoldFont=NotoSansJP-Bold%
-]{NotoSansJP-Regular}%
-\setmonojfont[Path=\JPFontDir,%
-	SmallCapsFont=NotoSansJP-Light,%
-	BoldItalicFont=NotoSansJP-Black,%
-	ItalicFont=NotoSerifJP-Light,%
-	BoldFont=NotoSansJP-Black%
-]{NotoSansJP-Medium}%
+\typeout{»DenKr:  Load JP main Font}
+\setmainjfont{NotoSerifJP}[%
+    Path={\JPFontDir},Extension={.otf},%
+	UprightFont={*-Regular},%
+	SmallCapsFont={*-Medium},%
+	BoldItalicFont={*-SemiBold},%
+	ItalicFont={*-ExtraLight},%
+	BoldFont={*-Bold}%
+]%
+\typeout{»DenKr:  Load JP sans Font}
+\setsansjfont{NotoSansJP}[%
+    Path={\JPFontDir},Extension={.otf},%
+	UprightFont={*-Regular},%
+	SmallCapsFont={*-Light},%
+	BoldItalicFont={*-Bold},%
+	ItalicFont={*-Light},%
+	BoldFont={*-Bold}%
+]%
+\typeout{»DenKr:  Load JP mono Font}
+\setmonojfont{NotoSansJP-Medium}[%
+    Path={\JPFontDir},Extension={.otf},%
+	UprightFont={NotoSansJP-Medium},%
+	SmallCapsFont={NotoSansJP-Light},%
+	BoldItalicFont={NotoSansJP-Black},%
+	ItalicFont={NotoSerifJP-Light},%
+	BoldFont={NotoSansJP-Black}%
+]%
+}{%
+    \typeout{»DenKr:  \\DenKrJPFont configured to not include Japanese Fonts. Define it to '1' to setup Japanese Fonts.}%
+}}{%
+    \typeout{»DenKr:  \\DenKrJPFont not defined. Hence no Inclusion of Japanese Fonts. Define it to '1' to setup Japanese Fonts.}%
+}%
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %							Font/Schriftarten done
 %------------------------------------------------------------------------

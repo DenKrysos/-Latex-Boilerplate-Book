@@ -14,6 +14,34 @@ Some Example Macro:
 Example Acronym:
 \gls{fsa}
 
+\section{Testing Stuff}
+\label{sec:testing}
+
+Document-within References to check whether hyperref \& nameref work properly:\nl%
+\ref{chap:intro} (\nameref{chap:intro}). \ref{chap:chapter1}  (\nameref{chap:chapter1}). \ref{sec:testing} (\nameref{sec:testing})\nl%
+Consider using my Macros:\nl
+\eleref{fig:tikz_test2} or \elenamref{fig:tikzexample}
+
+\npi%
+\begin{itemize}
+\item%
+    Example Itemization
+\end{itemize}
+\begin{enumerate}
+\item%
+    Example Enumeration
+\end{enumerate}
+\begin{description}
+\item[Example Description List]%
+    Just some random Text without any sense, but with sufficient length to cause a line-break, so that the indentation is properly showing influence.
+\end{description}
+\begin{enuminlrom}
+\item%
+    Example Inline Roman Enumeration
+\item%
+    Item 2.
+\end{enuminlrom}
+
 \npi%
 Enumeration:\nl
 Description-List:

@@ -1,8 +1,13 @@
 %________________________________________________________________________
-% For Defining the Colors that are used for Typesetting the Page (Chapter-Heading, Header, Footer, etc.)
-%    (This File & its Entries are completely optional. It just overwrites the default Settings)
-%    (You may safely delete this File or single Defines, in case you are happy with the default Colors)
+% Colors
+% - - (Definition of Colors collected on one spot, because these can be "intercepted")
+%  - - (Creating the File included below and defining the same Color-Names there, sets those in effect)
+% - - - - - - - - - - - - - - - - - - - - - - - - - -
+% - - Determines the Typesetting of the Page (Chapter-Heading, Header, Footer, etc.)
+% - - As well as some other Objects, like enumeration labels
 %========================================================================
+\colorlet{DenKrColor_Default}{.}%
+\AtBeginDocument{\colorlet{DenKrColor_Default}{.}}% Will in most cases result in 'black'. Specifically, xcolor issues '\color{black}' at the end of the package
 %
 %-----------------------------
 % Colors concering the Page-Layout (with KOMA-Classes)
@@ -23,3 +28,12 @@
 % - - Color for the Label of Description-Lists from enumitem.sty
 %  - - E.g. DenKrKomaColor_SubSectionHeading, DenKrColor_Default, black
 \definecolor{DenKrColor_DescriptionLabel}{named}{DenKrKomaColor_SubSectionHeading}%
+%
+%
+%
+%-----------------------------
+% Checking and Including the File to overwrite the Color-Settings on Editor-Demand
+\newcommand{\DenKrKomaColorOverwriteFile}{"\DenKrSupplyRootDir/OptionalDocConfig/OverwriteProperties/typografie_colors".tex}%
+\IfFileExists{\DenKrKomaColorOverwriteFile}{%
+\input{\DenKrKomaColorOverwriteFile}%
+}{}%

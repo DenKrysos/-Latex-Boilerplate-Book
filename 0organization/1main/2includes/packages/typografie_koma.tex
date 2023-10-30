@@ -83,25 +83,9 @@
 %
 %________________________________________________________________________
 % Colors
-% - - (Define Colors collected on one spot, because these can be "intercepted")
-%  - - (Defined them in the included File and instead these Colors are used)
+% - (Are defined in the File "\DenKrLayoutMainRootDir/2includes/3settings/typografie_color.tex", which is included right before this here)
 %========================================================================
-\definecolor{DenKrKomaColor_HeadLine}{RGB}{40,60,150}%
-\definecolor{DenKrKomaColor_FootLine}{named}{DenKrKomaColor_HeadLine}%
-\definecolor{DenKrKomaColor_PageNumber}{RGB}{0,60,150}%
 %
-\definecolor{DenKrKomaColor_PartHeading}{RGB}{40,0,100}%
-\definecolor{DenKrKomaColor_ChapterHeading}{RGB}{60,0,150}%
-\definecolor{DenKrKomaColor_SectionHeading}{named}{DenKrKomaColor_ChapterHeading}%
-\definecolor{DenKrKomaColor_SubSectionHeading}{RGB}{80,0,180}%
-\definecolor{DenKrKomaColor_SubSubSectionHeading}{RGB}{80,100,180}%
-\definecolor{DenKrKomaColor_ParagraphHeading}{RGB}{130,150,210}%
-\definecolor{DenKrKomaColor_SubParagraphHeading}{RGB}{130,150,210}%
-%
-\newcommand{\DenKrKomaColorOverwriteFile}{"\DenKrSupplyRootDir/OptionalDocConfig/OverwriteProperties/typografie_colors".tex}%
-\IfFileExists{\DenKrKomaColorOverwriteFile}{%
-\input{\DenKrKomaColorOverwriteFile}%
-}{}%
 %
 %________________________________________________________________________
 % Nummerierungen, Counter

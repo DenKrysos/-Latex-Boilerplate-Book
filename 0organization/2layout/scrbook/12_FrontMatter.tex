@@ -8,13 +8,13 @@
   \renewcommand*{\chapterpagestyle}{empty}%
   \pagestyle{plain}%
   \tableofcontents%
-%   \thispagestyle{empty}%
-  \clearpage%
-%   \listoffigures%
-%   \clearpage%
-%   \listoftables%
-%   \clearpage%
+%  \thispagestyle{empty}%
+%  \clearpage%
+%  \listoffigures%
+%  \clearpage%
+%  \listoftables%
 \endgroup%
+\cleardoublepage%
 %
 %
 %================================================================
@@ -28,13 +28,17 @@
 \setlength\tmpheight{0.75\tmpheight}%
 \vspace*{\tmpheight}\\%
 \input{"\DenKrSegmentationSubDir/0020_aphorism".tex}%
-\clearpage%
+\cleardoublepage%
 %
 %================================================================
 %----------------------------------------------------------------
 %      Front-Matter
 %================================================================
+\headingOpenTempAny%
 \chapter{Abstract}%
+\headingOpenTempRestore%
 \input{"\DenKrSegmentationSubDir/0100_abstract".tex}%
+\headingOpenTempAny%
 \chapter{Kurzfassung}%
+\headingOpenTempRestore%
 \input{"\DenKrSegmentationSubDir/0101_abstract_Ger".tex}%

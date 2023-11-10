@@ -13,10 +13,10 @@
 %--------------------------------------------------------------------==========%
 %------------- Intro, Vorwort ------------------------------------------------==========%
 %--------------------------------------------------------------------==========%
-\makeatletter\@openrighttrue%
+\headingOpenTempRight%
 %\part[序文\ \ jobun\ \ Intro]{序文\\ jobun\\ Intro}% Preface  Thesis
 \part{Thesis}%
-\@openrightfalse\makeatother%
+\headingOpenTempRestore%
 \label{part:thesis}%
 %
 \input{"\DenKrSegmentationSubDir/0200_preface".tex}%
@@ -28,9 +28,9 @@
 %====================================================================
 %------------- The actual Start of the Document Content -------------
 %====================================================================
-% \makeatletter\@openrighttrue%
+% \headingOpenTempRight%
 % \part{Content}%
-% \@openrightfalse\makeatother%
+% \headingOpenTempRestore%
 % \label{part:content}%
 %
 \input{"\DenKrSegmentationSubDir/0300_content".tex}%
@@ -41,9 +41,9 @@
 %--------------------------------------------------------------------==========%
 %------------- Postface, Nachwort ------------------------------------------------==========%
 %--------------------------------------------------------------------==========%
-% \makeatletter\@openrighttrue%
+% \headingOpenTempRight%
 % \part{Postface}%
-% \@openrightfalse\makeatother%
+% \headingOpenTempRestore%
 % \label{part:postface}%
 %
 \input{"\DenKrSegmentationSubDir/0400_postface".tex}%

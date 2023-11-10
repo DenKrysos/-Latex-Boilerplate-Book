@@ -13,9 +13,9 @@
 %================================================================
 \appendix%
 %
-\makeatletter\@openrighttrue%
+\makeatletter\headingOpenTempRight%
 \part{Appendix}%
-\@openrightfalse\makeatother%
+\headingOpenTempRestore\makeatother%
 \label{part:anhang}%
 %
 %
@@ -45,13 +45,15 @@
 % \glsaddall% Würde hier eine leere Seite erzeugen. Siehe weiter oben
 % \glsaddallunused%
 %
+\headingOpenTempRight%
 \chapter{Glossary}%
+\headingOpenTempRestore%
 \secnt{Acronyms}%See Preamble, usepackage -> \renewcommand{\glossarysection}[2][]{} to remove the section-heading actually created by \printglossary
 \printglossary[type=\acronymtype,style=list+crossRef]%Stellt Akronyme dar % [title=Special Terms, toctitle=List of terms]
 \clearpage%
 \secnt{Glossaries}%
-\printglossary[style=list+Deutsch+Untertitel+alternativ+url+crossRef]%Stellt Glossar dar
-\clearpage%
+\printglossary[style=list+crossRef+alt+otherLang+subtitle+url]%Stellt Glossar dar
+\cleardoublepage%
 %
 %
 %
@@ -67,17 +69,19 @@
 \begingroup%
   \renewcommand*{\chapterpagestyle}{empty}%
   \pagestyle{plain}%
-%   \tableofcontents%
-%   \thispagestyle{empty}%
+  \headingOpenTempAny%
+%  \tableofcontents%
+%  \thispagestyle{empty}%
 %  \clearpage%
-  %\listoffigures%
+%  \listoffigures%
   \listoffiguresDenKr%
   \clearpage%
-  %\listoftables%
+%  \listoftables%
   \listoftablesDenKr%
   \clearpage%
   \listofalgorithmsDenKr%
-  \clearpage%
+  \headingOpenTempRestore%
+  \cleardoublepage%
 \endgroup%
 %
 %
@@ -101,6 +105,7 @@
 %
 %\printbibliography%
 \begingroup%
+\headingOpenTempAny%
 \pagestyle{plain}%
 \printbibliography[%
 	heading=literature,%
@@ -118,6 +123,7 @@
 % 	heading=literature_tables,%
 % 	keyword=table_literature,%
 % ]%
+\headingOpenTempRestore%
 \endgroup%
 % \printbibliography[notkeyword=figure]
 % \thispagestyle{empty}

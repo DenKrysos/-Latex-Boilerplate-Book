@@ -14,13 +14,14 @@ Some Example Macro:
 Example Acronym:
 \gls{fsa}
 
+
 \section{Testing Stuff}
 \label{sec:testing}
 
 Document-within References to check whether hyperref \& nameref work properly:\nl%
 \ref{chap:intro} (\nameref{chap:intro}). \ref{chap:chapter1}  (\nameref{chap:chapter1}). \ref{sec:testing} (\nameref{sec:testing})\nl%
 Consider using my Macros:\nl
-\eleref{fig:tikz_test2} or \elenamref{fig:tikzexample}
+\eleref{fig:tikz_test2} or \elenumnamref{fig:tikzexample}
 
 \npi%
 \begin{itemize}
@@ -44,16 +45,13 @@ Consider using my Macros:\nl
 
 
 
-\glstextHead{qos}
 
-\glsdescHead{qos}
-
-\glstextplHead{qos}
-
-\glsdescplHead{qos}
 
 \section{\textbackslash gls{} in Heading: \glstextHead{qos}, \glsdescHead{qos}, \glstextplHead{qos}, \glsdescplHead{qos}}
 These macros allow to use glossaries entries in Section-Heading, without the Warning \enquote{Token not allowed}.
+
+
+
 
 
 \section{Japanese Font -- 日本語}
@@ -139,3 +137,5 @@ Tikz-Picture Caption. Some Example Standalone-Tikz-Pic
 
 
 
+\clearpage
+Make this Chapter end on a right page (odd number), to check whether following Chapter starts right.

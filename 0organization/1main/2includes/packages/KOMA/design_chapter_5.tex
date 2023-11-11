@@ -1,0 +1,67 @@
+\setkomafont{chapter}{\sffamily\bfseries\huge\color{DenKrKomaColor_ChapterHeading}}%
+\RedeclareSectionCommand[%
+    beforeskip=0ex,%
+    %innerskip=0pt,%
+    %afterskip=1.725\baselineskip plus .115\baselineskip minus .192\baselineskip%
+]{chapter}%
+\renewcommand\raggedchapter{\raggedleft}%
+\setkomafont{chapter}{\Huge}%
+\setkomafont{chapterprefix}{\large}%
+\newkomafont{chapternumber}{\mdseries\fontsize{60pt}{60pt}\selectfont}%
+%
+\def\chapSplit#1#2{%
+    \StrSplit{#2}{#1}\tempa\tempb%
+    \tempa\let\tempa\empty%
+    \unless\ifx\tempb\empty\def\tempa{\\\chapSplit{#1}{\tempb}}\fi%
+    \tempa%
+}%
+%
+\makeatletter%
+\renewcommand*\chapterlinesformat[3]{%
+    \Ifstr{#1}{chapter}{%
+        \StrSplit{\thechapter}{1}\tempa\tempb%
+        \settoheight{\tmpheight}{\usekomafont{chapternumber}\tempa}%
+        \ifstrempty{#2}{}{%
+            \sbox{\tmpbox}{%
+                \parbox{0.1em}{\usekomafont{chapternumber}\chapSplit{1}{\thechapter}}
+            }%
+        }%
+        \begin{tikzpicture}[baseline=(title.base)]%
+            % Background
+            \node[outer sep=0pt,inner sep=5pt,shade,left color=white,right color=DenKrKomaColor_ChapterHeading!60!white](title){%
+                \parbox[t]%
+                {\dimexpr\textwidth-2\pgfkeysvalueof{/pgf/inner xsep}\relax}%
+                {\raggedchapter\textcolor{DenKrKomaColor_ChapterHeading!85!black}{#3}}%
+            };%
+            % Chapapp
+            \node[outer sep=0pt,inner sep=5pt,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapterprefix},anchor=south east]%
+                at(title.north east){\Ifstr{#2}{}{}{\chapapp}\strut};%
+            \useasboundingbox%
+                (current bounding box.north west)%
+                rectangle%
+                ([yshift=-10pt]current bounding box.south east);%
+            %Chapter-Line
+            \draw[DenKrKomaColor_ChapterHeading,line width=2pt]%
+                (current bounding box.south east)++(+.5\pgflinewidth,0)--+(0,\paperheight);%
+            %Chapter-Number
+            \ifstrempty{#2}{}{%
+                \coordinate(chapNumAnch)at($(title.base-|current bounding box.east)+(10pt,\tmpheight)$);
+                % \def\anchor{base west}%
+                % \def\atPos{([xshift=10pt]title.base-|current bounding box.east)}%
+                % \foreach\x[count=\i from 0] in {\chapDigits}{% \chapSplit{1}{\thechapter}
+                %     \node[outer sep=0pt,inner sep=5pt,shape=rectangle,anchor=\anchor,align=right,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapternumber}]%
+                %         (digit-\i)%
+                %         at\atPos{\x};%
+                %     \def\anchor{north}%
+                %     \def\atPos{(digit-\i.south)}%
+                % }%
+                \node[draw=none,outer sep=0pt,inner sep=0pt,shape=rectangle,anchor=north west,align=right,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapternumber}](chapnum)%
+                   at([xshift=0pt]chapNumAnch){\usebox{\tmpbox}};%#2
+            }%
+        \end{tikzpicture}%
+        \par%
+    }{%
+        \@hangfrom{#2}{#3}% other section levels using style=chapter
+    }%
+}%
+\makeatother%

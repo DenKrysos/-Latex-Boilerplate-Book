@@ -226,51 +226,36 @@
 \newcommand*{\DenKrKomaHeadingAsterisk}{\raisebox{\DenKrKomaHeadingAsteriskRaise}{\DenKrKomaHeadingAsteriskChar}}%
 % - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%========================================================================
+%         Designing the Headings
+%========================================================================
 %\setkomafont{disposition}{\normalcolor\bfseries}%
 \addtokomafont{disposition}{\color{DenKrKomaColor_ChapterHeading}}%
 % - - - - - - - -
-\renewcommand*{\partformat}{%
-    \color{DenKrKomaColor_PartHeading}\partname~\thepart\autodot\\%
-    \textcolor{gray!50}{\rule[-0.2\baselineskip]{0.4\textwidth}{0.3ex}}%
-}%
-\setkomafont{part}{\sffamily\bfseries\huge\color{DenKrKomaColor_PartHeading}}%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_part_1".tex}%
 % - - - - - - - -
-\renewcommand*{\chapterformat}{%
-    \thechapter\enskip%
-    \textcolor{gray!50}{\rule[-\dp\strutbox]{2pt}{\baselineskip}}\enskip%
-}%
-\setkomafont{chapter}{\sffamily\bfseries\huge\color{DenKrKomaColor_ChapterHeading}}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_1".tex}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_2".tex}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_3".tex}% That one is a little wonky. It noodles around with the \chapterformat, which is somewhat uncool.
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_4".tex}%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_5".tex}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_6".tex}%
 % - - - - - - - -
-\setkomafont{section}{\sffamily\bfseries\Large\color{DenKrKomaColor_SectionHeading}}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_1".tex}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_2".tex}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_3".tex}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_4".tex}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_5".tex}%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_6".tex}%
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_7".tex}%
 % - - - - - - - -
-\setkomafont{subsection}{\sffamily\bfseries\large\color{DenKrKomaColor_SubSectionHeading}}%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subsection_1".tex}%
 % - - - - - - - -
-% \renewcommand*{\subsubsectionformat}{%
-%     \thesubsubsection\enskip%
-%     \textcolor{gray!50}{\rule[-\dp\strutbox]{1em}{2pt}}\enskip%
-% }%
-\setkomafont{subsubsection}{\normalsize\color{DenKrKomaColor_SubSubSectionHeading}%
-    \textcolor{gray!50}{\rule[0.6ex]{1em}{0.3ex}}\enskip%
-    \normalsize\color{DenKrKomaColor_SubSubSectionHeading}%
-}% Sehr unsauber, Textausgabe im Font zu ergänzen
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subsubsection_1".tex}%
 % - - - - - - - -
-\RedeclareSectionCommands[
-    runin=bysign,
-    afterskip=-0.5em,
-    % afterindent=bysign,
-    % beforeskip=0pt,
-]{paragraph}
-\AddtoDoHook{heading/endgroup/paragraph}{\DenKrKomaHeadingParagraphAttach}%
-\newcommand*{\DenKrKomaHeadingParagraphAttach}[1]{\hspace{0.5em}\textcolor{DenKrKomaColor_SubSectionHeading}{\DenKrKomaHeadingAsterisk}}%
-\setkomafont{paragraph}{\normalsize\color{DenKrKomaColor_ParagraphHeading}}%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_paragraph_1".tex}%
 % - - - - - - - -
-\RedeclareSectionCommands[
-    runin=bysign,
-    afterskip=-0.4em
-]{subparagraph}
-\AddtoDoHook{heading/endgroup/subparagraph}{\DenKrKomaHeadingSubParagraphAttach}%
-\newcommand*{\DenKrKomaHeadingSubParagraphAttach}[1]{{\normalfont\hspace{0.5em}\textcolor{DenKrKomaColor_SubSectionHeading}{\textbf{-}}}}%
-\setkomafont{subparagraph}{\normalsize\itshape\color{DenKrKomaColor_SubParagraphHeading}}%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subparagraph_1".tex}%
 %________________________________________________________________________
 %           Sectioning DONE
 %------------------------------------------------------------------------

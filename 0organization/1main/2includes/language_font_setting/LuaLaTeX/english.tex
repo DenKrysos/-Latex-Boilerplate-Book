@@ -13,8 +13,10 @@
 % == Note ==  With csquotes.sty, use
 %     \textquote{}, to automatically print correct quotation marks, depending on the set language by polyglossia (or babel)
 %     \enquote{}, for 'nested' quotations
-%\usepackage[autostyle=true,german=quotes]{csquotes}% Deutsche Anführungszeichen, german=quotes, guillemets, swiss
-\usepackage[autostyle=true,style=english]{csquotes}%
+\PassOptionsToPackage{%
+    autostyle=true,%
+    style=english%
+}{csquotes}%
 % - - - - - - - - - - - - - -
 % == Info, »ALT-Codes« == Some specific quotation signs for hardcoding, using UTF-8 encoding. How-To-Input, if you like.
 %    ALT(left) + [Sequence on NumPad]  (On Windows) (Using ASCII Decimal Index)

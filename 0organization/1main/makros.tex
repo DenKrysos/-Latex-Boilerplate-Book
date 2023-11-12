@@ -750,6 +750,15 @@ O{#2} m o%
 }%
 \makeatother%
 %
+%=================================
+%  More Glossaries-Cmds
+%================================================
+% Printing an "Indefinite Article" (Unbestimmter Artikel)
+%    For printing an Article before a \gls{} matching is expansion (c.f.: "a Software Definition"  vs.  "an SD")
+\newcommand{\glsInArticle}[1]{%
+    \ifglsused{#1}{an}{a}%
+}%
+%
 %
 %
 %

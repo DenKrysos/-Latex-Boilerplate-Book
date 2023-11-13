@@ -34,7 +34,7 @@
 %
 \backmatter%
 %================================================================
-%      Glossar
+%      Glossary
 %================================================================
 %
 %
@@ -45,13 +45,25 @@
 % \glsaddall% Würde hier eine leere Seite erzeugen. Siehe weiter oben
 % \glsaddallunused%
 %
+% == Some Comments to the Cmds down there:
+% The 'type=\acronymtype', (alterantively: =acronym) works because of the option 'acronym' is given at Package Inclusion
+%    \secnt{\DenKrGlossHeadSecAcronyms}%See Preamble, usepackage -> \renewcommand{\glossarysection}[2][]{} to remove the section-heading actually created by \printglossary
+%    \printglossary[type=\acronymtype,style=list+crossRef]% [title=Special Terms, toctitle=List of terms]
+%
+%
 \headingOpenTempRight%
-\chapter{Glossary}%
+\chapter{\DenKrGlossHeadChapGlossary}%
 \headingOpenTempRestore%
-\secnt{Acronyms}%See Preamble, usepackage -> \renewcommand{\glossarysection}[2][]{} to remove the section-heading actually created by \printglossary
-\printglossary[type=\acronymtype,style=list+crossRef]%Stellt Akronyme dar % [title=Special Terms, toctitle=List of terms]
+%Displays 'only' Acronyms
+\secnt{\DenKrGlossHeadSecAcronyms}%
+\printglossary[type=\acronymtype,style=list+crossRef]%
 \clearpage%
-\secnt{Glossaries}%
+%Displays Symbols
+\secnt{\DenKrGlossHeadSecSymbols}%
+\printglossary[type=symbol,nonumberlist]%
+\clearpage%
+%Display "Glossary-Entries"
+\secnt{\DenKrGlossHeadSecGlossaries}%
 \printglossary[style=list+crossRef+alt+otherLang+subtitle+url]%Stellt Glossar dar
 \cleardoublepage%
 %

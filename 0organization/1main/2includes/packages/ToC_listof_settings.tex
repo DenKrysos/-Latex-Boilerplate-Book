@@ -23,6 +23,14 @@
 %   Variant 3)
 %      -> As an extension to Variant 2), I defined the following command, which can then be used instead of \listoffigures
 \makeatletter%
+\newcommand{\tableofcontentsDenKr}{%
+	\chapter*{\contentsname}%
+	\label{chapnt:ToC}%
+% 	\markboth{\nameref{#2}}{\nameref{#3}}%
+	\markboth{\contentsname}{\contentsname}%
+    \let\@cftmaketoctitle\relax%
+    \tableofcontents%
+}%
 \newcommand{\listoffiguresDenKr}{%
     \chapnt{\listfigurename}[chapnt:LoF]%
     \let\@cftmakeloftitle\relax%

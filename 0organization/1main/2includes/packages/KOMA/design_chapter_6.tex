@@ -1,3 +1,6 @@
+\KOMAoptions{%
+    chapterprefix=false%
+}%
 \setkomafont{chapter}{\sffamily\bfseries\huge\color{DenKrKomaColor_ChapterHeading}}%
 \RedeclareSectionCommand[%
     beforeskip=0ex,%
@@ -23,7 +26,7 @@
         \settoheight{\tmpheight}{\usekomafont{chapternumber}\tempa}%
         \ifstrempty{#2}{}{%
             \sbox{\tmpbox}{%
-                \parbox{0.1em}{\usekomafont{chapternumber}\chapSplit{1}{\thechapter}}
+                \usekomafont{chapternumber}\parbox{2em}{\usekomafont{chapternumber}\chapSplit{1}{\thechapter}}%
             }%
         }%
         \begin{tikzpicture}[baseline=(title.base)]%
@@ -45,7 +48,7 @@
                 (current bounding box.south east)++(+.5\pgflinewidth,0)--+(0,\paperheight);%
             %Chapter-Number
             \ifstrempty{#2}{}{%
-                \coordinate(chapNumAnch)at($(title.base-|current bounding box.east)+(10pt,\tmpheight)$);
+                \coordinate(chapNumAnch)at($(title.base-|current bounding box.east)+(10pt,\tmpheight)$);%
                 % \def\anchor{base west}%
                 % \def\atPos{([xshift=10pt]title.base-|current bounding box.east)}%
                 % \foreach\x[count=\i from 0] in {\chapDigits}{% \chapSplit{1}{\thechapter}

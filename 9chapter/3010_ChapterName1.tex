@@ -1,5 +1,5 @@
 
-\chapter{Chapter 1. An absurd Title, way too long to be a reasonable choice, but to see the effect on multi-line}
+\chapter[Alternative "Some Chap" Title. Shorter for page-heading]{Some Chap: An absurd Title, way too long to be a reasonable choice, but to see the effect on multi-line}
 \label{chap:chapter1}
 
 Example-Citation:
@@ -60,6 +60,11 @@ Consider using my Macros:\nl
 
 
 \section{\textbackslash gls{} in Heading: \glstextHead{qos}, \glsdescHead{qos}, \glstextplHead{qos}, \glsdescplHead{qos}. And some more words, to make it multi-line to check the configured section-format}
+
+\edef\tokenA{\glsentrytext{qos}}
+\edef\tokenB{\glsentrydesc{qos}}
+\subsection{Alternative Solution: \texorpdfstring{\tokenA}{\tokenA}, \texorpdfstring{\tokenB}{\tokenB}}
+
 These macros allow to use glossaries entries in Section-Heading, without the Warning \enquote{Token not allowed}.
 
 

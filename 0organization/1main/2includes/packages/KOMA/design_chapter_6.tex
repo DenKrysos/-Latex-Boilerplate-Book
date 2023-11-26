@@ -24,33 +24,44 @@
     \Ifstr{#1}{chapter}{%
         \StrSplit{\thechapter}{1}\tempa\tempb%
         \settoheight{\tmpheight}{\usekomafont{chapternumber}\tempa}%
+        \settowidth{\tmpwidth}{\usekomafont{chapternumber}M}%
         \ifstrempty{#2}{}{%
             \sbox{\tmpbox}{%
-                \usekomafont{chapternumber}\parbox{2em}{\usekomafont{chapternumber}\chapSplit{1}{\thechapter}}%
+                \usekomafont{chapternumber}\parbox{\tmpwidth}{\usekomafont{chapternumber}\chapSplit{1}{\thechapter}}%
             }%
         }%
-        \begin{tikzpicture}[baseline=(title.base)]%
-            % Background
-            \node[outer sep=0pt,inner sep=5pt,shade,left color=white,right color=DenKrKomaColor_ChapterHeading_2](title){%
-                \parbox[t]%
-                {\dimexpr\textwidth-2\pgfkeysvalueof{/pgf/inner xsep}\relax}%
-                {\raggedchapter #3}%
-            };%
-            % Chapapp
-            \node[outer sep=0pt,inner sep=5pt,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapterprefix},anchor=south east]%
-                at(title.north east){\Ifstr{#2}{}{}{\chapapp}\strut};%
+        \begin{tikzpicture}[remember picture,baseline=(chapter_title.base)]%
+            \coordinate(chapter_anchor)at(0,0);%
+            % Chapapp / Prefix
+            \node[outer sep=0pt,inner sep=5pt,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapterprefix},anchor=north east]%
+                (chapter_prefix)at(chapter_anchor)%
+                {\Ifstr{#2}{}{}{\chapapp}\strut};%
+            % Title & Background
+            \node[anchor=north east,outer sep=0pt,inner sep=5pt,shade,left color=white,right color=DenKrKomaColor_ChapterHeading_2]%
+                (chapter_title)at(chapter_prefix.south east)%
+                {%
+                    \parbox[t]%
+                    {\dimexpr\textwidth-2\pgfkeysvalueof{/pgf/inner xsep}\relax}%
+                    {\raggedchapter #3}%
+                };%
+            % \tikzmark{chapter_title_LT}{(chapter_title.north west)}%
+            % \tikzmark{chapter_title_RT}{(chapter_title.north east)}%
+            % \tikzmark{chapter_title_RB}{(chapter_title.south east)}%
+            % \tikzmark{chapter_title_LB}{(chapter_title.south west)}%
             \useasboundingbox%
                 (current bounding box.north west)%
                 rectangle%
                 ([yshift=-10pt]current bounding box.south east);%
             %Chapter-Line
-            \draw[DenKrKomaColor_ChapterHeading,line width=2pt]%
-                (current bounding box.south east)++(+.5\pgflinewidth,0)--+(0,\paperheight);%
+            \path[draw=DenKrKomaColor_ChapterHeading,line width=2pt]%
+                (current bounding box.south east)++(+.5\pgflinewidth,0)%
+                    coordinate(chapter_line_B)%
+                --+(0,\paperheight);%coordinate(chapter_line_T);%
             %Chapter-Number
+            \coordinate(chapter_number_anchor)at($(chapter_title.base-|current bounding box.east)+(10pt,\tmpheight)$);%
             \ifstrempty{#2}{}{%
-                \coordinate(chapNumAnch)at($(title.base-|current bounding box.east)+(10pt,\tmpheight)$);%
                 % \def\anchor{base west}%
-                % \def\atPos{([xshift=10pt]title.base-|current bounding box.east)}%
+                % \def\atPos{([xshift=10pt]chapter_title.base-|current bounding box.east)}%
                 % \foreach\x[count=\i from 0] in {\chapDigits}{% \chapSplit{1}{\thechapter}
                 %     \node[outer sep=0pt,inner sep=5pt,shape=rectangle,anchor=\anchor,align=right,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapternumber}]%
                 %         (digit-\i)%
@@ -58,8 +69,8 @@
                 %     \def\anchor{north}%
                 %     \def\atPos{(digit-\i.south)}%
                 % }%
-                \node[draw=none,outer sep=0pt,inner sep=0pt,shape=rectangle,anchor=north west,align=right,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapternumber}](chapnum)%
-                   at([xshift=0pt]chapNumAnch){\usebox{\tmpbox}};%#2
+                \node[draw=none,outer sep=0pt,inner sep=0pt,shape=rectangle,anchor=north west,align=right,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapternumber}](chapter_number)%
+                   at([xshift=0pt]chapter_number_anchor){\usebox{\tmpbox}};%#2
             }%
         \end{tikzpicture}%
         \par%

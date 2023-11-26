@@ -16,7 +16,7 @@
 \makeatletter\headingOpenTempRight%
 \part{Appendix}%
 \headingOpenTempRestore\makeatother%
-\label{part:anhang}%
+\label{part:appendix}%
 %
 %
 %
@@ -52,18 +52,18 @@
 %
 %
 \headingOpenTempRight%
-\chapter{\DenKrGlossHeadChapGlossary}%
+\chapter{\DenKrGlossHeadChapGlossary}\label{chap:Glossary}%
 \headingOpenTempRestore%
 %Displays 'only' Acronyms
-\secnt{\DenKrGlossHeadSecAcronyms}%
+\secnt{\DenKrGlossHeadSecAcronyms}\label{sec:Acronyms}%
 \printglossary[type=\acronymtype,style=list+crossRef]%
 \clearpage%
 %Displays Symbols
-\secnt{\DenKrGlossHeadSecSymbols}%
+\secnt{\DenKrGlossHeadSecSymbols}\label{sec:Symbols}%
 \printglossary[type=symbol,nonumberlist]%
 \clearpage%
 %Display "Glossary-Entries"
-\secnt{\DenKrGlossHeadSecGlossaries}%
+\secnt{\DenKrGlossHeadSecGlossaries}\label{sec:Glossaries}%
 \printglossary[style=list+crossRef+alt+otherLang+subtitle+url]%Stellt Glossar dar
 \cleardoublepage%
 %
@@ -120,6 +120,7 @@
 \headingOpenTempAny%
 \pagestyle{plain}%
 \printbibliography[%
+    env=bibliographyDenKrEnv,%
 	heading=literature,%
 	keyword=primary_literature,%
 ]%

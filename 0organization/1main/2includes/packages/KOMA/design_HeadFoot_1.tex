@@ -1,0 +1,42 @@
+%________________________________________________________________________
+%       Page-Number
+%========================================================================
+\addtokomafont{pagenumber}{\color{DenKrKomaColor_PageNumber}}%
+%
+%
+%%________________________________________________________________________
+%       Headmark
+%========================================================================
+% \addtokomafont{pageheadfoot}{\color{DenKrKomaColor_HeadLine}}%
+% - - - - - - -
+% Remove headmark from the Pagestyle-Pair
+\lehead[]{}%
+\rohead[]{}%
+%Define Layer for new Headmark Style
+% Also apply a Hyper-Link to the corresponding Chapter/Section to the Headmark
+\DeclareNewLayer[%
+    head,%
+    %align=t,%
+    background,%
+    oddpage,%
+    mode=text,%
+    contents={%
+        \hfill%
+        {\usekomafont{pageheadfoot}\color{DenKrKomaColor_HeadLine}%
+            \hyperref[\DenKrCurSec]{\headmark}%
+        }%
+    }%
+]{headmark.odd}%
+\DeclareNewLayer[%
+    head,%
+    %align=t,%
+    background,%
+    evenpage,%
+    mode=text,%
+    contents={%
+        {\usekomafont{pageheadfoot}\color{DenKrKomaColor_HeadLine}%
+            \hyperref[\DenKrCurChap]{\headmark}%
+        }%
+    }%
+]{headmark.even}%
+\AddLayersToPageStyle{scrheadings}{headmark.odd,headmark.even}%

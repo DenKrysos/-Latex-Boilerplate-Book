@@ -104,14 +104,15 @@
 %				Typografie, KOMA, Geometry, Typesetting, Schrift-Satz
 %________________________________________________________________________
 %  Some Settings
-\input{"\DenKrLayoutMainRootDir/3settings/typografie_colors".tex}%
+\input{"\DenKrLayoutMainRootDir/3settings/typografie_colors_setup".tex}%
 %  The Typesetting
 \input{"\DenKrLayoutMainRootDir/2includes/packages/typesetting".tex}%
 \ifdef{\DenKrTikzStandaloneNotInclude}{}{%
 \input{"\DenKrLayoutMainRootDir/2includes/packages/typografie_koma".tex}%
 \input{"\DenKrLayoutMainRootDir/2includes/packages/typografie_geometry".tex}%
-\input{"\DenKrLayoutMainRootDir/2includes/packages/typografie_cmd".tex}%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/typografie_redefine".tex}%
 }%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/typografie_cmd".tex}%
 %________________________________________________________________________
 %				END Typografie, KOMA, Geometry
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\

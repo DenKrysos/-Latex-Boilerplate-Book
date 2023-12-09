@@ -1,0 +1,26 @@
+% \renewcommand*{\subsubsectionformat}{%
+%     \thesubsubsection\enskip%
+%     \textcolor{gray!50}{\rule[-\dp\strutbox]{1em}{2pt}}\enskip%
+% }%
+\setkomafont{subsubsection}{\normalsize\color{DenKrKomaColor_SubSubSectionHeading}}%
+\NewCommandCopy{\sectionlinesformatPreSubSubSec}{\sectionlinesformat}%
+\renewcommand*{\sectionlinesformat}[4]{%
+    \sectionlinesformatPreSubSubSec{#1}{#2}{#3}{%
+        \Ifstr{#1}{subsubsection}{%
+            % \hspace*{0.8em}%
+            \tikz[baseline,overlay]{%
+                \coordinate(LB)at($(0,0)+(0,0.2ex)$);%
+                \coordinate(LT)at($(LB)+(0,1.2ex)$);% 1.8ex
+                \coordinate(RC)at($(LB)!.7!(LT)+(0.7em,0)$);%
+                % \coordinate(RT)at($(0,0)+(3ex,1.8ex)+(45:0.8ex)$);%
+                \path[draw=DenKrKomaColor_SubSectionHeading,line cap=round,line join=miter,line width=0.2ex](LB)%
+                    to[out=65,in=195]%
+                (RC)%
+                    --%
+                (LT);%
+            }%
+            \hspace*{1.2em}%
+        }{}%
+        #4%
+    }%
+}%

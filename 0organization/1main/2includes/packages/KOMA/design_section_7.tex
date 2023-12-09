@@ -17,8 +17,8 @@
 \NewCommandCopy{\originalsectionlinesformat}{\sectionlinesformat}%
 \renewcommand*{\sectionlinesformat}[4]{%
     \originalsectionlinesformat{#1}{#2}{#3}{%
-        \Ifstr{#1}{section}{
-            \hspace*{0.5ex}%
+        \Ifstr{#1}{section}{%
+            \hspace*{1.2ex}%
             \tikz[baseline,overlay]{%
                 % First addition (at LT & RT) to create the "Box" roughly in the size of a line-height.
                 % The other to mimick a "inner sep"

@@ -227,11 +227,7 @@
 % For Color-Definitions, see a few Lines above
 % - - - - - - - - - - - - - - - - - - - - - - - - - -
 %  Defining some Symbols
-\newcommand*{\DenKrKomaHeadingAsteriskChar}{{\small$\mathrm{\ast}$}}%
-\newlength{\DenKrKomaHeadingAsteriskRaise}%
-\setlength{\DenKrKomaHeadingAsteriskRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingAsteriskChar}}%
-\setlength{\DenKrKomaHeadingAsteriskRaise}{0.5\DenKrKomaHeadingAsteriskRaise}%
-\newcommand*{\DenKrKomaHeadingAsterisk}{\raisebox{\DenKrKomaHeadingAsteriskRaise}{\DenKrKomaHeadingAsteriskChar}}%
+\input{"\DenKrLayoutMainRootDir/2includes/setup/typografie_symbol".tex}%
 % - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 %========================================================================
@@ -265,9 +261,11 @@
 % \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subsubsection_3".tex}%
 % - - - - - - - -
 \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_paragraph_1".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_paragraph_2".tex}%
 % - - - - - - - -
-% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subparagraph_1".tex}%
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subparagraph_2".tex}%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subparagraph_1".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subparagraph_2".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subparagraph_3".tex}%
 %________________________________________________________________________
 %           Sectioning DONE
 %------------------------------------------------------------------------

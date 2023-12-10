@@ -1,8 +1,8 @@
 \RedeclareSectionCommands[
     runin=bysign,
-    afterskip=-0.4em
+    afterskip=-0.5em
 ]{subparagraph}
 \AddtoDoHook{heading/endgroup/subparagraph}{\DenKrKomaHeadingSubParagraphAttach}%
-\newcommand*{\DenKrKomaHeadingSubParagraphAttach}[1]{{\normalfont\hspace{0.5em}\textcolor{DenKrKomaColor_SubSectionHeading}{\textbf{-}}}}%
+\newcommand*{\DenKrKomaHeadingSubParagraphAttach}[1]{{\normalfont\hspace{0.5em}\textcolor{DenKrKomaColor_SubSectionHeading}{\DenKrKomaHeadingAsterisk}}}%
 % itshape, scshape
 \setkomafont{subparagraph}{\normalfont\sffamily\normalsize\itshape\color{DenKrKomaColor_SubParagraphHeading}}%

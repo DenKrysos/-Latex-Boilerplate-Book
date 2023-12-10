@@ -1,0 +1,118 @@
+%==========================
+%  Defining some Symbols
+%--------------------------
+%  Handy, e.g. for using as Delimiters in Heading
+% - - - - - - - - - - - - -
+\newcommand*{\DenKrKomaHeadingAsteriskChar}{{\small$\mathrm{\ast}$}}%
+\newlength{\DenKrKomaHeadingAsteriskRaise}%
+\setlength{\DenKrKomaHeadingAsteriskRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingAsteriskChar}}%
+\setlength{\DenKrKomaHeadingAsteriskRaise}{0.5\DenKrKomaHeadingAsteriskRaise}%
+\newcommand*{\DenKrKomaHeadingAsterisk}{\raisebox{\DenKrKomaHeadingAsteriskRaise}{\DenKrKomaHeadingAsteriskChar}}%
+%
+\newcommand{\DenKrKomaHeadingTildeWidth}{0.7em}%
+\newcommand{\DenKrKomaHeadingTildeLinewidth}{0.1*\DenKrKomaHeadingTildeWidth}%
+\newcommand{\DenKrKomaHeadingTildeHeight}{0.7*\DenKrKomaHeadingTildeWidth}%
+\newcommand{\DenKrKomaHeadingTildePlateau}{0.25*\DenKrKomaHeadingTildeWidth}%
+\newcommand{\DenKrKomaHeadingTildeAngleOut}{80}%
+\newcommand{\DenKrKomaHeadingTildeAngleIn}{0}%
+\newcommand*{\DenKrKomaHeadingTildeUpChar}{\tikz{%
+    \path[draw,line cap=round,line width=\DenKrKomaHeadingTildeLinewidth]%
+    (0,0)%
+        to[out=\DenKrKomaHeadingTildeAngleOut,in=180+\DenKrKomaHeadingTildeAngleIn]
+    ++(0.5*\DenKrKomaHeadingTildeWidth-0.5*\DenKrKomaHeadingTildePlateau,0.5*\DenKrKomaHeadingTildeHeight)%
+        --%
+    ++(\DenKrKomaHeadingTildePlateau,0)%
+        to[in=180+\DenKrKomaHeadingTildeAngleOut,out=\DenKrKomaHeadingTildeAngleIn]%
+    (\DenKrKomaHeadingTildeWidth,\DenKrKomaHeadingTildeHeight)%
+    ;%
+}}%
+\newlength{\DenKrKomaHeadingTildeUpRaise}%
+\setlength{\DenKrKomaHeadingTildeUpRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeUpChar}}%
+\setlength{\DenKrKomaHeadingTildeUpRaise}{0.5\DenKrKomaHeadingTildeUpRaise}%
+\newcommand*{\DenKrKomaHeadingTildeUp}{\raisebox{\DenKrKomaHeadingTildeUpRaise}{\DenKrKomaHeadingTildeUpChar}}%
+%
+\newcommand*{\DenKrKomaHeadingTildeUpRotateChar}{\rotatebox{90}{\DenKrKomaHeadingTildeUpChar}}%
+\newlength{\DenKrKomaHeadingTildeUpRotateRaise}%
+\setlength{\DenKrKomaHeadingTildeUpRotateRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeUpRotateChar}}%
+\setlength{\DenKrKomaHeadingTildeUpRotateRaise}{0.5\DenKrKomaHeadingTildeUpRotateRaise}%
+\newcommand*{\DenKrKomaHeadingTildeUpRotate}{\raisebox{\DenKrKomaHeadingTildeUpRotateRaise}{\DenKrKomaHeadingTildeUpRotateChar}}%
+%
+\newcommand*{\DenKrKomaHeadingTildeDownChar}{\tikz{%
+    \path[draw,line cap=round,line width=\DenKrKomaHeadingTildeLinewidth]%
+    (0,\DenKrKomaHeadingTildeHeight)%
+        to[out=-\DenKrKomaHeadingTildeAngleOut,in=180-\DenKrKomaHeadingTildeAngleIn]%
+    ++(0.5*\DenKrKomaHeadingTildeWidth-0.5*\DenKrKomaHeadingTildePlateau,-0.5*\DenKrKomaHeadingTildeHeight)%
+        --%
+    ++(\DenKrKomaHeadingTildePlateau,0)%
+        to[in=180-\DenKrKomaHeadingTildeAngleOut,out=-\DenKrKomaHeadingTildeAngleIn]%
+    (\DenKrKomaHeadingTildeWidth,0)%
+    ;%
+}}%
+\newlength{\DenKrKomaHeadingTildeDownRaise}%
+\setlength{\DenKrKomaHeadingTildeDownRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeDownChar}}%
+\setlength{\DenKrKomaHeadingTildeDownRaise}{0.5\DenKrKomaHeadingTildeDownRaise}%
+\newcommand*{\DenKrKomaHeadingTildeDown}{\raisebox{\DenKrKomaHeadingTildeDownRaise}{\DenKrKomaHeadingTildeDownChar}}%
+%
+\newcommand*{\DenKrKomaHeadingTildeDownRotateChar}{\rotatebox{90}{\DenKrKomaHeadingTildeDownChar}}%
+\newlength{\DenKrKomaHeadingTildeDownRotateRaise}%
+\setlength{\DenKrKomaHeadingTildeDownRotateRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeDownRotateChar}}%
+\setlength{\DenKrKomaHeadingTildeDownRotateRaise}{0.5\DenKrKomaHeadingTildeDownRotateRaise}%
+\newcommand*{\DenKrKomaHeadingTildeDownRotate}{\raisebox{\DenKrKomaHeadingTildeDownRotateRaise}{\DenKrKomaHeadingTildeDownRotateChar}}%
+%
+\newcommand*{\DenKrKomaHeadingTildeCrossChar}{\tikz{%
+    \path[draw,line cap=round,line width=\DenKrKomaHeadingTildeLinewidth]%
+    (0,0)%
+        to[out=\DenKrKomaHeadingTildeAngleOut,in=180+\DenKrKomaHeadingTildeAngleIn]
+    ++(0.5*\DenKrKomaHeadingTildeWidth-0.5*\DenKrKomaHeadingTildePlateau,0.5*\DenKrKomaHeadingTildeHeight)%
+        --%
+    ++(\DenKrKomaHeadingTildePlateau,0)%
+        to[in=180+\DenKrKomaHeadingTildeAngleOut,out=\DenKrKomaHeadingTildeAngleIn]%
+    (\DenKrKomaHeadingTildeWidth,\DenKrKomaHeadingTildeHeight)%
+    (0,\DenKrKomaHeadingTildeHeight)%
+        to[out=-\DenKrKomaHeadingTildeAngleOut,in=180-\DenKrKomaHeadingTildeAngleIn]%
+    ++(0.5*\DenKrKomaHeadingTildeWidth-0.5*\DenKrKomaHeadingTildePlateau,-0.5*\DenKrKomaHeadingTildeHeight)%
+        --%
+    ++(\DenKrKomaHeadingTildePlateau,0)%
+        to[in=180-\DenKrKomaHeadingTildeAngleOut,out=-\DenKrKomaHeadingTildeAngleIn]%
+    (\DenKrKomaHeadingTildeWidth,0)%
+    ;%
+}}%
+\newlength{\DenKrKomaHeadingTildeCrossRaise}%
+\setlength{\DenKrKomaHeadingTildeCrossRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeCrossChar}}%
+\setlength{\DenKrKomaHeadingTildeCrossRaise}{0.5\DenKrKomaHeadingTildeCrossRaise}%
+\newcommand*{\DenKrKomaHeadingTildeCross}{\raisebox{\DenKrKomaHeadingTildeCrossRaise}{\DenKrKomaHeadingTildeCrossChar}}%
+%
+\newcommand*{\DenKrKomaHeadingTildeCrossRotateChar}{\rotatebox{90}{\DenKrKomaHeadingTildeCrossChar}}%
+\newlength{\DenKrKomaHeadingTildeCrossRotateRaise}%
+\setlength{\DenKrKomaHeadingTildeCrossRotateRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeCrossRotateChar}}%
+\setlength{\DenKrKomaHeadingTildeCrossRotateRaise}{0.5\DenKrKomaHeadingTildeCrossRotateRaise}%
+\newcommand*{\DenKrKomaHeadingTildeCrossRotate}{\raisebox{\DenKrKomaHeadingTildeCrossRotateRaise}{\DenKrKomaHeadingTildeCrossRotateChar}}%
+%
+\newcommand*{\DenKrKomaHeadingTildeDoubleChar}{\tikz{%
+    \path[draw,line cap=round,line width=\DenKrKomaHeadingTildeLinewidth]%
+    (0,0)%
+        to[out=\DenKrKomaHeadingTildeAngleOut,in=180+\DenKrKomaHeadingTildeAngleIn]
+    ++(0.5*\DenKrKomaHeadingTildeWidth-0.5*\DenKrKomaHeadingTildePlateau,0.5*\DenKrKomaHeadingTildeHeight-0.2*\DenKrKomaHeadingTildeLinewidth)%
+        --%
+    ++(\DenKrKomaHeadingTildePlateau,0)%
+        to[in=180-\DenKrKomaHeadingTildeAngleOut,out=-\DenKrKomaHeadingTildeAngleIn]%
+    (\DenKrKomaHeadingTildeWidth,0)%
+    (0,\DenKrKomaHeadingTildeHeight)%
+        to[out=-\DenKrKomaHeadingTildeAngleOut,in=180-\DenKrKomaHeadingTildeAngleIn]%
+    ++(0.5*\DenKrKomaHeadingTildeWidth-0.5*\DenKrKomaHeadingTildePlateau,-0.5*\DenKrKomaHeadingTildeHeight+0.2*\DenKrKomaHeadingTildeLinewidth)%
+        --%
+    ++(\DenKrKomaHeadingTildePlateau,0)%
+        to[in=180+\DenKrKomaHeadingTildeAngleOut,out=\DenKrKomaHeadingTildeAngleIn]%
+    (\DenKrKomaHeadingTildeWidth,\DenKrKomaHeadingTildeHeight)%
+    ;%
+}}%
+\newlength{\DenKrKomaHeadingTildeDoubleRaise}%
+\setlength{\DenKrKomaHeadingTildeDoubleRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeDoubleChar}}%
+\setlength{\DenKrKomaHeadingTildeDoubleRaise}{0.5\DenKrKomaHeadingTildeDoubleRaise}%
+\newcommand*{\DenKrKomaHeadingTildeDouble}{\raisebox{\DenKrKomaHeadingTildeDoubleRaise}{\DenKrKomaHeadingTildeDoubleChar}}%
+%
+\newcommand*{\DenKrKomaHeadingTildeDoubleRotateChar}{\rotatebox{90}{\DenKrKomaHeadingTildeDoubleChar}}%
+\newlength{\DenKrKomaHeadingTildeDoubleRotateRaise}%
+\setlength{\DenKrKomaHeadingTildeDoubleRotateRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeDoubleRotateChar}}%
+\setlength{\DenKrKomaHeadingTildeDoubleRotateRaise}{0.5\DenKrKomaHeadingTildeDoubleRotateRaise}%
+\newcommand*{\DenKrKomaHeadingTildeDoubleRotate}{\raisebox{\DenKrKomaHeadingTildeDoubleRotateRaise}{\DenKrKomaHeadingTildeDoubleRotateChar}}%

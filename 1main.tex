@@ -62,8 +62,8 @@
   }%
 % The option values may be set from the command line by means of the \DenKrCmdLineArgs macro, which may be defined this way before \input{}ing this file. For the precise option syntax, see l3keys in interface3.pdf[1].
 %   \newcommand{\MyDocParams}{
-%       outputType = screen,
-%       fullScreen = false
+%       outputType=screen,
+%       srcSubDir="src"
 %   }
 % Since we already set defaults above with \keys_define:nn, no need to set any here. But Provide it, so that no error is thrown in absence.
 \providecommand{\DenKrCmdLineArgs}{}%
@@ -84,10 +84,12 @@
 %
 %
 %
+% When wrapping the entire Project into Sub-Directory, either set a latexmkrc file to pass this as Argument.
+%   Or directly set \DenKrNestedSrcDir directly below this Comment
 %==================================================================================
 % ----  Setup
 %----------------------------------------------------------------------------------
-\newcommand{\DenKrSetupFilesSubDirPrefix}{}% {./}
+\newcommand{\DenKrSetupFilesSubDirPrefix}{\DenKrNestedSrcDir}% {./}
 \newcommand{\DenKrSubDirPrefix}{\DenKrSetupFilesSubDirPrefix}%
 %
 \newcommand{\DenKrProjectSetupFILE}{2ProjectSetup}%

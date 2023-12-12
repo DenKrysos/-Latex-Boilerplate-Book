@@ -18,29 +18,32 @@ ItalicFeatures={SmallCapsFont=LMRomanCaps10-Oblique},%
 % For Japanese Characters
 %=================================
 \ifdef{\DenKrJPFont}{\ifnumcomp{\number\numexpr\DenKrJPFont\relax}{>}{0}{%
-\usepackage{luatexja}
+\usepackage{luatexja}%
 \usepackage[match,%
-]{luatexja-fontspec}
+]{luatexja-fontspec}%
 %
 \typeout{»DenKr:  Resolving FontDir for Japanese Fonts. Operating in: "\currfiledir"}%
 \newcommand{\JPFontDir}{}%
 \newcommand{\JPFontSubDir}{\DenKrLayoutMainRootDirPATH/4aids/fonts/JP}
-\newcommand{\checkAndPrependJPFontDir}{%
-    \ifboolexpr{test {\IfFontExistsTF{\JPFontDir\JPFontSubDir/NotoSansJP-Regular.otf}}}{%
-        \typeout{»DenKr:  Working JPFontDir found: "\JPFontDir\JPFontSubDir/NotoSansJP-Regular.otf"}
-        \edef\JPFontDir{\expandonce{\JPFontDir\JPFontSubDir/}}%
-    }{%
-        \typeout{»DenKr:  Iterating over JPFontDir: \JPFontDir}
-        \edef\JPFontDir{\expandonce{\JPFontDir../}}%
-        \checkAndPrependJPFontDir%
-    }%
-}%
-\checkAndPrependJPFontDir%
+% Doesn't work reliably, don't use that:
+%    \newcommand{\checkAndPrependJPFontDir}{%
+%        \typeout{»DenKr:  Checking JPFontDir: \JPFontDir\JPFontSubDir}%
+%        \ifboolexpr{test {\IfFontExistsTF{\JPFontDir\JPFontSubDir/NotoSansJP-Regular.otf}}}{%
+%            \typeout{»DenKr:  Working JPFontDir found: "\JPFontDir\JPFontSubDir/NotoSansJP-Regular.otf"}%
+%            \edef\JPFontDir{\expandonce{\JPFontDir\JPFontSubDir/}}%
+%        }{%
+%            \typeout{»DenKr:  Iterating over JPFontDir: \JPFontDir}%
+%            \edef\JPFontDir{\expandonce{\JPFontDir../}}%
+%            \checkAndPrependJPFontDir%
+%        }%
+%    }%
+%    \checkAndPrependJPFontDir%
 % \edef\JPFontDir{\expandonce{./../\JPFontSubDir/}}%
-\typeout{»DenKr:  Using JPFontDir: \JPFontDir}
+\edef\JPFontDir{\expandonce{\JPFontDir\JPFontSubDir/}}%
+\typeout{»DenKr:  Using JPFontDir: \JPFontDir}%
 % \setmainjfont{Harano Aji Mincho}%
 % \setmonojfont{Harano Aji Gothic}%
-\typeout{»DenKr:  Load JP main Font}
+\typeout{»DenKr:  Load JP main Font}%
 \setmainjfont{NotoSerifJP}[%
     Path={\JPFontDir},Extension={.otf},%
 	UprightFont={*-Regular},%

@@ -16,8 +16,11 @@
 %%------------------------------------------------------------%%
 %%        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        %%
 %%============================================================%%
-\newcommand{\DenKrSetupFilesSubDirPrefix}{.}%
-\input{"\DenKrSetupFilesSubDirPrefix/2ProjectSetup".tex}%
+\newcommand{\DenKrSetupFilesSubDirPrefix}{}% {./}
+\newcommand{\DenKrSubDirPrefix}{\DenKrSetupFilesSubDirPrefix}%
+%
+\newcommand{\DenKrProjectSetupFILE}{2ProjectSetup}%
+\input{"\DenKrSetupFilesSubDirPrefix\DenKrProjectSetupFILE".tex}%
 %
 %
 %
@@ -61,7 +64,8 @@
 %
 %
 %
-\input{"\DenKrSetupFilesSubDirPrefix/3Disposition".tex}%
+\newcommand{\DenKrDispositionFILE}{3Disposition}%
+\input{"\DenKrSetupFilesSubDirPrefix\DenKrDispositionFILE".tex}%
 %
 %
 %

@@ -3,12 +3,63 @@
 %--------------------------
 %  Handy, e.g. for using as Delimiters in Heading
 % - - - - - - - - - - - - -
+% An Asterisk (Star) to be vertically nicely aligned
 \newcommand*{\DenKrKomaHeadingAsteriskChar}{{\small$\mathrm{\ast}$}}%
 \newlength{\DenKrKomaHeadingAsteriskRaise}%
 \setlength{\DenKrKomaHeadingAsteriskRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingAsteriskChar}}%
 \setlength{\DenKrKomaHeadingAsteriskRaise}{0.5\DenKrKomaHeadingAsteriskRaise}%
 \newcommand*{\DenKrKomaHeadingAsterisk}{\raisebox{\DenKrKomaHeadingAsteriskRaise}{\DenKrKomaHeadingAsteriskChar}}%
 %
+%
+%
+%--------------------------
+%  "Pointing-alike" Symbols
+% - - - - - - - - - - - - -
+\newcommand*{\DenKrKomaHeadingPointRightAChar}{%
+    \tikz[baseline]{%
+        \coordinate(LB)at(0,0);%
+        \coordinate(LT)at($(LB)+(0,1.3ex)$);%
+        \coordinate(RC)at($(LB)!.5!(LT)+(0.6em,0)$);%
+        % \coordinate(RT)at($(0,0)+(3ex,1.8ex)+(45:0.8ex)$);%
+        \path[draw,line cap=round,line join=miter,line width=0.2ex](LB)%
+            to[out=60,in=200]%
+        (RC)%
+            to[in=-60,out=160]%
+        (LT);%
+    }%
+}%
+\newlength{\DenKrKomaHeadingPointRightARaise}%
+\setlength{\DenKrKomaHeadingPointRightARaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingPointRightAChar}}%
+\setlength{\DenKrKomaHeadingPointRightARaise}{0.5\DenKrKomaHeadingPointRightARaise}%
+\newcommand*{\DenKrKomaHeadingPointRightAVertC}{\raisebox{\DenKrKomaHeadingPointRightARaise}{\DenKrKomaHeadingPointRightAChar}}%
+\newcommand*{\DenKrKomaHeadingPointRightA}{\raisebox{0.2ex}{\DenKrKomaHeadingPointRightAChar}}%
+%
+%
+%
+\newcommand*{\DenKrKomaHeadingPointRightBChar}{%
+    \tikz[baseline]{%
+        \coordinate(LB)at(0,0);%
+        \coordinate(LT)at($(LB)+(0,1.2ex)$);% 1.8ex
+        \coordinate(RC)at($(LB)!.7!(LT)+(0.7em,0)$);%
+        % \coordinate(RT)at($(0,0)+(3ex,1.8ex)+(45:0.8ex)$);%
+        \path[draw,line cap=round,line join=miter,line width=0.2ex](LB)%
+            to[out=65,in=195]%
+        (RC)%
+            --%
+        (LT);%
+    }%
+}%
+\newlength{\DenKrKomaHeadingPointRightBRaise}%
+\setlength{\DenKrKomaHeadingPointRightBRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingPointRightBChar}}%
+\setlength{\DenKrKomaHeadingPointRightBRaise}{0.5\DenKrKomaHeadingPointRightBRaise}%
+\newcommand*{\DenKrKomaHeadingPointRightBVertC}{\raisebox{\DenKrKomaHeadingPointRightBRaise}{\DenKrKomaHeadingPointRightBChar}}%
+\newcommand*{\DenKrKomaHeadingPointRightB}{\raisebox{0.2ex}{\DenKrKomaHeadingPointRightBChar}}%
+%
+%
+%
+%--------------------------
+%  Some curvated, Tilde-alike Symbols
+% - - - - - - - - - - - - -
 \newcommand{\DenKrKomaHeadingTildeWidth}{0.7em}%
 \newcommand{\DenKrKomaHeadingTildeLinewidth}{0.1*\DenKrKomaHeadingTildeWidth}%
 \newcommand{\DenKrKomaHeadingTildeHeight}{0.7*\DenKrKomaHeadingTildeWidth}%
@@ -37,6 +88,9 @@
 \setlength{\DenKrKomaHeadingTildeUpRotateRaise}{0.5\DenKrKomaHeadingTildeUpRotateRaise}%
 \newcommand*{\DenKrKomaHeadingTildeUpRotate}{\raisebox{\DenKrKomaHeadingTildeUpRotateRaise}{\DenKrKomaHeadingTildeUpRotateChar}}%
 %
+%
+%
+%
 \newcommand*{\DenKrKomaHeadingTildeDownChar}{\tikz{%
     \path[draw,line cap=round,line width=\DenKrKomaHeadingTildeLinewidth]%
     (0,\DenKrKomaHeadingTildeHeight)%
@@ -58,6 +112,9 @@
 \setlength{\DenKrKomaHeadingTildeDownRotateRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeDownRotateChar}}%
 \setlength{\DenKrKomaHeadingTildeDownRotateRaise}{0.5\DenKrKomaHeadingTildeDownRotateRaise}%
 \newcommand*{\DenKrKomaHeadingTildeDownRotate}{\raisebox{\DenKrKomaHeadingTildeDownRotateRaise}{\DenKrKomaHeadingTildeDownRotateChar}}%
+%
+%
+%
 %
 \newcommand*{\DenKrKomaHeadingTildeCrossChar}{\tikz{%
     \path[draw,line cap=round,line width=\DenKrKomaHeadingTildeLinewidth]%
@@ -88,6 +145,9 @@
 \setlength{\DenKrKomaHeadingTildeCrossRotateRaise}{0.5\DenKrKomaHeadingTildeCrossRotateRaise}%
 \newcommand*{\DenKrKomaHeadingTildeCrossRotate}{\raisebox{\DenKrKomaHeadingTildeCrossRotateRaise}{\DenKrKomaHeadingTildeCrossRotateChar}}%
 %
+%
+%
+%
 \newcommand*{\DenKrKomaHeadingTildeDoubleChar}{\tikz{%
     \path[draw,line cap=round,line width=\DenKrKomaHeadingTildeLinewidth]%
     (0,0)%
@@ -116,3 +176,62 @@
 \setlength{\DenKrKomaHeadingTildeDoubleRotateRaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingTildeDoubleRotateChar}}%
 \setlength{\DenKrKomaHeadingTildeDoubleRotateRaise}{0.5\DenKrKomaHeadingTildeDoubleRotateRaise}%
 \newcommand*{\DenKrKomaHeadingTildeDoubleRotate}{\raisebox{\DenKrKomaHeadingTildeDoubleRotateRaise}{\DenKrKomaHeadingTildeDoubleRotateChar}}%
+%
+%
+%
+%--------------------------
+%  Miscellaneous Symbols
+% - - - - - - - - - - - - -
+\newcommand*{\DenKrKomaHeadingSeedAChar}{\tikz{%
+    \tikzmath{%
+        \width=0.8em;%
+        \height=1.3*\width;%
+        \lwidth=0.1*\width;%
+    }%
+    \coordinate(B)at(0.5*\width pt,0);%
+    \coordinate(BellyL)at(0,0.2*\height pt);%
+    \coordinate(BellyR)at(\width pt,0.25*\height pt);%
+    \coordinate(NeckL)at(0.2*\width pt,0.45*\height pt);%
+    \coordinate(NeckR)at(0.75*\width pt,0.5*\height pt);%
+    \coordinate(TipR)at(0.8*\width pt,\height pt);%
+    \coordinate(TipL)at($(NeckL)+(-0.0*\width pt,0.15*\height pt)$);%
+    \coordinate(Bud1B)at($(TipL)+(0.12*\width pt,0.07*\height pt)$);%
+    \coordinate(Bud1T)at(0.2*\width pt,0.9*\height pt);%
+    \coordinate(Bud2B)at(0.45*\width pt,0.25*\height pt);%
+    \coordinate(Bud2C)at(0.5*\width pt,0.6*\height pt);%
+    \coordinate(Bud2T)at(0.5*\width pt,0.99*\height pt);%
+    \path[draw,line join=round,line cap=round,line width=\lwidth pt]%
+    (TipR)%
+        ..controls%
+            ++(-0.3*\width pt,-0.2*\height pt)%
+            and%
+            ++(-0.1*\width pt,0.1*\height pt)%
+        ..%
+    (NeckR)%
+        to[out=-50,in=95]%
+    (BellyR)%
+        to[out=270,in=0]%
+    (B)%
+        to[out=180,in=280]%
+    (BellyL)%
+        to[out=95,in=240]%
+    (NeckL)%
+        to[out=60,in=310]%
+    (TipL)%
+    ;%
+    \path[draw,line join=round,line cap=round,line width=0.6*\lwidth pt]%
+    (Bud1B)%
+        to[out=100,in=310]%
+    (Bud1T)%
+    %
+    (Bud2B)%
+        to[out=140,in=280]%
+    (Bud2C)%
+        to[out=100,in=240]%
+    (Bud2T)%
+    ;%
+}}%
+\newlength{\DenKrKomaHeadingSeedARaise}%
+\setlength{\DenKrKomaHeadingSeedARaise}{\heightof{\vphantom{H}}-\heightof{\DenKrKomaHeadingSeedAChar}}%
+\setlength{\DenKrKomaHeadingSeedARaise}{0.5\DenKrKomaHeadingSeedARaise}%
+\newcommand*{\DenKrKomaHeadingSeedA}{\raisebox{\DenKrKomaHeadingSeedARaise}{\DenKrKomaHeadingSeedAChar}}%

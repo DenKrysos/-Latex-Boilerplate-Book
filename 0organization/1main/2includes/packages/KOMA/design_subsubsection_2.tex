@@ -7,19 +7,8 @@
 \renewcommand*{\sectionlinesformat}[4]{%
     \sectionlinesformatPreSubSubSec{#1}{#2}{#3}{%
         \Ifstr{#1}{subsubsection}{%
-            % \hspace*{0.8em}%
-            \tikz[baseline,overlay]{%
-                \coordinate(LB)at($(0,0)+(0,0.2ex)$);%
-                \coordinate(LT)at($(LB)+(0,1.3ex)$);%
-                \coordinate(RC)at($(LB)!.5!(LT)+(0.6em,0)$);%
-                % \coordinate(RT)at($(0,0)+(3ex,1.8ex)+(45:0.8ex)$);%
-                \path[draw=DenKrKomaColor_SubSectionHeading,line cap=round,line join=miter,line width=0.2ex](LB)%
-                    to[out=60,in=200]%
-                (RC)%
-                    to[in=-60,out=160]%
-                (LT);%
-            }%
-            \hspace*{1.0em}%
+            {\color{DenKrKomaColor_SubSectionHeading}\DenKrKomaHeadingPointRightA}%
+            \hspace*{0.4em}%
         }{}%
         #4%
     }%

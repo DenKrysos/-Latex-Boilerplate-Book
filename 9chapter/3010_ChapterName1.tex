@@ -27,7 +27,7 @@ Example Acronym, Glossary-Entry \& Symbol:\nl
 Document-within References to check whether hyperref \& nameref work properly:\nl%
 \ref{chap:intro} (\nameref{chap:intro}). \ref{chap:chapter1}  (\nameref{chap:chapter1}). \ref{sec:testing} (\nameref{sec:testing})\nl%
 Consider using my Macros:\nl
-\eleref{fig:tikz_test2} or \elenumnamref{fig:tikzexample}
+\eleref{fig:tikzexample} or \elenumnamref{fig:tikzexample}
 
 
 
@@ -142,19 +142,19 @@ Imported Standalone Snippet: -->
 \begin{figure}[!htpb]
     \centering
 	\includestandalone[mode=\includestandalonedefaultmode]{\tikzFilesPath/tikztest}% width=\columnwidth
-    \caption{Tikz-Picture Caption. Some Example Standalone-Tikz-Pic}
+    \caption{Tikz-Picture Caption. Some Example Standalone-Tikz-Pic (Another Example is below outcommented)}
     \label{fig:tikz_test}
 \end{figure}
 %
 %
-\tikzabb%[tex]%
-{tikztest}%
-[\DenKrLayoutMainRootDir/8templates/tikz/7Tikz]% Alternative Path to the std "./7Tikz"
-{%
-Tikz-Picture Caption. Some Example Standalone-Tikz-Pic
-}%
-{1}[1,1,!ht]%[0.55,1,!ht]%
-{fig:tikz_test2}%
+% \tikzabb%[tex]%
+% {tikztest}%
+% [\DenKrLayoutMainRootDir/8templates/tikz/7Tikz]% Alternative Path to the std "./7Tikz"
+% {%
+% Tikz-Picture Caption. Some Example Standalone-Tikz-Pic
+% }%
+% {1}[1,1,!ht]%[0.55,1,!ht]%
+% {fig:tikz_test2}%
 %
 %
 

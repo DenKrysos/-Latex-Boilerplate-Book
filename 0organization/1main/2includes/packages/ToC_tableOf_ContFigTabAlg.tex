@@ -35,7 +35,9 @@
 %
 %
 %
-%
+%======================================
+% Configuration for the Environments
+%======================================
 \makeatletter%
 %Remove the Title Heading for every List-of Environment
 \AddToHook{begindocument/before}{%
@@ -45,4 +47,20 @@
         \deftocheading{\@currext}{}%
     }%
 }%
+\makeatother%
+%
+%
+%
+%
+%
+%======================================
+% Numerical Preferences
+%======================================
+% - \@pnumwidth: Make more Space in the ToC for the Pagenumber.
+%    The default Value is only sufficient for roughly 2 arabic Digits.
+%    - '1.9em' is barely enough for a 'XIII' | '2.15em' for 'XVII'
+% - \@tocrmarg: The margin from the right on line-breaks.
+\makeatletter%
+\renewcommand*{\@pnumwidth}{1.9em}%
+\renewcommand*\@tocrmarg{2.4em}%
 \makeatother%

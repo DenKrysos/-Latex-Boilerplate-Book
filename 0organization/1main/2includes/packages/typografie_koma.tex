@@ -79,7 +79,14 @@
 \KOMAoptions{%
  	%BCOR=8mm,% Bindeverlust von 8mm am Innenrand einbeziehen
 	DIV=last,%
-	open=right% any, right, left  % 'openany' at \documentclass
+	open=right,% any, right, left  % 'openany' at \documentclass
+    toc=nolistof,% For NOT adding List-Ofs to the ToC (Default)
+    toc=graduated,% Format of the ToC
+    toc=nobib,% I take care of that manually
+    chapterentrydots=false,% ToC: No dotted Line between Chapter and Pagenumber
+    % sectionentrydots=true,% ToC: For Sections, when class is Articel-level
+    listof=flat,%
+    listof=nochaptergap,%
 }%
 %
 %________________________________________________________________________

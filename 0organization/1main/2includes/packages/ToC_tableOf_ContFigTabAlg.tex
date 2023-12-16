@@ -1,0 +1,62 @@
+
+\makeatletter%
+\newcommand{\tableofcontentsDenKr}{%
+	\chapter*{\contentsname}%
+	\label{chapnt:ToC}%
+% 	\markboth{\nameref{#2}}{\nameref{#3}}%
+	\markboth{\contentsname}{\contentsname}%
+    \let\@cftmaketoctitle\relax%
+    \tableofcontents%
+}%
+\newcommand{\listoffiguresDenKr}{%
+    \chapnt{\listfigurename}[chapnt:LoF]%
+    \let\@cftmakeloftitle\relax%
+    \listoffigures%
+}%
+\makeatother%
+\makeatletter%
+\newcommand{\listoftablesDenKr}{%
+    \chapnt{\listtablename}[chapnt:LoT]%
+    \let\@cftmakelottitle\relax%
+    \listoftables%
+}%
+\makeatother%
+\makeatletter%
+\newcommand{\listofalgorithmsDenKr}{%
+    \chapnt{\listalgorithmname}[chapnt:LoA]%
+    \let\@cftmakeloatitle\relax% \@listalgorithmcfname \@cftmakeloalgtitle
+	% \addcontentsline{toc}{chapter}{\listalgorithmname}%
+    \listofalgorithms%
+}%
+\makeatother%
+%
+%
+% - - - - - - - - - -
+% NECESSITIES
+%  -  -  -  -
+% A self-made custom definition of the \listofalgorithms cmd
+%    Because with the package algorithm/algpseudocode/algorithmicx, one cannot easily remove the Chapter-Heading, as their definition of the listofalgorithms doesn't comply with tocloft.
+%    So I created an own, based on the toclofts listoffigures
+\makeatletter%
+\AddToHook{begindocument/before}{% Because the algorithm-concerning package must be loaded
+\renewcommand{\listofalgorithms}{%
+    \@cfttocstart \par \begingroup %
+    \parindent\z@ \parskip\cftparskip %
+    \addpenalty \@secpenalty %
+    % \if@cfthaschapter \vspace*{\cftbeforeloftitleskip } \else %
+    %                   \vspace {\cftbeforeloftitleskip } \fi%
+    \@cftpagestyle %
+    {%
+        % \interlinepenalty \@M %
+        % {\cftloftitlefont \listalgorithmname }%
+        % {\cftafterloftitle } %
+        % \par \nobreak \vskip \cftafterloftitleskip \@afterheading%
+        \@mkboth{\MakeUppercase\listalgorithmname}%
+                {\MakeUppercase\listalgorithmname}%
+    }%
+    \let\l@algorithm\l@figure%
+    \@starttoc{loa}\endgroup %
+    \@cfttocfinish%
+}%
+}
+\makeatother%

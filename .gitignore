@@ -9,7 +9,10 @@
 *.out
 *.pdf
 *.synctex.gz
+*.synctex.gz(busy)
+*.synctex
 *.synctex(busy)
+*.synctex.gz.sum.synctex
 *.toc
 *.xdv
 *.thm

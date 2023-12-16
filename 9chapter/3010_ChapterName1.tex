@@ -66,11 +66,21 @@ With some arbitrary Text.
 
 
 
-\section{\textbackslash gls{} in Heading: \glstextHead{qos}, \glsdescHead{qos}, \glstextplHead{qos}, \glsdescplHead{qos}. And some more words, to make it multi-line to check the configured section-format}
+% \section{\textbackslash gls{} in Heading: \glstextHead{qos}, \glsdescHead{qos}, \glstextplHead{qos}, \glsdescplHead{qos}. And some more words, to make it multi-line to check the configured section-format}
+\section{\textbackslash gls\{\} in Heading:
+    \texorpdfstring{\glstextHead{qos}}{QoS},
+    \texorpdfstring{\glsdescHead{qos}}{QoS},
+    \texorpdfstring{\glstextplHead{qos}}{QoS},
+    \texorpdfstring{\glsdescplHead{qos}}{QoS}.
+And some more words, to make it multi-line to check the configured section-format}
+
+
 
 \edef\tokenA{\glsentrytext{qos}}
 \edef\tokenB{\glsentrydesc{qos}}
-\subsection{Alternative Solution: \texorpdfstring{\tokenA}{\tokenA}, \texorpdfstring{\tokenB}{\tokenB}}
+% \subsection{Alternative Solution: \texorpdfstring{\tokenA}{\tokenA}, \texorpdfstring{\tokenB}{\tokenB}}
+\subsection{Alternative Solution: \texorpdfstring{\tokenA}{QoS}, \texorpdfstring{\tokenB}{QoS}}
+Hem, in TexLive 2023, something with the Macro Expansion changed, so that is not properly working anymore. Well, haven't investigated on it yet. My apologies.
 
 These macros allow to use glossaries entries in Section-Heading, without the Warning \enquote{Token not allowed}.
 

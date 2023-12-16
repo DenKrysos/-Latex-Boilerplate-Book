@@ -1,3 +1,19 @@
+% REMARK:
+%  This package is not recommended to be used together with a KOMA Class.
+%  Hence, I suggest, leaving this alone (i.e. don't input this file here).
+%  But rather input the other File ("ToC_tableOf_ContFigTabAlg.tex"), which configures the Table/List of Content, Figures, Tables, Algorithms for KOMA.
+%
+\usepackage[%
+    %subfigure, % Don't issue this option. Subfig & Subfigure are not used. Instead Subcaption is in use. Loading the former two in conjunction causes problems.
+]{tocloft}%Ermöglicht customization von Inhaltsverzeichnis, Abbildungsverzeichnis und Tabellenverzeichnis
+%
+\cftsetpnumwidth{1.8em}% '1.8em' is just barely sufficient for a 'XIII' | '2.15em' for 'XVII'
+%
+%
+%
+%======================================
+% Configuration
+%======================================
 %
 % - - - - - - - - - - - - - - - -
 %  Removing the Printing of the Title (like "List of Figures") from commands like "\listoffigures"
@@ -61,6 +77,7 @@
 %    Because with the package algorithm/algpseudocode/algorithmicx, one cannot easily remove the Chapter-Heading, as their definition of the listofalgorithms doesn't comply with tocloft.
 %    So I created an own, based on the toclofts listoffigures
 \makeatletter%
+\AddToHook{begindocument/before}{% Because the algorithm-concerning package must be loaded
 \renewcommand{\listofalgorithms}{%
     \@cfttocstart \par \begingroup %
     \parindent\z@ \parskip\cftparskip %
@@ -80,6 +97,7 @@
     \@starttoc{loa}\endgroup %
     \@cfttocfinish%
 }%
+}
 \makeatother%
 %
 %

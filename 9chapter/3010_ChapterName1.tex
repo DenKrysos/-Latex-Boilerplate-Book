@@ -66,23 +66,54 @@ With some arbitrary Text.
 
 
 
-% \section{\textbackslash gls{} in Heading: \glstextHead{qos}, \glsdescHead{qos}, \glstextplHead{qos}, \glsdescplHead{qos}. And some more words, to make it multi-line to check the configured section-format}
+% \section{\textbackslash gls{} in Heading: \glstextHead{dll}, \glsdescHead{dll}, \glstextplHead{dll}, \glsdescplHead{dll}. And some more words, to make it multi-line to check the configured section-format}
 \section{\textbackslash gls\{\} in Heading:
-    \texorpdfstring{\glstextHead{qos}}{QoS},
-    \texorpdfstring{\glsdescHead{qos}}{QoS},
-    \texorpdfstring{\glstextplHead{qos}}{QoS},
-    \texorpdfstring{\glsdescplHead{qos}}{QoS}.
+    \texorpdfstring{\glstextHead{dll}}{DLL},
+    \texorpdfstring{\glsdescHead{dll}}{DLL},
+    \texorpdfstring{\glstextplHead{dll}}{DLLs},
+    \texorpdfstring{\glsdescplHead{dll}}{DLLs}.
 And some more words, to make it multi-line to check the configured section-format}
 
 
 
-\edef\tokenA{\glsentrytext{qos}}
-\edef\tokenB{\glsentrydesc{qos}}
+\edef\tokenA{\glsentrytext{dll}}
+\edef\tokenB{\glsentrydesc{dll}}
 % \subsection{Alternative Solution: \texorpdfstring{\tokenA}{\tokenA}, \texorpdfstring{\tokenB}{\tokenB}}
-\subsection{Alternative Solution: \texorpdfstring{\tokenA}{QoS}, \texorpdfstring{\tokenB}{QoS}}
+\subsection{Alternative Solution: \texorpdfstring{\tokenA}{DLL}, \texorpdfstring{\tokenB}{DLL}}
 Hem, in TexLive 2023, something with the Macro Expansion changed, so that is not properly working anymore. Well, haven't investigated on it yet. My apologies.
 
 These macros allow to use glossaries entries in Section-Heading, without the Warning \enquote{Token not allowed}.
+
+
+\subsection{My Recommendation: 
+\glsfmtshort{dll}, \glsfmtshortpl{dll},
+\glsfmtlong{dll}, \glsfmtlongpl{dll}
+}
+
+Using \enquote{glossaries-extra}, one has access to these Commands above.\nl
+So, basically, when using \enquote{glossaries-extra} (as opposed to plain glossaries, without -extra), don't employ my macros from above, but use these \textbackslash glsfmt[\ldots], like in the heading here.
+
+
+\subsubsection{Some useful Glossaries-Cmds as Reference}
+\glsreset{dll}\glspl{dll}\nl
+\glstext{dll}, \glsdesc{dll}, \glsplural{dll},\nl
+$\rightarrow$ Just saying, the \textbackslash glsdescpl\{\} cmd, used here, is not from the Glossaries package, but defined by DenKr: \glsdescpl{dll}%\glsdescplural{dll}
+\nl
+\ \ \ (Because the \textbackslash glsdescplural\{\} seems to be always buggy as hell\ldots)
+
+\npi
+\glsentryshortpl{dll}, \glsentrylongpl{dll}, \glsentryshort{dll}, \glsentrylong{dll};\nl
+\glsentrytext{dll}, \glsentryplural{dll}, \glsentrydesc{dll}, \glsentrydescplural{dll}.\nl
+\glsentryshortpl{eventfd}, \glsentrylongpl{eventfd}, \glsentryshort{eventfd}, \glsentrylong{eventfd};\nl
+\glsentrytext{eventfd}, \glsentryplural{eventfd}, (Careful with the \enquote{descs} on glossary-entries \emoji{winking-face}. Outcommented here:)%\glsentrydesc{eventfd}, \glsentrydescplural{eventfd}.
+
+\npi
+\glsfmtshort{dll}, \glsfmtlong{dll}, \glsfmtshortpl{dll}, \glsfmtlongpl{dll},\nl
+\glsfmttext{dll}, \glsfmtname{dll}.
+\nl
+\glsfmtshort{eventfd}, \glsfmtlong{eventfd}, \glsfmtshortpl{eventfd}, \glsfmtlongpl{eventfd},\nl
+\glsfmttext{eventfd}, \glsfmtname{eventfd}.\nl
+\ \ \ (As you see above, the fmtshort/long are not available for Glossary-Entries, but for Acronyms. So, in essence, just use \textbackslash glsfmttext\{\} for basically everything, except when you need the long-form of an Acronym.)
 
 
 

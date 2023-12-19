@@ -23,10 +23,10 @@
 %-----------------------------------------------------------------------------------
 % Strange Thing. With Microtype-3.0, some curious errors are produced in conjunction with luatexja.
 %    For unknown reasons, the following avoid these errors.
-\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\scshape}\microtypesetup{reactivate}}}
-\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\bfseries\scshape}\microtypesetup{reactivate}}}
-\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\sffamily\scshape}\microtypesetup{reactivate}}}
-\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\ttfamily\scshape}\microtypesetup{reactivate}}}
+\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\scshape}\microtypesetup{reactivate}}}%
+\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\bfseries\scshape}\microtypesetup{reactivate}}}%
+\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\sffamily\scshape}\microtypesetup{reactivate}}}%
+\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\ttfamily\scshape}\microtypesetup{reactivate}}}%
 %
 %
 \expandafter\ifstrequal\expandafter{\DenKrLanguageStringCmd}{ngerman}{}{%

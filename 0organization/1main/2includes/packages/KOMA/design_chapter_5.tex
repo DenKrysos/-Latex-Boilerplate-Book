@@ -48,7 +48,7 @@
                 (current bounding box.south east)++(+.5\pgflinewidth,0)--+(0,\paperheight);%
             %Chapter-Number
             \ifstrempty{#2}{}{%
-                \coordinate(chapNumAnch)at($(title.base-|current bounding box.east)+(10pt,\tmpheight)$);
+                \coordinate(chapNumAnch)at($(title.base-|current bounding box.east)+(10pt,\tmpheight)$);%
                 % \def\anchor{base west}%
                 % \def\atPos{([xshift=10pt]title.base-|current bounding box.east)}%
                 % \foreach\x[count=\i from 0] in {\chapDigits}{% \chapSplit{1}{\thechapter}

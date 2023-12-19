@@ -34,13 +34,13 @@
         % Stared: \chapter*
         \IfValueTF{#2}{%
             % Whether or not optional Argument supplied: \chapter*[..]{...}
-            \ifx\empty#2\empty
+            \ifx\empty#2\empty%
                 % The optional argument was set and is empty
-                \def\@AltTitle{#3}
-            \else
+                \def\@AltTitle{#3}%
+            \else%
                 % The optional argument was set to some value
-                \def\@AltTitle{#2}
-            \fi
+                \def\@AltTitle{#2}%
+            \fi%
             \chapterDefault*{#3}%
             \addcontentsline{toc}{chapter}{\protect\numberline{}\@AltTitle}% Add regular title to ToC
             \addtocontents{lof}{\protect\addvspace{10\p@}}% Space between chapters in LoF
@@ -72,13 +72,13 @@
         % Stared: \chapter*
         \IfValueTF{#2}{%
             % Whether or not optional Argument supplied: \chapter*[..]{...}
-            \ifx\empty#2\empty
+            \ifx\empty#2\empty%
                 % The optional argument was set and is empty
-                \def\@AltTitle{#3}
-            \else
+                \def\@AltTitle{#3}%
+            \else%
                 % The optional argument was set to some value
-                \def\@AltTitle{#2}
-            \fi
+                \def\@AltTitle{#2}%
+            \fi%
             \sectionDefault*{#3}%
             \addcontentsline{toc}{section}{\protect\numberline{}\@AltTitle}% Add regular title to ToC
             \markright{\@AltTitle}% Set marks based on optional argument

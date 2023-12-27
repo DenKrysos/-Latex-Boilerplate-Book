@@ -15,6 +15,7 @@
 	shrink=10%
 ]{microtype}%
 \providecommand{\DenKrMicrotypeLoaded}{1}%
+\renewcommand{\DenKrMicrotypeLoaded}{1}%
 % activate={true,nocompatibility} - activate protrusion and expansion
 % final - enable microtype; use "draft" to disable
 % tracking=true, kerning=true, spacing=true - activate these techniques
@@ -23,10 +24,12 @@
 %-----------------------------------------------------------------------------------
 % Strange Thing. With Microtype-3.0, some curious errors are produced in conjunction with luatexja.
 %    For unknown reasons, the following avoid these errors.
-\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\scshape}\microtypesetup{reactivate}}}%
-\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\bfseries\scshape}\microtypesetup{reactivate}}}%
-\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\sffamily\scshape}\microtypesetup{reactivate}}}%
-\AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\ttfamily\scshape}\microtypesetup{reactivate}}}%
+\ifdef{\DenKrJPFont}{\ifnumcomp{\number\numexpr\DenKrJPFont\relax}{>}{0}{%
+    \AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\scshape}\microtypesetup{reactivate}}}%
+    \AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\bfseries\scshape}\microtypesetup{reactivate}}}%
+    \AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\sffamily\scshape}\microtypesetup{reactivate}}}%
+    \AtEndPreamble{\AtBeginDocument{\microtypesetup{deactivate}{\ttfamily\scshape}\microtypesetup{reactivate}}}%
+}{}}{}%
 %
 %
 \expandafter\ifstrequal\expandafter{\DenKrLanguageStringCmd}{ngerman}{}{%

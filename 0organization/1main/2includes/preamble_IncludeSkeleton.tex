@@ -86,10 +86,8 @@
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %				Some 'Specials', one might want/like
 %________________________________________________________________________
-%  OK, fuck that shit. I finally decided fully against this Microtype (at least with LuaLaTeX and big Book-Level Documents). It just constantly keeps raising Warnings and Causing all kinds of Missbehavior.
-%        % \expandafter\ifstrequal\expandafter{\DenKrLayout}{acmart}{}{%
-%        % \input{"\DenKrLayoutMainRootDir/2includes/packages/microtype".tex}%
-%        % }%
+%  Argh, fuck that shit. Hhhh, be careful with Microtype (at least with LuaLaTeX and big Book-Level Documents and sophisticated stuff, like non-latin languages). I think, I got fixed for the most part, but (with luatex-ja), it might keep raising Warnings and causing all kinds of Missbehavior.
+\input{"\DenKrLayoutMainRootDir/2includes/packages/microtype".tex}%
 %
 \input{"\DenKrLayoutMainRootDir/2includes/packages/compilation_1_veryBasic".tex}%
 \input{"\DenKrLayoutMainRootDir/2includes/packages/itemEnum".tex}%

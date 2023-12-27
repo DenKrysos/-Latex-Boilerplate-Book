@@ -64,3 +64,20 @@
 \renewcommand*{\@pnumwidth}{1.9em}%
 \renewcommand*\@tocrmarg{2.4em}%
 \makeatother%
+% - - - - - - - - - -
+% The width to be occupied by the Number in the ToC
+\RedeclareSectionCommand[%
+  tocnumwidth=2em% Default: 2em
+]{part}%
+\RedeclareSectionCommand[%
+  tocnumwidth=1.5em% Default: 1.5em
+]{chapter}%
+\RedeclareSectionCommand[%
+  tocnumwidth=2.3em% Default: 2.3em
+]{section}%
+\RedeclareSectionCommand[%
+  tocnumwidth=3.2em% Default: 3.2em
+]{subsection}%
+\RedeclareSectionCommand[%
+  tocnumwidth=4.1em% Default: 4.1em
+]{subsubsection}%

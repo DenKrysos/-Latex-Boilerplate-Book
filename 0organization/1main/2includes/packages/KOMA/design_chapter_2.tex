@@ -8,8 +8,8 @@
     afterskip=1.725\baselineskip plus .115\baselineskip minus .192\baselineskip%
 ]{chapter}%
 \renewcommand\raggedchapter{\raggedleft}%
-\renewcommand\chapterformat{{\fontsize{60pt}{60pt}\selectfont{\thechapter}}}%
-\renewcommand\chapterlineswithprefixformat[3]{%
+\renewcommand*\chapterformat{{\fontsize{60pt}{60pt}\selectfont{\thechapter}}}%
+\renewcommand*\DenKrKOMAHookFormatChapterWithPrefix[3]{%
     \parbox[b][\baselineskip]{\linewidth}{\raggedchapter#2#3}\par\nobreak%
     \vspace*{-.5\baselineskip}%
     \rule{\textwidth}{.4pt}\par\nobreak%

@@ -213,6 +213,15 @@
 %________________________________________________________________________
 %           Chapter, Section, etc. Heading Format Definition. According to KOMA-Script
 %========================================================================
+% - - - - - - - -
+% - Make Backup-Copies of other Heading Format related Macros (that may be changed by my Designs included below)
+\NewCommandCopy{\partformatOriginal}{\partformat}%
+\NewCommandCopy{\chapterformatOriginal}{\chapterformat}%
+\NewCommandCopy{\sectionformatOriginal}{\sectionformat}%
+\NewCommandCopy{\subsectionformatOriginal}{\subsectionformat}%
+\NewCommandCopy{\subsubsectionformatOriginal}{\subsubsectionformat}%
+\NewCommandCopy{\paragraphformatOriginal}{\paragraphformat}%
+\NewCommandCopy{\subparagraphformatOriginal}{\subparagraphformat}%
 % Default Values are
 %\newcommand*{\partformat}{\partname~\thepart\autodot}
 %\newcommand*{\chapterformat}{\mbox{\chapappifchapterprefix{\nobreakspace}\thechapter\autodot\IfUsePrefixLine{}{\enskip}}}
@@ -223,12 +232,19 @@
 %\newcommand*{\subparagraphformat}{\thesubparagraph\autodot\enskip}
 %\newcommand*{\othersectionlevelsformat}[3]{#3\autodot\enskip}
 % - - - - - - - -
-%KOMA-Script default Heading font setting
+% - KOMA-Script default Heading font setting
+% - Make Backup-Copies of Default KOMA Fonts
 %\sffamily\bfseries
-%\setkomafont{chapter}{\sffamily\bfseries\huge}
-%\setkomafont{section}{\sffamily\bfseries\Large}
-%\setkomafont{subsection}{\sffamily\bfseries\large}
-%\setkomafont{subsubsection}{\sffamily\bfseries\normalsize}
+\newkomafont{partnumberOriginal}{}%
+\newkomafont{partOriginal}{}%
+\newkomafont{chapterOriginal}{\sffamily\bfseries\huge}%
+\newkomafont{chapterprefixOriginal}{}%
+\newkomafont{sectionOriginal}{\sffamily\bfseries\Large}%
+\newkomafont{subsectionOriginal}{\sffamily\bfseries\large}%
+\newkomafont{subsubsectionOriginal}{\sffamily\bfseries\normalsize}%
+\newkomafont{paragraphOriginal}{}%
+\newkomafont{subparagraphOriginal}{}%
+% - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % - - - - - - - - - - - - - - - - - - - - - - - - - -
 % For Color-Definitions, see a few Lines above
@@ -240,10 +256,103 @@
 %========================================================================
 %         Designing the Headings
 %========================================================================
-\newkomafont{chapternumber}{\mdseries\fontsize{60pt}{60pt}\selectfont}%
+\newkomafont{chapternumberN}{\mdseries\fontsize{60pt}{54pt}\selectfont}%
+\newkomafont{chapternumberS}{\mdseries\fontsize{50pt}{44pt}\selectfont}%
+\newkomafont{chapternumberSS}{\mdseries\fontsize{40pt}{34pt}\selectfont}%
+\newkomafont{chapternumber}{\usekomafont{chapternumberN}}%
 %\setkomafont{disposition}{\normalcolor\bfseries}%
 \addtokomafont{disposition}{\color{DenKrKomaColor_ChapterHeading}}%
 % - - - - - - - -
+% ToDo: There is also the following thing. But I didn't use this so-far, and didn't prepare for it.
+%            \newcommand{\sectioncatchphraseformat}[4]{%
+%               \hskip #2#3#4%
+%            }
+% - - - - - - - -
+% - Prepare Anchors in the Cmds that print the Title Headings
+\makeatletter%
+%
+\NewCommandCopy{\partlineswithprefixformatOriginal}{\partlineswithprefixformat}%
+\renewcommand*\partlineswithprefixformat[3]{%
+    \Ifstr{#1}{part}{%
+        \DenKrKOMAHookFormatPartWithPrefix{#1}{#2}{#3}%
+        % \par%
+    }{\partlineswithprefixformatOriginal{#1}{#2}{#3}}%
+}%
+%
+\NewCommandCopy{\chapterlinesformatOriginal}{\chapterlinesformat}%
+\renewcommand*\chapterlinesformat[3]{%
+    \Ifstr{#1}{chapter}{%
+        \DenKrKOMAHookFormatChapter{#1}{#2}{#3}%
+        % \par%
+    }{\chapterlinesformatOriginal{#1}{#2}{#3}}%
+}%
+%
+\NewCommandCopy{\chapterlineswithprefixformatOriginal}{\chapterlineswithprefixformat}%
+\renewcommand*\chapterlineswithprefixformat[3]{%
+    \Ifstr{#1}{chapter}{%
+        \DenKrKOMAHookFormatChapterWithPrefix{#1}{#2}{#3}%
+        % \par%
+    }{\chapterlineswithprefixformatOriginal{#1}{#2}{#3}}%
+}%
+%
+\NewCommandCopy{\sectionlinesformatOriginal}{\sectionlinesformat}%
+\renewcommand*\sectionlinesformat[4]{%
+    \Ifstr{#1}{section}{%
+        \DenKrKOMAHookFormatSection{#1}{#2}{#3}{#4}%
+        % \par%
+    }{\Ifstr{#1}{subsection}{%
+        \DenKrKOMAHookFormatSubSection{#1}{#2}{#3}{#4}%
+        % \par%
+    }{\Ifstr{#1}{subsubsection}{%
+        \DenKrKOMAHookFormatSubSubSection{#1}{#2}{#3}{#4}%
+        % \par%
+    }{\sectionlinesformatOriginal{#1}{#2}{#3}{#4}}}}%
+}%
+%
+%  A Variant, but I prefer the other approach.
+%            \renewcommand*\chapterlinesformat[3]{%
+%                \Ifstr{#1}{chapter}{%
+%                    \DenKrKOMAHookFormatChapter%
+%                    \par%
+%                }{%
+%                    \@hangfrom{#2}{#3}% other section levels using style=chapter
+%                }%
+%            }%
+%
+\makeatother%
+% - - - - - - - -
+% - Set the Hooks to the (boring) Default
+\makeatletter%
+\newcommand{\DenKrKOMAHookFormatPartWithPrefixOriginal}[3]{#2#3}%
+\newcommand{\DenKrKOMAHookFormatChapterOriginal}[3]{\@hangfrom{#2}{#3}}%
+\newcommand{\DenKrKOMAHookFormatChapterWithPrefixOriginal}[3]{#2#3}%
+\newcommand{\DenKrKOMAHookFormatSectionOriginal}[4]{\@hangfrom{\hskip #2#3}{#4}}%
+\newcommand{\DenKrKOMAHookFormatSubSectionOriginal}[4]{\@hangfrom{\hskip #2#3}{#4}}%
+\newcommand{\DenKrKOMAHookFormatSubSubSectionOriginal}[4]{\@hangfrom{\hskip #2#3}{#4}}%
+%
+\newcommand{\DenKrKOMAHookFormatPartWithPrefix}[3]{}%
+\newcommand{\DenKrKOMAHookFormatChapter}[3]{}%
+\newcommand{\DenKrKOMAHookFormatChapterWithPrefix}[3]{}%
+\newcommand{\DenKrKOMAHookFormatSection}[4]{}%
+\newcommand{\DenKrKOMAHookFormatSubSection}[4]{}%
+\newcommand{\DenKrKOMAHookFormatSubSubSection}[4]{}%
+%
+% \renewcommand{\DenKrKOMAHookFormatPartWithPrefix}[3]{\DenKrKOMAHookFormatPartWithPrefixOriginal{#1}{#2}{#3}}%
+% \renewcommand{\DenKrKOMAHookFormatChapter}[3]{\DenKrKOMAHookFormatChapterOriginal{#1}{#2}{#3}}%
+% \renewcommand{\DenKrKOMAHookFormatChapterWithPrefix}[3]{\DenKrKOMAHookFormatChapterWithPrefixOriginal{#1}{#2}{#3}}%
+% \renewcommand{\DenKrKOMAHookFormatSection}[4]{\DenKrKOMAHookFormatSectionOriginal{#1}{#2}{#3}{#4}}%
+% \renewcommand{\DenKrKOMAHookFormatSubSection}[4]{\DenKrKOMAHookFormatSubSectionOriginal{#1}{#2}{#3}{#4}}%
+% \renewcommand{\DenKrKOMAHookFormatSubSubSection}[4]{\DenKrKOMAHookFormatSubSubSectionOriginal{#1}{#2}{#3}{#4}}%
+%
+\renewcommand\DenKrKOMAHookFormatPartWithPrefix\DenKrKOMAHookFormatPartWithPrefixOriginal%
+\renewcommand\DenKrKOMAHookFormatChapter\DenKrKOMAHookFormatChapterOriginal%
+\renewcommand\DenKrKOMAHookFormatChapterWithPrefix\DenKrKOMAHookFormatChapterWithPrefixOriginal%
+\renewcommand\DenKrKOMAHookFormatSection\DenKrKOMAHookFormatSectionOriginal%
+\renewcommand\DenKrKOMAHookFormatSubSection\DenKrKOMAHookFormatSubSectionOriginal%
+\renewcommand\DenKrKOMAHookFormatSubSubSection\DenKrKOMAHookFormatSubSubSectionOriginal%
+\makeatother%
+% = = = = = = = = = = = = = = =
+% = Set Custom Heading Designs
 \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_part_1".tex}%
 % \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_part_2".tex}%
 % \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_part_3".tex}%
@@ -253,21 +362,24 @@
 % \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_part_7".tex}%
 % - - - - - - - -
 \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_1".tex}%
-%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_2".tex}%
-%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_3".tex}% That one is a little wonky. It noodles around with the \chapterformat, which is somewhat uncool.
-%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_4".tex}%
-%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_5".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_2".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_3".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_4".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_5".tex}%
 % \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_6".tex}%
 % - - - - - - - -
 \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_1".tex}%
-%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_2".tex}%
-%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_3".tex}%
-%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_4".tex}%
-%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_5".tex}%
-%\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_6".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_2".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_3".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_4".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_5".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_6".tex}%
 % \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_7".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_8".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_9".tex}%
 % - - - - - - - -
 \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subsection_1".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subsection_2".tex}%
 % - - - - - - - -
 \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subsubsection_1".tex}%
 % \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subsubsection_2".tex}%

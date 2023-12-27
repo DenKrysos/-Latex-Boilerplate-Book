@@ -31,6 +31,14 @@ Consider using my Macros:\nl
 \eleref{fig:tikzexample} or \elenumnamref{fig:tikzexample}
 
 
+\begin{figure*}[!htpb]
+\centering
+    \includegraphics[width=2em]{{"\DenKrGraphicsRootDir/Quatsch/thumbsup"}.png}
+    \caption{A Caption with long enough text to cause a line wrap, for the goal of testing whether the setting puts a hanging indent, which separates the text from the Figure Label.}%
+    \label{fig:testFig}
+\end{figure*}
+
+
 
 \subsection{Enumeration}
 
@@ -74,6 +82,8 @@ With some arbitrary Text.
     \texorpdfstring{\glstextplHead{dll}}{DLLs},
     \texorpdfstring{\glsdescplHead{dll}}{DLLs}.
 And some more words, to make it multi-line to check the configured section-format}
+
+Just some text.
 
 
 
@@ -120,6 +130,7 @@ $\rightarrow$ Just saying, the \textbackslash glsdescpl\{\} cmd, used here, is n
 
 
 
+\ifdef{\DenKrJPFont}{\ifnumcomp{\number\numexpr\DenKrJPFont\relax}{>}{0}{%
 \section{Japanese Font -- 日本語}
 
 Ordinary | \textrm{Serif} | \textsf{Sans-Serif} | \texttt{Monospaced-TrueType} | \textbf{Bold} | \textit{Italic} | \textit{\textbf{BoldItalic}} | \textsc{SmallCaps}\nl%
@@ -143,6 +154,10 @@ SmallCaps:&\textsc{日本語行無}&\textsc{いきます}&\textsc{チョット}\
 % Sans-SC:&\textsc{\textsf{日本語行無}}&\textsc{\textsf{いきます}}&\textsc{\textsf{チョット}}\\%
 % Mono-SC:&\textsc{\texttt{日本語行無}}&\textsc{\texttt{いきます}}&\textsc{\texttt{チョット}}\\%
 \end{tabular}%
+}{%
+    \section{Japanese Font}
+    Not activated per default, but Boilerplate is ready for it. You can activate \textbackslash DenKrJPFont in \enquote{./2ProjectSetup.tex} to enable them.
+}}{}%
 
 
 \np

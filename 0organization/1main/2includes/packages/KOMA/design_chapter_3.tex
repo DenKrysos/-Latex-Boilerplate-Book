@@ -1,3 +1,6 @@
+%
+% That one is a little wonky. It noodles around with the \chapterformat, which is somewhat uncool.
+%
 \KOMAoptions{%
     chapterprefix=false%
 }%
@@ -34,13 +37,13 @@
             % %\thechapter%
             % %\autodot
             % }%
-            \chapSplit{1}{\thechapter}%
+            \raggedleft\chapSplit{1}{\thechapter}%
             \autodot%
         }%
     }%
 }%
 %
-\renewcommand*\chapterlinesformat[3]{%
+\renewcommand*\DenKrKOMAHookFormatChapter[3]{%
     \parbox[b]{\dimexpr\textwidth-0.5em\relax}{%
         \raggedleft{%
             \ifstrempty{#2}{}{%

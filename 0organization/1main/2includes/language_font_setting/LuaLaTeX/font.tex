@@ -5,14 +5,58 @@
 %####################################
 % With Lua(La)Tex, now better: 'fontspec'
 %####################################
+% - Main Fonts for the Document
+%   - Package-Loading actually not really required, when setting fonts, like below
 \usepackage{lmodern}% Lädt Latin Modern Font und setzt als mainfont für fontspec. Verbessert außerdem einige Font-Restrictions
+% \usepackage{libertine}%
+% \usepackage{inconsolata}%
+% - Font for Math
+\usepackage[T1,small,euler-digits]{eulervm}%
+% \usepackage{libertinust1math}%
+% - Load Font-handling Package
 \usepackage{fontspec}%
 % - - - - Fonts - - - 
 %  --  --  The lower, the better I like them
+%--------------------------
+% Main Font / Serif Font
+%  - TTF: "Linux Libertine"
+%  - OTF: "LinuxLibertine O"
+% - - - - - - - - - - - - -
 \setmainfont{Latin Modern Roman}[%
-SmallCapsFont={Latin Modern Roman Caps},% A Patch, because LMR does not provide Small Caps Bold
-%SmallCapsFeatures={Letters=SmallCaps},%
-ItalicFeatures={SmallCapsFont=LMRomanCaps10-Oblique},%
+  SmallCapsFont={Latin Modern Roman Caps},% A Patch, because LMR does not provide Small Caps Bold
+  %SmallCapsFeatures={Letters=SmallCaps},%
+  ItalicFeatures={SmallCapsFont=LMRomanCaps10-Oblique},%
+]%
+\setmainfont{LinuxLibertine O}%
+%--------------------------
+% Sans-Serif Font
+%  - TTF: "Linux Biolinum"
+%  - OTF: "LinuxBiolinum O"
+% - - - - - - - - - - - - -
+% \setsansfont{texgyreheros}[%
+%   Scale=MatchLowercase,%
+%   UprightFont=*-regular,%
+%   BoldFont=*-bold,%
+%   ItalicFont=*-italic,%
+%   BoldItalicFont=*-bolditalic,%
+% ]%
+\setsansfont{Linux Biolinum O}%
+%--------------------------
+% Monospace Font
+%  - Consolas, texgyreheros, Latin Modern Mono
+%  - Inconsolate
+%    - InconsolataN, Inconsolatazi4 (normal vs. narrow width) (both: slashed zero, curly quotes, default l)
+%    - [StylisticSet={1,2,3}] | 1: shapely l, 2: unslashed zero, 3: straight quotes
+% - - - - - - - - - - - - -
+% \setmonofont[StylisticSet={1,3}]{Inconsolatazi4}%
+\setmonofont{Latin Modern Mono}[%
+  BoldFont={LMMonoLight10-Bold},%
+  ItalicFont={LMMono10-Italic},%
+  SlantedFont={* Slanted},%
+  SmallCapsFont={* Caps},% A Patch for lack of proper Small Caps Provision
+  BoldItalicFont={LMMonoLight10-BoldOblique},%
+  ItalicFeatures={SmallCapsFont=LMMonoCaps10-Oblique},%
+  BoldFeatures={SmallCapsFont=* Caps},%
 ]%
 %=================================
 % For Japanese Characters

@@ -333,7 +333,23 @@ Imported Standalone Snippet: -->
 % \np
 
 
-\npi%
+\section{Text with Outline / Contour}
+Two different Packages and by that Methods are supplied here:
+\begin{itemize}
+    \item contour: Prints the actual text as normal and surrounds it with the Contour.
+    \item pdfrender: Prints the outline as the actual text and fills this inside with a different Color.
+\end{itemize}
+
+\begin{itemize}[labpragA]
+    \item contour grows bigger to the outside and makes the Outline sleeked (when growing too big)
+    \item pdfrender keeps the outline sharp and well defined, but may let the inside look wonky
+\end{itemize}
+
+\begin{itemize}[labpragB]
+    \item Methods to be ideally employed depends on the use-case
+\end{itemize}
+
+\subsection{Package \enquote{pdfrender}}
 {%
     \Huge%
     \definecolor{CharFillColor}{rgb}{1,.8,.8}%
@@ -353,6 +369,19 @@ Imported Standalone Snippet: -->
         FillColor=CharFillColor,
         MiterLimit=1,
     }{Text with Outline/Contour}}%
+}%
+
+\subsection{Package \enquote{contour}}
+{%
+    \LARGE%
+    \contourlength{\DenKrOutlineWidth}% The Default-Value here
+    \contour{violet}{\textcolor{orange}{Text with Outline/Contour}}\nl%
+    {%
+        \contourlength{0.2em}%
+        \contour{violet}{\textcolor{orange}{Text with Outline/Contour}}\nl%
+        \contour{violet}{\textcolor{orange}{Text with Outline/Contour}}\nl%
+    }%
+    \contour{violet}{\textcolor{orange}{Text with Outline/Contour}}\nl%
 }%
 
 

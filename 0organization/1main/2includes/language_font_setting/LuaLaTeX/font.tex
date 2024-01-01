@@ -15,6 +15,7 @@
 % \usepackage{libertinust1math}%
 % - Load Font-handling Package
 \usepackage{fontspec}%
+\newcommand{\DenKrFontEngine}{fontspec}%
 % - - - - Fonts - - - 
 %  --  --  The lower, the better I like them
 %--------------------------
@@ -27,7 +28,10 @@
   %SmallCapsFeatures={Letters=SmallCaps},%
   ItalicFeatures={SmallCapsFont=LMRomanCaps10-Oblique},%
 ]%
-\setmainfont{LinuxLibertine O}%
+\setmainfont{LinuxLibertine O}[%
+  Scale=1.01,%
+  RawFeature={+zero},%
+]%
 %--------------------------
 % Sans-Serif Font
 %  - TTF: "Linux Biolinum"
@@ -40,7 +44,10 @@
 %   ItalicFont=*-italic,%
 %   BoldItalicFont=*-bolditalic,%
 % ]%
-\setsansfont{Linux Biolinum O}%
+\setsansfont{Linux Biolinum O}[%
+  Scale=1.01,%
+  RawFeature={+zero},%
+]%
 %--------------------------
 % Monospace Font
 %  - Consolas, texgyreheros, Latin Modern Mono

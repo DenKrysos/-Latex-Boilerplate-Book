@@ -58,15 +58,15 @@
 \chapter{\DenKrGlossHeadChapGlossary}\label{chap:Glossary}%
 \headingOpenTempRestore%
 %Displays 'only' Acronyms
-\secnt{\DenKrGlossHeadSecAcronyms}\label{sec:Acronyms}%
+\section*[]{\DenKrGlossHeadSecAcronyms}\label{sec:Acronyms}%
 \printglossary[type=\acronymtype,style=list+crossRef]%
 \clearpage%
 %Display "Glossary-Entries"
-\secnt{\DenKrGlossHeadSecGlossaries}\label{sec:Glossaries}%
+\section*[]{\DenKrGlossHeadSecGlossaries}\label{sec:Glossaries}%
 \printglossary[style=list+crossRef+alt+otherLang+subtitle+url]%Stellt Glossar dar
 \clearpage%
 %Displays Symbols
-\secnt{\DenKrGlossHeadSecSymbols}\label{sec:Symbols}%
+\section*[]{\DenKrGlossHeadSecSymbols}\label{sec:Symbols}%
 \printglossary[type=symbol,nonumberlist]%
 \cleardoublepage%
 %
@@ -125,10 +125,15 @@
 \headingOpenTempAny%
 \pagestyle{plain}%
 \printbibliography[%
-    env=bibliographyDenKrEnv,%
+	env=bibliographyDenKrEnv,%
 	heading=literature,%
 	keyword=primary_literature,%
 ]%
+% \printbibliography[%
+% 	env=bibliographyDenKrEnv,%
+% 	heading=literature_techspec,%
+% 	keyword=techspec_literature,%
+% ]%
 % \printbibliography[%
 % 	heading=literature_secondary,%
 % 	keyword=secondary_literature,%

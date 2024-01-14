@@ -1,32 +1,41 @@
+% Remark that the List-of are put after \backmatter, which makes only unnumbered Chapters as default. Using still a stared-Cmd would mess up \nameref. Hence, only normal Chapter Cmds
 %
 \makeatletter%
 \newcommand{\tableofcontentsDenKr}{%
 	\chapter*{\contentsname}%
-	\label{chapnt:ToC}%
-% 	\markboth{\nameref{#2}}{\nameref{#3}}%
-	\markboth{\contentsname}{\contentsname}%
+	\label{chap:ToC}%
+	%\markboth{\nameref{#2}}{\nameref{#3}}%
+	%\markboth{\contentsname}{\contentsname}%
     \tableofcontents%
 }%
 \newcommand{\listoffiguresDenKr}{%
-    \chapnt{\listfigurename}[chapnt:LoF]%
+    %\chapnt{\listfigurename}[chapnt:LoF]%
+	\chapter{\listfigurename}%
+	\label{chap:LoF}%
     \listoffigures%
 }%
 \makeatother%
 \makeatletter%
 \newcommand{\listoftablesDenKr}{%
-    \chapnt{\listtablename}[chapnt:LoT]%
+    %\chapnt{\listtablename}[chapnt:LoT]%
+	\chapter{\listtablename}%
+	\label{chap:LoT}%
     \listoftables%
 }%
 \makeatother%
 \makeatletter%
 \newcommand{\listoflistingsDenKr}{%
-    \chapnt{\lstlistlistingname}[chapnt:LoL]%
+    %\chapnt{\lstlistlistingname}[chapnt:LoL]%
+	\chapter{\lstlistlistingname}%
+	\label{chap:LoL}%
     \lstlistoflistings%
 }%
 \makeatother%
 \makeatletter%
 \newcommand{\listofalgorithmsDenKr}{%
-    \chapnt{\listalgorithmname}[chapnt:LoA]%
+    %\chapnt{\listalgorithmname}[chapnt:LoA]%
+	\chapter{\listalgorithmname}%
+	\label{chap:LoA}%
     \listofalgorithms%
 }%
 \makeatother%

@@ -6,7 +6,6 @@
 %________________________________________________________________________
 %           Actually independent of KOMA, but also enhances features from there. E.g. is the Chapter-Label-Tracking required for the Hyperlinks in the Headmark
 %========================================================================
-\makeatletter%
 \def\DenKrCurChap{chapnt:ToC}%
 \def\DenKrCurSec{chapnt:ToC}%
 \let\chapterDefault=\chapter%
@@ -16,11 +15,12 @@
 \newcounter{runningSectionTrack}%
 \setcounter{runningSectionTrack}{0}%
 %
+\makeatletter%
 \RenewDocumentCommand{\chapter}{%
     s% Whether or not "Star-Cmd", i.e. \chapter vs \chapter*
     o% The optional Argument for the not stared Version. This serves various purposes, depending on whether * or not:
         % Non-Star Version:
-        %   As usual: Alterantive Title for ToC, Headmark, Bookmark
+        %   As usual: Alternative Title for ToC, Headmark, Bookmark
         % Star-Version (*):
         %   # Not provided at all, i.e. NO [] at all, e.g. \chapter*{Title}
         %       - behaves like the usual \chapter/section cmd: Chapter is not put to ToC, Headmark, Bookmark
@@ -42,7 +42,8 @@
                 \def\@AltTitle{#2}%
             \fi%
             \chapterDefault*{#3}%
-            \addcontentsline{toc}{chapter}{\protect\numberline{}\@AltTitle}% Add regular title to ToC
+            % \addcontentsline{toc}{chapter}{\protect\numberline{}\@AltTitle}% Add Title to ToC
+            \addcontentsline{toc}{chapter}{\@AltTitle}% Add Title to ToC
             \addtocontents{lof}{\protect\addvspace{10\p@}}% Space between chapters in LoF
             \addtocontents{lot}{\protect\addvspace{10\p@}}% Space between chapters in LoT
             \addtocontents{loa}{\protect\addvspace{10\p@}}% Space between chapters in LoA
@@ -80,7 +81,8 @@
                 \def\@AltTitle{#2}%
             \fi%
             \sectionDefault*{#3}%
-            \addcontentsline{toc}{section}{\protect\numberline{}\@AltTitle}% Add regular title to ToC
+            % \addcontentsline{toc}{section}{\protect\numberline{}\@AltTitle}% Add regular title to ToC
+            \addcontentsline{toc}{section}{\@AltTitle}% Add regular title to ToC
             \markright{\@AltTitle}% Set marks based on optional argument
             \addtocounter{section}{1}%
         }{%

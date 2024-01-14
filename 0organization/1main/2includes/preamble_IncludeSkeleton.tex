@@ -101,6 +101,23 @@
 %
 %
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%				ToC, ToF, ToT - Table of Contents, Figures, Tables
+%				Settings for \listof Cmds
+%________________________________________________________________________
+%\input{"\DenKrLayoutMainRootDir/2includes/packages/ToC_tocloft".tex}%
+%  With KOMA rather use the other below "ToC_tableOf_ContFigTabAlg".
+%  REMARK: The "typografie_redefine" below needs to be put after all KOMA Settings are done, especially after all
+%     "RedeclareSectionCommand"
+%    because this Sets the respective Sectioning-Cmds.
+%________________________________________________________________________
+%				END Additional
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%
+%
+%
+%
+%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %				Typografie, KOMA, Geometry, Typesetting, Schrift-Satz
 %________________________________________________________________________
 %  Some Settings
@@ -109,6 +126,7 @@
 \input{"\DenKrLayoutMainRootDir/2includes/packages/typesetting".tex}%
 \ifdef{\DenKrTikzStandaloneNotInclude}{}{%
 \input{"\DenKrLayoutMainRootDir/2includes/packages/typografie_koma".tex}%
+\input{"\DenKrLayoutMainRootDir/2includes/packages/ToC_tableOf_ContFigTabAlg".tex}%
 \input{"\DenKrLayoutMainRootDir/2includes/packages/typografie_geometry".tex}%
 \input{"\DenKrLayoutMainRootDir/2includes/packages/typografie_redefine".tex}%
 }%
@@ -167,22 +185,6 @@
 %________________________________________________________________________
 %               END tikz
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%
-%
-%
-%
-%
-\ifdef{\DenKrTikzStandaloneNotInclude}{}{%
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-%				ToC, ToF, ToT - Table of Contents, Figures, Tables
-%				Settings for \listof Cmds
-%________________________________________________________________________
-% \input{"\DenKrLayoutMainRootDir/2includes/packages/ToC_tocloft".tex}% With KOMA rather use the other below
-\input{"\DenKrLayoutMainRootDir/2includes/packages/ToC_tableOf_ContFigTabAlg".tex}%
-%________________________________________________________________________
-%				END Additional
-%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-}%
 %
 %
 %

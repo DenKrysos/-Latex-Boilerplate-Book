@@ -73,6 +73,18 @@
 %
 %
 %
+%----------------------------------
+% Create Sections on a new page, except for the first one
+%    (Outcomment / restore the "\AddToHook" to disable/enable this)
+%----------------------------------
+% \newcommand{\DenKrSectionbreak}{\ifnum\value{section}>0 \clearpage\fi}%
+% \AddToHook{cmd/section/before}{\DenKrSectionbreak}%
+%
+%
+%
+%
+%
+%
 %---------------------------------------------------------
 %					KOMA
 %---------------------------------------------------------
@@ -121,7 +133,7 @@
 % - - - - - - -
 % Assign the Pagenumber a Link to the Table-of-Contents
 \let\pagemarkDefault\pagemark%
-\renewcommand{\pagemark}{{\usekomafont{pagenumber}\hyperref[chapnt:ToC]{\thepage}}}%
+\renewcommand{\pagemark}{{\usekomafont{pagenumber}\hyperref[chap:ToC]{$\mathrm{\thepage}$}}}%
 % - - - - - - -
 \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_1".tex}%
 % \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_2".tex}%

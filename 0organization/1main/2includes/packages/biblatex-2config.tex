@@ -14,12 +14,14 @@
 % \addbibresource{\DenKrLiteratureDir/literature_querries.bib}%
 %
 % % % %
-% defbibheading is performed inside "settings.tex" in order to occur after "makros.tex"
+% Note: This "\chapter*[]{Chapname}" only works with including my "typografie_redefine.tex", as this redefines \chapter with an own implementation. Otherwise, you may want to use my "\chapnt{}[]" from "typografie_cmd.tex".
+% But anyway: Remark that the Bibliography is put after \backmatter, which makes only unnumbered Chapters as default. Using still a stared-Cmd would mess up \nameref
 %\defbibheading{literature}{\chapnt{Literature}{chap:literature}\addtocounter{chapter}{-1}}%
-\defbibheading{literature}{\chapnt{Literature}[chap:literature]\addtocounter{chapter}{-1}}%
-\defbibheading{literature_secondary}{\chapnt{Zusätzliche Literatur}[chap:literatur_secondary]\addtocounter{chapter}{-1}}%
-\defbibheading{literature_figures}{\chapnt{Abbildungs-Quellen}[chap:abb-quellen]\addtocounter{chapter}{-1}}%
-\defbibheading{literature_tables}{\chapnt{Tabellen-Quellen}[chap:tab-quellen]\addtocounter{chapter}{-1}}%
+\defbibheading{literature}{\chapter{Literature}\label{chap:literature}\addtocounter{chapter}{-1}}%
+\defbibheading{literature_techspec}{\chapter{Technical Specifications}\label{chap:literature_techspec}\addtocounter{chapter}{-1}}%
+\defbibheading{literature_secondary}{\chapter{Secondary Literature}\label{chap:literature_secondary}\addtocounter{chapter}{-1}}%
+\defbibheading{literature_figures}{\chapter{Figure Sources}\label{chap:fig_src}\addtocounter{chapter}{-1}}%
+\defbibheading{literature_tables}{\chapter{Table Sources}\label{chap:tab_src}\addtocounter{chapter}{-1}}%
 %========================================================================================================
 %      Alternative Methods
 %--------------------------------------------------------------------------------------------------------

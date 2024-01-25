@@ -52,7 +52,12 @@
 \chapter{Kurzfassung}%
 \headingOpenTempRestore%
 \input{"\DenKrSegmentationSubDir/0101_abstract_Ger".tex}%
+%
+\providecommand{\DenKrLayout}{}%
+\expandafter\ifstrequal\expandafter{\DenKrLayout}{scrbook_print}{}{%
 \headingOpenTempAny%
 \chapter{Prologue}%
 \headingOpenTempRestore%
 \input{"\DenKrSegmentationSubDir/0102_prologue".tex}%
+}%
+%

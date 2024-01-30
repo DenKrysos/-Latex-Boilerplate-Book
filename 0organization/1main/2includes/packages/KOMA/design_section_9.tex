@@ -18,22 +18,22 @@
 \renewcommand*{\DenKrKOMAHookFormatSection}[4]{%
     \def\bandIndentOut{0.7cm}%
     \def\bandIndentIn{0.2cm}%
-    \Ifthispageodd{%Right
-        \def\secTitleIndent{\bandIndentIn}%
-    }{%Left
-        \def\secTitleIndent{0pt}%
-    }%
     \begin{tikzpicture}[remember picture]%
-    \begin{pgfonlayer}{foreground}%
-        \coordinate(section_anchor)at(0,0);%
-        \node[draw=none,line width=0pt,shape=rectangle,anchor=north west,inner sep=0pt,minimum height=\sectionMinHeight](section_title)at($(section_anchor)+(\secTitleIndent,0)$){%
-            \parbox[b]{\dimexpr\textwidth-\bandIndentIn\relax}{%
-                #3
-                \scalebox{0.8}{\textcolor{DenKrKomaColor_ChapterHeading}{\DenKrKomaHeadingBarockCrossAChar}}
-                #4%
-            }%
-        };%
-    \end{pgfonlayer}%
+        \Ifthispageodd{%Right
+            \def\secTitleIndent{\bandIndentIn}%
+        }{%Left
+            \def\secTitleIndent{0pt}%
+        }%
+        \begin{pgfonlayer}{foreground}%
+            \coordinate(section_anchor)at(0,0);%
+            \node[draw=none,line width=0pt,shape=rectangle,anchor=north west,inner sep=0pt,minimum height=\sectionMinHeight](section_title)at($(section_anchor)+(\secTitleIndent,0)$){%
+                \parbox[b]{\dimexpr\textwidth-\bandIndentIn\relax}{%
+                    #3
+                    \scalebox{0.8}{\textcolor{DenKrKomaColor_ChapterHeading}{\DenKrKomaHeadingBarockCrossAChar}}
+                    #4%
+                }%
+            };%
+        \end{pgfonlayer}%
         % Set some values/sizes
         \path let\n1={0.8ex},\n2={5em}in%
             coordinate(bgSepOut)at(\bandIndentOut,\n1)%

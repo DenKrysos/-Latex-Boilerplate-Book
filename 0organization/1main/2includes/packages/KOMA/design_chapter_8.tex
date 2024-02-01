@@ -29,19 +29,19 @@
 %
 \makeatletter%
 \renewcommand*\DenKrKOMAHookFormatChapter[3]{%
-    \StrLen{\thechapter}[\tmpval]%
-    \ifnumcomp{\tmpval}{=}{1}{%
-        \setkomafont{chapternumber}{\usekomafont{chapternumberN}}%
-    }{\ifnumcomp{\tmpval}{=}{2}{%
-        \setkomafont{chapternumber}{\usekomafont{chapternumberS}}%
-    }{%
-        \setkomafont{chapternumber}{\usekomafont{chapternumberSS}}%
-    }}%
     \contourlength{0.1ex}%
-    \StrSplit{\thechapter}{1}\tempa\tempb%
-    \settoheight{\tmpheight}{\usekomafont{chapternumber}\tempa}%
-    \settowidth{\tmpwidth}{\usekomafont{chapternumber}M}%
     \ifstrempty{#2}{}{%
+        \StrLen{\thechapter}[\tmpval]%
+        \ifnumcomp{\tmpval}{=}{1}{%
+            \setkomafont{chapternumber}{\usekomafont{chapternumberN}}%
+        }{\ifnumcomp{\tmpval}{=}{2}{%
+            \setkomafont{chapternumber}{\usekomafont{chapternumberS}}%
+        }{%
+            \setkomafont{chapternumber}{\usekomafont{chapternumberSS}}%
+        }}%
+        \StrSplit{\thechapter}{1}\tempa\tempb%
+        \settoheight{\tmpheight}{\usekomafont{chapternumber}\tempa}%
+        \settowidth{\tmpwidth}{\usekomafont{chapternumber}M}%
         \sbox{\tmpbox}{%
             \usekomafont{chapternumber}\parbox{\tmpwidth}{\usekomafont{chapternumber}\centering\chapSplit{1}{\thechapter}}%
         }%

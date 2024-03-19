@@ -1,0 +1,177 @@
+%
+% This one 'only' adds a Background and then simply includes "HeadFoot_2"
+%
+%########################################################################
+%========================================================================
+%       Background
+%________________________________________________________________________
+%------------------------------------------------------------------------
+%
+%
+%
+%
+%========================================================================
+%       Setting up some Macros for late use
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\newcommand{\ShadeTriangleB}[4]{% 1: BL  2: BR  3: Top  4: Steps
+    \tikzmath{%
+        \opacstep=1/(#4+1);%
+        \scalestep=1/#4;%
+        \scalecur=1;
+    }%
+    \foreach\i in {1,...,#4}{%
+        \tikzmath{%
+            \smoothen=1/(sqrt(\i));%
+            \opacCur=\i*\opacstep*\smoothen;%
+            \scalecur=(\i-1)*\scalestep;
+        }%
+        \path[fill=FooterBG,line width=0pt,opacity=\opacCur]let\p1=($(#1)!\scalecur!(#2)$),\p2=($(#3)!\scalecur!(#2)$)in
+            (\p1)--(#2)--(\p2)--cycle;%
+    }%
+    \let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
+}%
+\newcommand{\ShadeTriangleBR}[3]{%
+    \ShadeTriangleB{#1}{#2}{#3}{20}%
+}%
+\newcommand{\ShadeTriangleBL}[3]{%
+    \ShadeTriangleB{#2}{#1}{#3}{20}%
+}%
+%
+\newcommand{\ShadeTriangleBInverse}[4]{% 1: L  2: R  3: Top  4: Steps
+    \tikzmath{%
+        \opacstep=1/(#4+1);%
+        \scalestep=1/#4;%
+        \scalecur=1;%
+    }%
+    \foreach\i in {1,...,#4}{%
+        \tikzmath{%
+            \smoothen=1/(sqrt(\i));%
+            \opacCur=\i*\opacstep*\smoothen;%
+            \scalecur=(\i-1)*\scalestep;%
+        }%
+        \path[fill=FooterBG,line width=0pt,opacity=\opacCur]%
+            let\p1=($(#3)!\scalecur!(#2)$),\p2=($(#3)!\scalecur!(#1)$)in%
+            (\p1)--(#2)--(#1)--(\p2)--cycle;%
+    }%
+    \let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
+}%
+\newcommand{\ShadeTriangleBInverseTopL}[3]{% 1: LB  2: RT  3: (L)Top
+    \ShadeTriangleBInverse{#1}{#2}{#3}{20}%
+}%
+\newcommand{\ShadeTriangleBInverseTopR}[3]{% 1: LT  2: RB  3: (T)Top
+    \ShadeTriangleBInverse{#2}{#1}{#3}{20}%
+}%
+%
+%
+%
+% Not used currently, also not quite yet finished
+\newcommand{\ShadeRectangleBR}[3]{% 1: TL  2: BR  3: Steps
+    \tikzmath{%
+        \opacstep=1/(#3+1);%
+        \scalestep=1/#3;%
+        \scalecur=1;%
+    }%
+    \foreach\i in {1,...,#3}{%
+        \tikzmath{%
+            \smoothen=1/(sqrt(\i));%
+            \opacCur=\i*\opacstep*\smoothen;%
+            \scalecur=(\i-1)*\scalestep;%
+        }%
+        \path[fill=orange,line width=0pt,opacity=\opacCur]%
+            let\p1=(#1-|#2),\p2=(#1|-#2),%
+            \p3=($(\p1)!\scalecur!(#1)$),\p4=($(\p2)!\scalecur!(#1)$)in%
+            (\p3)--(\p1)|-(\p2)--(\p4)--cycle;%
+    }%
+    \let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
+}%
+%
+%
+%
+%
+\colorlet{HeaderFooterBase}{DenKrKomaColor_ChapterHeading!70!DenKrKomaColor_ChapterHeading_2}%
+\colorlet{HeaderBG}{DenKrKomaColor_ChapterHeading!10!white}%
+\colorlet{HeaderBG2}{HeaderFooterBase!20!white}%
+\colorlet{FooterBG}{DenKrKomaColor_ChapterHeading!15!white}%
+%
+%
+%========================================================================
+%       Header
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\DeclareNewLayer[%
+  background,%
+  mode=picture,%
+  oddorevenpage,%
+  head,%
+  contents={%
+    \put(0,-\LenToUnit{\layerheight}){\tikzmark{headLBAnchor}}%
+    \begin{tikzpicture}[overlay,remember picture]%
+    \coordinate(headBgTL)at(current page.north west);%
+    \coordinate(headBgTR)at(current page.north east);%
+    \path let\p1=(pic cs:headLBAnchor),\p2=($(\p1)+(0,5pt)$)in coordinate(headBgBL)at(headBgTL|-\p2);% Increase by a share of \headsep ?
+    \coordinate(headBgBR)at(headBgBL-|headBgTR);%
+    \path[draw=none,line width=0pt,top color=HeaderBG,bottom color=white,middle color=HeaderBG2](headBgTL)rectangle(headBgBR);%
+    \end{tikzpicture}%
+  }%
+]{headBG.both}%
+\AddLayersToPageStyle{scrheadings}{headBG.both,headBG.both}%
+%
+%
+%========================================================================
+%       Footer
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\DeclareNewLayer[%
+  background,%
+  mode=picture,%
+  oddpage,%
+  foot,%
+  contents={%
+    \put(\LenToUnit{\layerwidth},\LenToUnit{\layerheight}){\tikzmark{footRBAnchor}}%
+    \begin{tikzpicture}[overlay,remember picture]%
+    \coordinate(footBGAnchR)at(pic cs:footRBAnchor);%
+    \coordinate(footBgR_BR)at(current page.south east);%
+    \coordinate(footBgR_BL)at($(footBGAnchR|-footBgR_BR)+(-0.3*\textwidth,0)$);%
+    \coordinate(footBgR_RT)at($(footBGAnchR-|footBgR_BR)+(0,{0.2*(\paperwidth-\textwidth)})$);%
+    \coordinate(footCornerR_TL)at(footBGAnchR);%
+    \coordinate(footCornerR_TR)at(footBGAnchR-|footBgR_BR);%
+    \coordinate(footCornerR_BL)at(footBGAnchR|-footBgR_BR);%
+    \ShadeTriangleBR{footBgR_BL}{footCornerR_BL}{footCornerR_TL}%
+    \ShadeTriangleBR{footCornerR_TL}{footCornerR_TR}{footBgR_RT}%
+    \ShadeTriangleBInverseTopL{footCornerR_BL}{footCornerR_TR}{footCornerR_TL}%
+    \path[draw=none,line width=0pt,fill=FooterBG](footCornerR_BL)--(footCornerR_TR)|-cycle;%
+    \end{tikzpicture}%
+  }%
+]{footBG.odd}%
+\DeclareNewLayer[%
+  background,%
+  mode=picture,%
+  evenpage,%
+  foot,%
+  contents={%
+    \put(0,\LenToUnit{\layerheight}){\tikzmark{footLBAnchor}}%
+    \begin{tikzpicture}[overlay,remember picture]%
+    \coordinate(footBGAnchL)at(pic cs:footLBAnchor);%
+    \coordinate(footBgL_BL)at(current page.south west);%
+    \coordinate(footBgL_BR)at($(footBGAnchL|-footBgL_BL)+(0.3*\textwidth,0)$);%
+    \coordinate(footBgL_LT)at($(footBGAnchL-|footBgL_BL)+(0,{0.2*(\paperwidth-\textwidth)})$);%
+    \coordinate(footCornerL_TL)at(footBGAnchL);%
+    \coordinate(footCornerL_TR)at(footBGAnchL-|footBgL_BL);%
+    \coordinate(footCornerL_BL)at(footBGAnchL|-footBgL_BL);%
+    \ShadeTriangleBL{footCornerL_BL}{footBgL_BR}{footCornerL_TL}%
+    \ShadeTriangleBL{footCornerL_TR}{footCornerL_TL}{footBgL_LT}%
+    \ShadeTriangleBInverseTopR{footCornerL_BL}{footCornerL_TR}{footCornerL_TL}%
+    \path[draw=none,line width=0pt,fill=FooterBG](footCornerL_BL)--(footCornerL_TR)|-cycle;%
+    \end{tikzpicture}%
+  }%
+]{footBG.even}%
+\AddLayersToPageStyle{scrheadings}{footBG.odd,footBG.even}%
+\AddLayersToPageStyle{plain.scrheadings}{footBG.odd,footBG.even}%
+%
+%
+%
+%
+%########################################################################
+%========================================================================
+%       Page-Number & Headmark taken from one Index lower
+%________________________________________________________________________
+%------------------------------------------------------------------------
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_2".tex}%

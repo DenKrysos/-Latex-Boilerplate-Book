@@ -41,7 +41,8 @@
 \AddLayersToPageStyle{plain.scrheadings}{pagenumber.odd,pagenumber.even}%
 %
 %
-%%________________________________________________________________________
+%
+%________________________________________________________________________
 %       Headmark
 %========================================================================
 \newkomafont{marknumber}{\color{DenKrKomaColor_ChapterHeading!60!DenKrKomaColor_HeadLine}\sffamily}%
@@ -55,27 +56,30 @@
 % Also apply a Hyper-Link to the corresponding Chapter/Section to the Headmark
 \DeclareNewLayer[%
     head,%
-    %align=t,%
+    align=t,%
+    voffset=21pt,% \headheight \headsep
     background,%
     oddpage,%
-    mode=text,%
+    mode=picture,%
     contents={%
-        \hfill%
-        {\usekomafont{pageheadfoot}\color{DenKrKomaColor_HeadLine}%
-            \hyperref[\DenKrCurSec]{\headmark}%
-        }%
+      \parbox{\layerwidth}{\hfill%
+        \usekomafont{pageheadfoot}\color{DenKrKomaColor_HeadLine}%
+        \hyperref[\DenKrCurSec]{\headmark}%
+      }%
     }%
 ]{headmark.odd}%
 \DeclareNewLayer[%
     head,%
-    %align=t,%
+    align=t,%
+    voffset=21pt,%
     background,%
     evenpage,%
-    mode=text,%
+    mode=picture,%
     contents={%
-        {\usekomafont{pageheadfoot}\color{DenKrKomaColor_HeadLine}%
-            \hyperref[\DenKrCurChap]{\headmark}%
-        }%
+      \parbox{\layerwidth}{%
+        \usekomafont{pageheadfoot}\color{DenKrKomaColor_HeadLine}%
+        \hyperref[\DenKrCurChap]{\headmark}%
+      }%
     }%
 ]{headmark.even}%
 \AddLayersToPageStyle{scrheadings}{headmark.odd,headmark.even}%

@@ -134,9 +134,6 @@
 % Assign the Pagenumber a Link to the Table-of-Contents
 \let\pagemarkDefault\pagemark%
 \renewcommand{\pagemark}{{\usekomafont{pagenumber}\hyperref[chap:ToC]{$\mathrm{\thepage}$}}}%
-% - - - - - - -
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_1".tex}%
-% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_2".tex}%
 %------------------------------------------------------------------------
 % Now it is getting interesting. We are going into detail, define pagestyles and layers and make them dynamically adjustable throughout the Document
 \newkomafont{dynamicFoot}{\usekomafont{pageheadfoot}\normalfont\color{DenKrKomaColor_HeadLine}}%
@@ -215,6 +212,12 @@
 }%
 % USAGE: In some cases, you might want to use '\DKDynamicFootRem' or '\DKDynamicFootAdd{}' together with 'afterpage':
 %  \afterpage{\DKDynamicFootRem}
+%
+% = = = = = = = = = = = = = = =
+% = Select Custom Header/Footer Designs
+\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_1".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_2".tex}%
+% \input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_3".tex}%
 %________________________________________________________________________
 %           Pagestyle DONE
 %------------------------------------------------------------------------

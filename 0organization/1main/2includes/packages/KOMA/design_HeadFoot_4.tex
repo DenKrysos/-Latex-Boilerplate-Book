@@ -1,5 +1,5 @@
 %
-% This one 'only' adds a Background and then simply includes "HeadFoot_2"
+% This is 'only' slightly different from "HeadFoot_3" -> Makes the outer diagonal Line on the Footer curved and with a higher Top Edge
 %
 %########################################################################
 %========================================================================
@@ -108,10 +108,20 @@
             \scalecur=\i*\scalestep;
         }%
         \path[fill=FooterBG,line width=0pt,opacity=\opacCur]%
-            let\p1=($(footShadeCorner_BottomMov)!\scalecur!(footShadeCorner_BottomFix)$),\p2=($(footShadeCorner_Mid1Mov)!\scalecur!(footShadeCorner_Mid1Fix)$),\p3=($(footShadeCorner_Mid2Mov)!\scalecur!(footShadeCorner_Mid2Fix)$),\p4=($(footShadeCorner_TopMov)!\scalecur!(footShadeCorner_TopFix)$)in
-            (footCornerAnch)--(\p1)--(\p2)--(\p3)--(\p4)--cycle;
+            let\p1=($(footShadeCorner_BottomMov)!\scalecur!(footShadeCorner_BottomFix)$),\p2=($(footShadeCorner_Mid1Mov)!\scalecur!(footShadeCorner_Mid1Fix)$),\p3=($(footShadeCorner_TopMov)!\scalecur!(footShadeCorner_TopFix)$)in
+            (footCornerAnch)--(\p1)--(\p2)to[out=\AngleAOffsetOut 10,in=\AngleAOffsetIn 15](\p3)--cycle;
     }%
     \let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
+}%
+\newcommand{\ShadeCornerTopRight}{%
+\def\AngleAOffsetOut{}%
+\def\AngleAOffsetIn{270-}%
+\ShadeCorner%
+}%
+\newcommand{\ShadeCornerTopLeft}{%
+\def\AngleAOffsetOut{180-}%
+\def\AngleAOffsetIn{270+}%
+\ShadeCorner%
 }%
 %
 %
@@ -174,7 +184,7 @@
     \coordinate(footBGAnchR)at($(pic cs:footRBAnchor)+(0,5pt)$);%
     \coordinate(footBgR_BR)at(current page.south east);%
     \coordinate(footBgR_BL)at($(footBGAnchR|-footBgR_BR)+(-0.4*\textwidth,0)$);%
-    \coordinate(footBgR_RT)at($(footBGAnchR-|footBgR_BR)+(0,{0.2*(\paperwidth-\textwidth)})$);%
+    \coordinate(footBgR_RT)at($(footBGAnchR-|footBgR_BR)+(0,{0.4*(\paperwidth-\textwidth)})$);%
     \coordinate(footCornerR_TL)at(footBGAnchR);%
     \coordinate(footCornerR_TR)at(footBGAnchR-|footBgR_BR);%
     \coordinate(footCornerR_BL)at(footBGAnchR|-footBgR_BR);%
@@ -184,11 +194,9 @@
     \coordinate(footShadeCorner_BottomMov)at(footBgR_BL);%
     \coordinate(footShadeCorner_Mid1Fix)at(footShadeCorner_BottomFix);%
     \coordinate(footShadeCorner_Mid1Mov)at(footCornerR_TL);%
-    \coordinate(footShadeCorner_Mid2Fix)at(footCornerR_TR);%
-    \coordinate(footShadeCorner_Mid2Mov)at(footShadeCorner_Mid1Mov);%
-    \coordinate(footShadeCorner_TopFix)at(footShadeCorner_Mid2Fix);%
+    \coordinate(footShadeCorner_TopFix)at(footCornerR_TR);%
     \coordinate(footShadeCorner_TopMov)at(footBgR_RT);%
-    \ShadeCorner%
+    \ShadeCornerTopRight%
     %\ShadeTriangleBR{footBgR_BL}{footCornerR_BL}{footCornerR_TL}%
     %\ShadeTriangleBR{footCornerR_TL}{footCornerR_TR}{footBgR_RT}%
     %\ShadeTriangleBInverseTopL{footCornerR_BL}{footCornerR_TR}{footCornerR_TL}%
@@ -207,7 +215,7 @@
     \coordinate(footBGAnchL)at($(pic cs:footLBAnchor)+(0,5pt)$);%
     \coordinate(footBgL_BL)at(current page.south west);%
     \coordinate(footBgL_BR)at($(footBGAnchL|-footBgL_BL)+(0.4*\textwidth,0)$);%
-    \coordinate(footBgL_LT)at($(footBGAnchL-|footBgL_BL)+(0,{0.2*(\paperwidth-\textwidth)})$);%
+    \coordinate(footBgL_LT)at($(footBGAnchL-|footBgL_BL)+(0,{0.4*(\paperwidth-\textwidth)})$);%
     \coordinate(footCornerL_TR)at(footBGAnchL);%
     \coordinate(footCornerL_TL)at(footBGAnchL-|footBgL_BL);%
     \coordinate(footCornerL_BR)at(footBGAnchL|-footBgL_BL);%
@@ -217,11 +225,9 @@
     \coordinate(footShadeCorner_BottomMov)at(footBgL_BR);%
     \coordinate(footShadeCorner_Mid1Fix)at(footShadeCorner_BottomFix);%
     \coordinate(footShadeCorner_Mid1Mov)at(footCornerL_TR);%
-    \coordinate(footShadeCorner_Mid2Fix)at(footCornerL_TL);%
-    \coordinate(footShadeCorner_Mid2Mov)at(footShadeCorner_Mid1Mov);%
-    \coordinate(footShadeCorner_TopFix)at(footShadeCorner_Mid2Fix);%
+    \coordinate(footShadeCorner_TopFix)at(footCornerL_TL);%
     \coordinate(footShadeCorner_TopMov)at(footBgL_LT);%
-    \ShadeCorner%
+    \ShadeCornerTopLeft%
     \end{tikzpicture}%
   }%
 ]{footBG.even}%

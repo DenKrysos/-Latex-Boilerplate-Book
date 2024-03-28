@@ -56,3 +56,18 @@
 \end{minipage}%
 \par%
 }%
+%
+%
+%
+\DeclareDocumentCommand{\DenKrTPMiscInfo}{%
+    o% #1: (Optional) Vspace before
+    m% #2: Some arbitrary Text
+}{%
+    \ifx\empty#2\empty%
+    \else%
+        \ifdefempty{#2}{}{%
+            \IfValueTF{#1}{\vspace{#1}}{}%
+            #2\par%
+        }%
+    \fi%
+}%

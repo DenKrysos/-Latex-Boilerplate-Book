@@ -1,0 +1,222 @@
+\KOMAoptions{%
+    chapterprefix=false%
+}%
+\setkomafont{chapter}{\sffamily\bfseries\huge\color{DenKrKomaColor_ChapterHeading}}%
+\RedeclareSectionCommand[%
+    beforeskip=0ex,%
+    %innerskip=0pt,%
+    %afterskip=1.725\baselineskip plus .115\baselineskip minus .192\baselineskip%
+]{chapter}%
+\renewcommand\raggedchapter{\raggedleft}%
+\providecommand\raggedchapterPrint{\raggedchapter}%
+\setkomafont{chapter}{\Huge}%
+\setkomafont{chapterprefix}{\large}%
+\setkomafont{chapternumberN}{\mdseries\fontsize{60pt}{50pt}\selectfont}%
+\setkomafont{chapternumberS}{\mdseries\fontsize{50pt}{44pt}\selectfont}%
+\setkomafont{chapternumberSS}{\mdseries\fontsize{40pt}{34pt}\selectfont}%
+\setkomafont{chapternumber}{\usekomafont{chapternumber}}%
+\colorlet{DenKrKomaColor_ChapterHeading_Outline}{DenKrKomaColor_ChapterHeading_2!80!white}%
+%
+\colorlet{DenKrKomaColor_ChapterHeading_DecalBase}{DenKrKomaColor_ChapterHeading!80!DenKrKomaColor_ChapterHeading_2}%
+\colorlet{DenKrKomaColor_ChapterHeading_Decal1}{DenKrKomaColor_ChapterHeading!15!white}%
+\colorlet{DenKrKomaColor_ChapterHeading_Decal2}{DenKrKomaColor_ChapterHeading_DecalBase!18!white}%
+%
+\renewcommand*\chapterformat\chapterformatOriginal%
+%
+\def\chapSplit#1#2{%
+    \StrSplit{#2}{#1}\tempa\tempb%
+    \contour{DenKrKomaColor_ChapterHeading_Outline}{\color{DenKrKomaColor_ChapterHeading}\tempa}%
+    \let\tempa\empty%
+    \unless\ifx\tempb\empty\def\tempa{\\\chapSplit{#1}{\tempb}}\fi%
+    \tempa%
+}%
+%
+%
+% Some Macro used below
+\DeclareDocumentCommand{\ChapShadeCorner}{%
+    % Define the Coordinates to use before accordingly
+    %  ShadeOrigin: The Right-Angle of the corner
+    %  ShadeFrom[x]: A Moving-Point, that converges per iteration
+    %  ShadeTo[x]: A Fixed-Point, towards the Shade is moving
+    %   -> 1: The inner one, at the Title
+    %      2: The outer one, at the vertical line
+    %  ShadeCtrl1: Control-Point for the Bezier to create the curve
+    %  ShadeCtrl2: 2nd Control-Point
+    %   -> Same thing for those: There is a ...From and ...To Point
+    O{20}% 1: Number of Shading Steps
+}{%
+    \tikzmath{%
+        \opacstep=1/(#1+1);%
+        \scalestep=1/#1;%
+        \scalecur=1;
+    }%
+    \foreach\i in {0,...,#1}{%
+        \tikzmath{%
+            \smoothen=1/(sqrt(\i+1));%
+            \opacCur=(\i+1)*\opacstep*\smoothen;%
+            \scalecur=\i*\scalestep;%
+        }%
+        \path[line width=0pt,line join=miter,fill=DenKrKomaColor_ChapterHeading_Decal1,opacity=\opacCur]%
+            let\p1=($(ShadeFrom1)!\scalecur!(ShadeTo1)$),\p2=($(ShadeFrom2)!\scalecur!(ShadeTo2)$),%
+            \p3=($(ShadeCtrl1From)!\scalecur!(ShadeCtrl1To)$),\p4=($(ShadeCtrl2From)!\scalecur!(ShadeCtrl2To)$)in%
+            (\p1)..controls(\p3)and(\p4)..(\p2)|-cycle;%
+    }%
+    \let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
+}%
+\DeclareDocumentCommand{\ChapShadeCornerB}{%
+% Define the Coordinates to use before accordingly
+%   See how used below for which are involved
+O{20}% 1: Number of Shading Steps
+}{%
+\tikzmath{%
+    \opacstep=1/(#1+1);%
+    \scalestep=1/#1;%
+    \scalecur=1;
+}%
+\foreach\i in {0,...,#1}{%
+    \tikzmath{%
+        \smoothen=1/(sqrt(\i+1));%
+        \opacCur=(\i+1)*\opacstep*\smoothen;%
+        \scalecur=\i*\scalestep;%
+    }%
+    \path[line width=0pt,line join=miter,fill=DenKrKomaColor_ChapterHeading_Decal1,opacity=\opacCur]%
+        let\p1=($(ShadeFrom1)!\scalecur!(ShadeTo1)$),\p2=($(ShadeFrom2)!\scalecur!(ShadeTo2)$),\p3=($(ShadeFrom3)!\scalecur!(ShadeTo3)$),\p4=($(ShadeFrom4)!\scalecur!(ShadeTo4)$)in%
+        (\p1)to[out=90\ShiftDirectionOpp 80,in=270\ShiftDirectionOpp 10](\p2)|-(\p3)to[out=90\ShiftDirection 80,in=90\ShiftDirectionOpp 20](\p4)--cycle;%
+}%
+\let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
+}%
+%
+%
+\makeatletter%
+\renewcommand*\DenKrKOMAHookFormatChapter[3]{%
+    \contourlength{0.08ex}%
+    \ifstrempty{#2}{}{%
+        \StrLen{\thechapter}[\tmpval]%
+        \ifnumcomp{\tmpval}{=}{1}{%
+            \setkomafont{chapternumber}{\usekomafont{chapternumberN}}%
+        }{\ifnumcomp{\tmpval}{=}{2}{%
+            \setkomafont{chapternumber}{\usekomafont{chapternumberS}}%
+        }{%
+            \setkomafont{chapternumber}{\usekomafont{chapternumberSS}}%
+        }}%
+        \StrSplit{\thechapter}{1}\tempa\tempb%
+        \settoheight{\tmpheight}{\usekomafont{chapternumber}\tempa}%
+        \settowidth{\tmpwidth}{\usekomafont{chapternumber}M}%
+        \sbox{\tmpbox}{%
+            \usekomafont{chapternumber}\parbox{\tmpwidth}{\usekomafont{chapternumber}\centering\chapSplit{1}{\thechapter}}%
+        }%
+    }%
+    \begin{tikzpicture}[remember picture,baseline=(chapter_title.base)]%
+        \coordinate(chapter_anchor)at(0,0);%
+        \Ifthispageodd{%Right
+            \def\nodeAnch{east}%
+            \def\nodeAnchOpposite{west}%
+            \colorlet{DenKrKomaColor_ChapterHeading_Left}{white}%
+            \colorlet{DenKrKomaColor_ChapterHeading_Right}{DenKrKomaColor_ChapterHeading_2}%
+            \renewcommand\raggedchapterPrint{\raggedleft}%
+            \def\ShiftDirection{+}%
+            \def\ShiftDirectionOpp{-}%
+        }{%Left
+            \def\nodeAnch{west}%
+            \def\nodeAnchOpposite{east}%
+            \colorlet{DenKrKomaColor_ChapterHeading_Left}{DenKrKomaColor_ChapterHeading_2}%
+            \colorlet{DenKrKomaColor_ChapterHeading_Right}{white}%
+            \renewcommand\raggedchapterPrint{\raggedright}%
+            \def\ShiftDirection{-}%
+            \def\ShiftDirectionOpp{+}%
+        }%
+        %
+        % Common Code, parameterized before
+        %
+        % Chapapp / Prefix
+        \node[outer sep=0pt,inner sep=5pt,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapterprefix},anchor=north \nodeAnch]%
+        (chapter_prefix)at(chapter_anchor)%
+        {\Ifstr{#2}{}{}{\chapapp}\strut};%
+        % Title & Background
+        \node[anchor=north \nodeAnch,outer sep=0pt,inner sep=5pt,shade,left color=DenKrKomaColor_ChapterHeading_Left,right color=DenKrKomaColor_ChapterHeading_Right]%
+            (chapter_title)at(chapter_prefix.south \nodeAnch)%
+            {%
+                \parbox[t]%
+                {\dimexpr\textwidth-10pt\relax}%
+                {\raggedchapterPrint #3}%
+            };%
+        % \tikzmark{chapter_title_LT}{(chapter_title.north west)}%
+        % \tikzmark{chapter_title_RT}{(chapter_title.north east)}%
+        % \tikzmark{chapter_title_RB}{(chapter_title.south east)}%
+        % \tikzmark{chapter_title_LB}{(chapter_title.south west)}%
+        \useasboundingbox%
+        (current bounding box.north west)%
+        rectangle%
+        ([yshift=-10pt]current bounding box.south east);%
+        %Chapter-Line
+        \path[draw=DenKrKomaColor_ChapterHeading,line width=2pt]%
+            (current bounding box.south \nodeAnch)++(\ShiftDirection.5\pgflinewidth,0)%
+                coordinate(chapter_line_B)%
+            --+(0,\paperheight);%
+        \coordinate(chapter_line_T)at(chapter_line_B|-current page.north);%
+        %Chapter-Number
+        \ifstrempty{#2}{}{%
+            \ifnumcomp{\tmpval}{=}{1}{%
+                \coordinate(chapter_number_anchor)at(chapter_title.base);%
+            }{\ifnumcomp{\tmpval}{=}{2}{%
+                \coordinate(chapter_number_anchor)at(chapter_title.north);%
+            }{%
+                \coordinate(chapter_number_anchor)at($(chapter_prefix.south)!.8!(chapter_prefix.north)$);%
+            }}%
+            \coordinate(chapter_number_anchor)at($(chapter_number_anchor-|current bounding box.\nodeAnch)+(\ShiftDirection 4pt,\tmpheight)$);%
+            % \def\anchor{base west}%
+            % \def\atPos{([xshift=10pt]chapter_title.base-|current bounding box.east)}%
+            % \foreach\x[count=\i from 0] in {\chapDigits}{% \chapSplit{1}{\thechapter}
+            %     \node[outer sep=0pt,inner sep=5pt,shape=rectangle,anchor=\anchor,align=right,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapternumber}]%
+            %         (digit-\i)%
+            %         at\atPos{\x};%
+            %     \def\anchor{north}%
+            %     \def\atPos{(digit-\i.south)}%
+            % }%
+            \node[draw=none,outer sep=0pt,inner sep=0pt,shape=rectangle,anchor=north \nodeAnchOpposite,align=right,text=DenKrKomaColor_ChapterHeading,font=\usekomafont{chapternumber}](chapter_number)%
+                at([xshift=0pt]chapter_number_anchor){\usebox{\tmpbox}};%#2
+        }%
+        %
+        %
+        % The Background Shade
+        \begin{pgfonlayer}{background}%
+            \coordinate(ShadeFrom1)at(chapter_title.north \nodeAnchOpposite);%
+            \coordinate(ShadeFrom2)at($(chapter_line_T)+(\ShiftDirectionOpp 1pt,0)$);%
+            \coordinate(ShadeOrigin)at(ShadeFrom1-|ShadeFrom2);%
+            \coordinate(ShadeTo1)at($(ShadeFrom1)!.6!(ShadeOrigin)$);%
+            \coordinate(ShadeTo2)at($(ShadeFrom2)!.5!(ShadeOrigin)$);%
+            \coordinate(ShadeCtrl1To)at($(ShadeFrom1)!.6!(ShadeOrigin)$);%
+            \coordinate(ShadeCtrl1From)at($(ShadeCtrl1To)+(0,0.01\paperheight)$);%
+            \coordinate(ShadeCtrl2To)at(ShadeOrigin);%
+            \coordinate(ShadeCtrl2From)at($(ShadeCtrl2To)+(\ShiftDirectionOpp 0.03\paperwidth,0.02\paperheight)$);%
+            \ChapShadeCorner%
+            \coordinate(ShadeJunction)at($(ShadeTo2-|chapter_line_T)+(\ShiftDirection 1pt,0)$);%
+            %
+            \coordinate(ShadeFrom1)at(chapter_title.south \nodeAnchOpposite);%
+            \coordinate(ShadeFrom2)at($(chapter_line_B)+(\ShiftDirectionOpp 1pt,0)$);%
+            \coordinate(ShadeOrigin)at(ShadeFrom1-|ShadeFrom2);%
+            \coordinate(ShadeFrom1)at($(ShadeFrom1)!.3!(ShadeOrigin)$);% Shift it
+            \coordinate(ShadeTo1)at($(ShadeFrom1)!.6!(ShadeOrigin)$);%
+            \coordinate(ShadeTo2)at($(ShadeFrom2)!.5!(ShadeOrigin)$);%
+            \coordinate(ShadeCtrl1To)at($(ShadeFrom1)!.7!(ShadeOrigin)$);%
+            \coordinate(ShadeCtrl1From)at($(ShadeCtrl1To)+(0,-0.004\paperheight)$);%
+            \coordinate(ShadeCtrl2To)at($(ShadeOrigin)+(\ShiftDirectionOpp 0.006\paperwidth,0.004\paperheight)$);%
+            % \coordinate(ShadeCtrl2To)at(ShadeOrigin);%
+            \coordinate(ShadeCtrl2From)at($(ShadeCtrl2To)+(\ShiftDirectionOpp 0.006\paperwidth,-0.002\paperheight)$);%
+            \ChapShadeCorner%
+            %
+            % The outer-most Shade, behind the Number, right at the paper's edge
+            \coordinate(ShadeFrom1)at($(chapter_line_B)+(\ShiftDirection 1pt,0)$);%
+            \coordinate(ShadeTo1)at(ShadeFrom1|-chapter_title.south \nodeAnchOpposite);%
+            \coordinate(ShadeTo2)at($(ShadeFrom1-|current page.north \nodeAnch)!.65!(current page.north \nodeAnch)$);%
+            \coordinate(ShadeTo3)at(ShadeTo2);%
+            \coordinate(ShadeFrom2)at($(ShadeFrom1-|current page.north \nodeAnch)!.4!(current page.north \nodeAnch)$);%
+            \coordinate(ShadeFrom3)at($(ShadeFrom1-|current page.north \nodeAnch)!.75!(current page.north \nodeAnch)$);%
+            \coordinate(ShadeTo4)at(ShadeJunction);%
+            \coordinate(ShadeFrom4)at(ShadeJunction|-chapter_line_T);%
+            \ChapShadeCornerB%
+        \end{pgfonlayer}%
+    \end{tikzpicture}%
+    % \par%
+}%
+\makeatother%

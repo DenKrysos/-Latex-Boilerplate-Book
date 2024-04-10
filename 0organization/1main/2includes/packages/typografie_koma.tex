@@ -9,9 +9,16 @@
 %       % Remark that \pagenumbering resets the Page Counter. Hence, not done like:
 %        % \renewcommand{\frontmatter}{\cleardoublepage\@mainmatterfalse\pagenumbering{Roman}}
 %        % \renewcommand{\mainmatter}{\cleardoublepage\@mainmattertrue\pagenumbering{arabic}}
+% - - - - - - - -
+% - Set Default Hooks for Header/Footer to be potentially changed on matter-switch
+% - -  (actually no real Hook, but set below to a File-Inputting-Cmd, which overwrites everything)
+\newcommand{\DenKrKOMAHookFormatHeadFootFrontmatter}{}%
+\newcommand{\DenKrKOMAHookFormatHeadFootMainmatter}{}%
+% - - - - - - - -
+% - Set the Cmds for Matter-Sectioning
 \makeatletter%
-\renewcommand{\frontmatter}{\cleardoublepage\@mainmatterfalse\renewcommand{\thepage}{\Roman{page}}}%
-\renewcommand{\mainmatter}{\cleardoublepage\@mainmattertrue\renewcommand{\thepage}{\arabic{page}}}%
+\renewcommand{\frontmatter}{\cleardoublepage\@mainmatterfalse\renewcommand{\thepage}{\Roman{page}}\DenKrKOMAHookFormatHeadFootFrontmatter}%
+\renewcommand{\mainmatter}{\cleardoublepage\@mainmattertrue\renewcommand{\thepage}{\arabic{page}}\DenKrKOMAHookFormatHeadFootMainmatter}%
 \makeatother%
 %
 % - - - - - - - -
@@ -86,6 +93,50 @@
 %
 %
 %---------------------------------------------------------
+%			Some Management-Setup to use here
+%---------------------------------------------------------
+\newcommand{\DenKrInputKOMAFile}[1]{\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/#1".tex}}%
+% - - - - - - - -
+% --  Array-alike Storage for Status-Tracking of Layers
+\newcounter{DenKrKOMALayerTrackNum}%
+\setcounter{DenKrKOMALayerTrackNum}{0}%
+\newcommand\DenKrKOMALayerTrackAdd[2]{% Pagestyle, Layer-Name
+  \csdef{DenKrKOMALayerTrackPGS\theDenKrKOMALayerTrackNum}{#1}%
+  \csdef{DenKrKOMALayerTrackLNAM\theDenKrKOMALayerTrackNum}{#2}%
+  \stepcounter{DenKrKOMALayerTrackNum}%
+}%
+\newcommand\getDenKrKOMALayerTrackPGS[1]{%
+  \csuse{DenKrKOMALayerTrackPGS#1}%
+}%
+\newcommand\getDenKrKOMALayerTrackLNAM[1]{%
+  \csuse{DenKrKOMALayerTrackLNAM#1}%
+}%
+\newcommand\loopDenKrKOMALayerTrack[1]{% Cmd to Call in Loop
+    \setcounter{loopi}{0}%
+    \loop\ifnum\value{loopi}<\value{DenKrKOMALayerTrackNum}%
+        \csname#1\endcsname{\theloopi}%
+        \stepcounter{loopi}%
+    \repeat%
+}%
+\newcommand\DenKrKOMALayerTrackRemLayer[1]{% Index of tracked Layer in Storage
+    \edef\DenKrKOMALayerTrackArgPGS{\getDenKrKOMALayerTrackPGS{#1}}%
+    \edef\DenKrKOMALayerTrackArgLNAM{\getDenKrKOMALayerTrackLNAM{#1}}%
+    \typeout{»DenKr:  Abrufen:}%
+    \typeout{- "\DenKrKOMALayerTrackArgPGS"}%
+    \typeout{- "\DenKrKOMALayerTrackArgLNAM"}%
+    \RemoveLayersFromPageStyle{\DenKrKOMALayerTrackArgPGS}{\DenKrKOMALayerTrackArgLNAM}%
+}%
+\newcommand\DenKrKOMALayerTrackClear{%
+    \loopDenKrKOMALayerTrack{DenKrKOMALayerTrackRemLayer}%
+    \setcounter{DenKrKOMALayerTrackNum}{0}%
+}%
+%
+%
+%
+%
+%
+%
+%---------------------------------------------------------
 %					KOMA
 %---------------------------------------------------------
 \KOMAoptions{%
@@ -120,20 +171,13 @@
 %  Regarding Document Structure
 \renewcommand{\thepart}{\Alph{part}}% \Roman \Alph
 %
+%
 %________________________________________________________________________
-%			Pagestyle & Layers (For Header, Footer (Kopf- & Fußzeilen) of the Pages (Everything based on KOMA))
+%			Pagestyle & Layers (General Stuff and Auxiliary Functionality) (Everything based on KOMA)
 %========================================================================
 % \usepackage{scrpage2}% Older
 \usepackage{scrlayer-scrpage}%
 \PreventPackageFromLoading{fancyhdr}%
-%------------------------------------------------------------------------
-%							Font-Formatierung von Kopf und Fußzeile
-% \setkomafont{Element}{Befehle}
-% \addtokomafont{Element}{Befehle}
-% - - - - - - -
-% Assign the Pagenumber a Link to the Table-of-Contents
-\let\pagemarkDefault\pagemark%
-\renewcommand{\pagemark}{{\usekomafont{pagenumber}\hyperref[chap:ToC]{$\mathrm{\thepage}$}}}%
 %------------------------------------------------------------------------
 % Now it is getting interesting. We are going into detail, define pagestyles and layers and make them dynamically adjustable throughout the Document
 \newkomafont{dynamicFoot}{\usekomafont{pageheadfoot}\normalfont\color{DenKrKomaColor_HeadLine}}%
@@ -212,17 +256,50 @@
 }%
 % USAGE: In some cases, you might want to use '\DKDynamicFootRem' or '\DKDynamicFootAdd{}' together with 'afterpage':
 %  \afterpage{\DKDynamicFootRem}
+%________________________________________________________________________
+%           Pagestyle DONE
+%------------------------------------------------------------------------
+%========================================================================
 %
-% = = = = = = = = = = = = = = =
+%
+%
+%________________________________________________________________________
+%			Pagestyle & Layers (For Header, Footer (Kopf- & Fußzeilen) of the Pages (Everything based on KOMA))
+%========================================================================
+%					Font-Formatierung von Kopf und Fußzeile
+%------------------------------------------------------------------------
+%           Default Settings
+%-------------------------------------------
+\newkomafont{pagenumberOriginal}{\normalfont\normalcolor}%
+\newkomafont{pageheadfootOriginal}{\normalfont\normalcolor\slshape}% NOTE: There is also "pagehead" but this is only an alternative name for "pageheadfoot"
+\newkomafont{pagefootOriginal}{}%
+% - - - - - - -
+\newcommand*{\chaptermarkformatOriginal}{\chapappifchapterprefix{\ }\thechapter\autodot\enskip}%
+\newcommand*{\sectionmarkformatOriginal}{\thesection\autodot\enskip}%
+\newcommand*{\subsectionmarkformatOriginal}{\thesubsection\autodot\enskip}%
+%========================================================================
+% Assign the Pagenumber a Link to the Table-of-Contents
+\let\pagemarkDefault\pagemark%
+\renewcommand{\pagemark}{{\usekomafont{pagenumber}\hyperref[chap:ToC]{$\mathrm{\thepage}$}}}%
+%========================================================================
+%         Design of the Header & Footer
+%========================================================================
 % = Select Custom Header/Footer Designs
 %	> Available Header/Footer Design-Files:
 %		design_HeadFoot_1
 %		design_HeadFoot_2
 %		design_HeadFoot_3
 %		design_HeadFoot_4
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_1".tex}%
+% % % % % % % % % % % % % % %
+%-- This is active unless/if no "\frontmatter, \mainmatter" Cmd is invoked
+\DenKrInputKOMAFile{design_HeadFoot_1}%
+%---- The following can be simply commented-out or removed, if no switch shall occur
+%-- Employed in \frontmatter
+%\renewcommand{\DenKrKOMAHookFormatHeadFootFrontmatter}{\DenKrInputKOMAFile{design_HeadFoot_2}}%
+%-- Employed in \mainmatter
+%\renewcommand{\DenKrKOMAHookFormatHeadFootMainmatter}{\DenKrInputKOMAFile{design_HeadFoot_4}}%
 %________________________________________________________________________
-%           Pagestyle DONE
+%           Header/Footer DONE
 %------------------------------------------------------------------------
 %========================================================================
 %
@@ -379,7 +456,7 @@
 %		design_part_5
 %		design_part_6
 %		design_part_7
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_part_1".tex}%
+\DenKrInputKOMAFile{design_part_1}%
 % - - - - - - - -
 %	> Available »Chapter« Design-Files:
 %		design_chapter_1
@@ -396,7 +473,7 @@
 %		design_chapter_4_3_2_1
 %		design_chapter_4_3_2_2
 %		design_chapter_4_3_2_3
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_chapter_4_3_1_3".tex}%
+\DenKrInputKOMAFile{design_chapter_1}%
 % - - - - - - - -
 %	> Available »Section« Design-Files:
 %		design_section_1
@@ -408,29 +485,29 @@
 %		design_section_7
 %		design_section_8
 %		design_section_9
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_section_1".tex}%
+\DenKrInputKOMAFile{design_section_1}%
 % - - - - - - - -
 %	> Available »Sub-Section« Design-Files:
 %		design_subsection_1
 %		design_subsection_2
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subsection_1".tex}%
+\DenKrInputKOMAFile{design_subsection_1}%
 % - - - - - - - -
 %	> Available »Sub-Sub-Section« Design-Files:
 %		design_subsubsection_1
 %		design_subsubsection_2
 %		design_subsubsection_3
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subsubsection_1".tex}%
+\DenKrInputKOMAFile{design_subsubsection_1}%
 % - - - - - - - -
 %	> Available »Paragraph« Design-Files:
 %		design_paragraph_1
 %		design_paragraph_2
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_paragraph_1".tex}%
+\DenKrInputKOMAFile{design_paragraph_1}%
 % - - - - - - - -
 %	> Available »Sub-Paragraph« Design-Files:
 %		design_subparagraph_1
 %		design_subparagraph_2
 %		design_subparagraph_3
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_subparagraph_1".tex}%
+\DenKrInputKOMAFile{design_subparagraph_1}%
 %________________________________________________________________________
 %           Sectioning DONE
 %------------------------------------------------------------------------

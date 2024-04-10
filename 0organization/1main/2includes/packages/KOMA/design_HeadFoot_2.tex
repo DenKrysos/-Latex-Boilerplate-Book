@@ -1,85 +1,17 @@
 %________________________________________________________________________
+%       Clean-Up
+%========================================================================
+% First Clear what might have been set by prior Design Inclusions
+\DenKrKOMALayerTrackClear%
+%
+%________________________________________________________________________
 %       Page-Number
 %========================================================================
-%
-\addtokomafont{pagenumber}{\color{DenKrKomaColor_PageNumber}}%
-%
-% \clearpairofpagestyles%
-% Remove the Page-Number from the Pagestyle-Pair  [plain.scrheadings]{scrheadings}
-\lefoot[]{}%
-\rofoot[]{}%
-%Define Layer for new Page-Number Style
-\newcommand*\pagenumberrule{%
-  {\color{DenKrKomaColor_ChapterHeading}\rule[-90pt]{1.25pt}{100pt}}%
-}%
-\DeclareNewLayer[%
-  background,%
-  oddpage,%
-  foot,%
-  contents={%
-    \hfill%
-    \makebox[0pt][l]{%
-      \pagenumberrule%
-      \hspace*{10pt}%
-      {\pagemark}%
-    }%
-  }%
-]{pagenumber.odd}%
-\DeclareNewLayer[%
-  background,%
-  evenpage,%
-  foot,%
-  contents={%
-    \makebox[0pt][r]{%
-      {\pagemark}%
-      \hspace*{10pt}%
-      \pagenumberrule%
-    }%
-  }%
-]{pagenumber.even}%
-\AddLayersToPageStyle{scrheadings}{pagenumber.odd,pagenumber.even}%
-\AddLayersToPageStyle{plain.scrheadings}{pagenumber.odd,pagenumber.even}%
+\DenKrInputKOMAFile{BuildingBlocks/pagenumber_rule_1}%
 %
 %
 %
 %________________________________________________________________________
 %       Headmark
 %========================================================================
-\newkomafont{marknumber}{\color{DenKrKomaColor_ChapterHeading!60!DenKrKomaColor_HeadLine}\sffamily}%
-\renewcommand\chaptermarkformat{{\usekomafont{marknumber}\thechapter} }%
-\renewcommand\sectionmarkformat{{\usekomafont{marknumber}\thesection} }%
-% - - - - - - -
-% Remove headmark from the Pagestyle-Pair
-\lehead[]{}%
-\rohead[]{}%
-%Define Layer for new Headmark Style
-% Also apply a Hyper-Link to the corresponding Chapter/Section to the Headmark
-\DeclareNewLayer[%
-    head,%
-    align=t,%
-    voffset=21pt,% \headheight \headsep
-    background,%
-    oddpage,%
-    mode=picture,%
-    contents={%
-      \parbox{\layerwidth}{\hfill%
-        \usekomafont{pageheadfoot}\color{DenKrKomaColor_HeadLine}%
-        \hyperref[\DenKrCurSec]{\headmark}%
-      }%
-    }%
-]{headmark.odd}%
-\DeclareNewLayer[%
-    head,%
-    align=t,%
-    voffset=21pt,%
-    background,%
-    evenpage,%
-    mode=picture,%
-    contents={%
-      \parbox{\layerwidth}{%
-        \usekomafont{pageheadfoot}\color{DenKrKomaColor_HeadLine}%
-        \hyperref[\DenKrCurChap]{\headmark}%
-      }%
-    }%
-]{headmark.even}%
-\AddLayersToPageStyle{scrheadings}{headmark.odd,headmark.even}%
+\DenKrInputKOMAFile{BuildingBlocks/headmark_sepColor_1}%

@@ -1,3 +1,9 @@
+%________________________________________________________________________
+%       Clean-Up
+%========================================================================
+% First Clear what might have been set by prior Design Inclusions
+\DenKrKOMALayerTrackClear%
+%
 %
 % This is 'only' slightly different from "HeadFoot_3" -> Makes the outer diagonal Line on the Footer curved and with a higher Top Edge
 %
@@ -6,123 +12,6 @@
 %       Background
 %________________________________________________________________________
 %------------------------------------------------------------------------
-%
-%
-%
-%
-%========================================================================
-%       Setting up some Macros for late use
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\newcommand{\HeadFootShadeTriangleB}[4]{% 1: BL  2: BR  3: Top  4: Steps
-    \tikzmath{%
-        \opacstep=1/(#4+1);%
-        \scalestep=1/#4;%
-        \scalecur=1;%
-    }%
-    \foreach\i in {1,...,#4}{%
-        \tikzmath{%
-            \smoothen=1/(sqrt(\i));%
-            \opacCur=\i*\opacstep*\smoothen;%
-            \scalecur=(\i-1)*\scalestep;%
-        }%
-        \path[fill=FooterBG,line width=0pt,opacity=\opacCur]let\p1=($(#1)!\scalecur!(#2)$),\p2=($(#3)!\scalecur!(#2)$)in%
-            (\p1)--(#2)--(\p2)--cycle;%
-    }%
-    \let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
-}%
-\newcommand{\HeadFootShadeTriangleBR}[3]{%
-    \HeadFootShadeTriangleB{#1}{#2}{#3}{20}%
-}%
-\newcommand{\HeadFootShadeTriangleBL}[3]{%
-    \HeadFootShadeTriangleB{#2}{#1}{#3}{20}%
-}%
-%
-\newcommand{\HeadFootShadeTriangleBInverse}[4]{% 1: L  2: R  3: Top  4: Steps
-    \tikzmath{%
-        \opacstep=1/(#4+1);%
-        \scalestep=1/#4;%
-        \scalecur=1;%
-    }%
-    \foreach\i in {1,...,#4}{%
-        \tikzmath{%
-            \smoothen=1/(sqrt(\i));%
-            \opacCur=\i*\opacstep*\smoothen;%
-            \scalecur=(\i-1)*\scalestep;%
-        }%
-        \path[fill=FooterBG,line width=0pt,opacity=\opacCur]%
-            let\p1=($(#3)!\scalecur!(#2)$),\p2=($(#3)!\scalecur!(#1)$)in%
-            (\p1)--(#2)--(#1)--(\p2)--cycle;%
-    }%
-    \let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
-}%
-\newcommand{\HeadFootShadeTriangleBInverseTopL}[3]{% 1: LB  2: RT  3: (L)Top
-    \HeadFootShadeTriangleBInverse{#1}{#2}{#3}{20}%
-}%
-\newcommand{\HeadFootShadeTriangleBInverseTopR}[3]{% 1: LT  2: RB  3: (T)Top
-    \HeadFootShadeTriangleBInverse{#2}{#1}{#3}{20}%
-}%
-%
-%
-%
-% Not used currently, also not quite yet finished
-\newcommand{\HeadFootShadeRectangleBR}[3]{% 1: TL  2: BR  3: Steps
-    \tikzmath{%
-        \opacstep=1/(#3+1);%
-        \scalestep=1/#3;%
-        \scalecur=1;%
-    }%
-    \foreach\i in {1,...,#3}{%
-        \tikzmath{%
-            \smoothen=1/(sqrt(\i));%
-            \opacCur=\i*\opacstep*\smoothen;%
-            \scalecur=(\i-1)*\scalestep;%
-        }%
-        \path[fill=orange,line width=0pt,opacity=\opacCur]%
-            let\p1=(#1-|#2),\p2=(#1|-#2),%
-            \p3=($(\p1)!\scalecur!(#1)$),\p4=($(\p2)!\scalecur!(#1)$)in%
-            (\p3)--(\p1)|-(\p2)--(\p4)--cycle;%
-    }%
-    \let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
-}%
-%
-%
-%
-%
-%
-% NONE of the above are actually used anymore. Exclusively this one below.
-\DeclareDocumentCommand{\HeadFootShadeCorner}{%
-    % Define the Coordinates to use before accordingly
-    %  footShadeCorner_F[x]: A Fixed-Point
-    %  footShadeCorner_M[x]: A Moving-Point
-    O{20}% 1: Number of Shading Steps
-}{%
-    \tikzmath{%
-        \opacstep=1/(#1+1);%
-        \scalestep=1/#1;%
-        \scalecur=1;%
-    }%
-    \foreach\i in {0,...,#1}{%
-        \tikzmath{%
-            \smoothen=1/(sqrt(\i+1));%
-            \opacCur=(\i+1)*\opacstep*\smoothen;%
-            \scalecur=\i*\scalestep;%
-        }%
-        \path[fill=FooterBG,line width=0pt,opacity=\opacCur]%
-            let\p1=($(footShadeCorner_BottomMov)!\scalecur!(footShadeCorner_BottomFix)$),\p2=($(footShadeCorner_Mid1Mov)!\scalecur!(footShadeCorner_Mid1Fix)$),\p3=($(footShadeCorner_TopMov)!\scalecur!(footShadeCorner_TopFix)$)in%
-            (footCornerAnch)--(\p1)--(\p2)to[out=\AngleAOffsetOut 10,in=\AngleAOffsetIn 15](\p3)--cycle;%
-    }%
-    \let\scalestep\undefined\let\opacstep\undefined\let\scalecur\undefined\let\smoothen\undefined\let\opacCur\undefined%
-}%
-\newcommand{\HeadFootShadeCornerTopRight}{%
-\def\AngleAOffsetOut{}%
-\def\AngleAOffsetIn{270-}%
-\HeadFootShadeCorner%
-}%
-\newcommand{\HeadFootShadeCornerTopLeft}{%
-\def\AngleAOffsetOut{180-}%
-\def\AngleAOffsetIn{270+}%
-\HeadFootShadeCorner%
-}%
 %
 %
 %
@@ -139,107 +28,23 @@
 %
 %
 %========================================================================
-%       Header
+%       Header BG
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-% A Custom Shading for the Header-Background (Remark that the Colors are defined in REVERSE Order. The Shading fills from Bottom to Top, i.e. 0bp is at the Bottom, 50bp is at the Top)
-\pgfdeclareverticalshading{headerBGShading}{100bp}{%
-    color(0bp)=(white);%
-    color(8bp)=(HeaderBG);%
-    color(22bp)=(HeaderBG2);%
-    color(32bp)=(HeaderBG!70!HeaderBG2);%
-    color(50bp)=(HeaderBG)%
-}%
-% - - - - - - - - - - - -
-% The actual Layer for the Header
-\DeclareNewLayer[%
-  background,%
-  mode=picture,%
-  oddorevenpage,%
-  head,%
-  contents={%
-    \put(0,-\LenToUnit{\layerheight}){\tikzmark{headLBAnchor}}%
-    \begin{tikzpicture}[overlay,remember picture]%
-    \coordinate(headBgTL)at(current page.north west);%
-    \coordinate(headBgTR)at(current page.north east);%
-    \path let\p1=(pic cs:headLBAnchor),\p2=($(\p1)+(0,10pt)$)in coordinate(headBgBL)at(headBgTL|-\p2);% Increase by a share of \headsep ?
-    \coordinate(headBgBR)at(headBgBL-|headBgTR);%
-    \path[draw=none,line width=0pt,shading=headerBGShading](headBgTL)rectangle(headBgBR);%
-    \end{tikzpicture}%
-  }%
-]{headBG.both}%
-\AddLayersToPageStyle{scrheadings}{headBG.both,headBG.both}%
+\DenKrInputKOMAFile{BuildingBlocks/headerBG_gradientCylinder_1}%
 %
 %
 %========================================================================
 %       Footer
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\DeclareNewLayer[%
-  background,%
-  mode=picture,%
-  oddpage,%
-  foot,%
-  contents={%
-    \put(\LenToUnit{\layerwidth},\LenToUnit{\layerheight}){\tikzmark{footRBAnchor}}%
-    \begin{tikzpicture}[overlay,remember picture]%
-    \coordinate(footBGAnchR)at($(pic cs:footRBAnchor)+(0,5pt)$);%
-    \coordinate(footBgR_BR)at(current page.south east);%
-    \coordinate(footBgR_BL)at($(footBGAnchR|-footBgR_BR)+(-0.4*\textwidth,0)$);%
-    \coordinate(footBgR_RT)at($(footBGAnchR-|footBgR_BR)+(0,{0.4*(\paperwidth-\textwidth)})$);%
-    \coordinate(footCornerR_TL)at(footBGAnchR);%
-    \coordinate(footCornerR_TR)at(footBGAnchR-|footBgR_BR);%
-    \coordinate(footCornerR_BL)at(footBGAnchR|-footBgR_BR);%
-    %
-    \coordinate(footCornerAnch)at(footBgR_BR);%
-    \coordinate(footShadeCorner_BottomFix)at(footCornerR_BL);%
-    \coordinate(footShadeCorner_BottomMov)at(footBgR_BL);%
-    \coordinate(footShadeCorner_Mid1Fix)at(footShadeCorner_BottomFix);%
-    \coordinate(footShadeCorner_Mid1Mov)at(footCornerR_TL);%
-    \coordinate(footShadeCorner_TopFix)at(footCornerR_TR);%
-    \coordinate(footShadeCorner_TopMov)at(footBgR_RT);%
-    \HeadFootShadeCornerTopRight%
-    %\HeadFootShadeTriangleBR{footBgR_BL}{footCornerR_BL}{footCornerR_TL}%
-    %\HeadFootShadeTriangleBR{footCornerR_TL}{footCornerR_TR}{footBgR_RT}%
-    %\HeadFootShadeTriangleBInverseTopL{footCornerR_BL}{footCornerR_TR}{footCornerR_TL}%
-    %\path[draw=none,line width=0pt,fill=FooterBG](footCornerR_BL)--(footCornerR_TR)|-cycle;%
-    \end{tikzpicture}%
-  }%
-]{footBG.odd}%
-\DeclareNewLayer[%
-  background,%
-  mode=picture,%
-  evenpage,%
-  foot,%
-  contents={%
-    \put(0,\LenToUnit{\layerheight}){\tikzmark{footLBAnchor}}%
-    \begin{tikzpicture}[overlay,remember picture]%
-    \coordinate(footBGAnchL)at($(pic cs:footLBAnchor)+(0,5pt)$);%
-    \coordinate(footBgL_BL)at(current page.south west);%
-    \coordinate(footBgL_BR)at($(footBGAnchL|-footBgL_BL)+(0.4*\textwidth,0)$);%
-    \coordinate(footBgL_LT)at($(footBGAnchL-|footBgL_BL)+(0,{0.4*(\paperwidth-\textwidth)})$);%
-    \coordinate(footCornerL_TR)at(footBGAnchL);%
-    \coordinate(footCornerL_TL)at(footBGAnchL-|footBgL_BL);%
-    \coordinate(footCornerL_BR)at(footBGAnchL|-footBgL_BL);%
-    %
-    \coordinate(footCornerAnch)at(footBgL_BL);%
-    \coordinate(footShadeCorner_BottomFix)at(footCornerL_BR);%
-    \coordinate(footShadeCorner_BottomMov)at(footBgL_BR);%
-    \coordinate(footShadeCorner_Mid1Fix)at(footShadeCorner_BottomFix);%
-    \coordinate(footShadeCorner_Mid1Mov)at(footCornerL_TR);%
-    \coordinate(footShadeCorner_TopFix)at(footCornerL_TL);%
-    \coordinate(footShadeCorner_TopMov)at(footBgL_LT);%
-    \HeadFootShadeCornerTopLeft%
-    \end{tikzpicture}%
-  }%
-]{footBG.even}%
-\AddLayersToPageStyle{scrheadings}{footBG.odd,footBG.even}%
-\AddLayersToPageStyle{plain.scrheadings}{footBG.odd,footBG.even}%
+\DenKrInputKOMAFile{BuildingBlocks/footerBG_slantedOut_1}%
 %
 %
 %
 %
 %########################################################################
 %========================================================================
-%       Page-Number & Headmark taken from one Index lower
+%       Page-Number & Headmark taken equal to Index '2'
 %________________________________________________________________________
 %------------------------------------------------------------------------
-\input{"\DenKrLayoutMainRootDir/2includes/packages/KOMA/design_HeadFoot_2".tex}%
+\DenKrInputKOMAFile{BuildingBlocks/pagenumber_rule_1}%
+\DenKrInputKOMAFile{BuildingBlocks/headmark_sepColor_1}%

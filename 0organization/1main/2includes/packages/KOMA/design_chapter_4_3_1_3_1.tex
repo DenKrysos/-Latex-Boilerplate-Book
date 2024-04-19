@@ -1,14 +1,15 @@
 %________________________________________________________________________
 %       Individual Definitions
 %========================================================================
-\colorlet{DenKrKomaColor_ChapterHeading_Outline}{DenKrKomaColor_ChapterHeading}%
-\colorlet{DenKrKomaColor_ChapterHeading_NumberCore}{DenKrKomaColor_ChapterHeading_2}%
+\colorlet{DenKrKomaColor_ChapterHeading_Outline}{DenKrKomaColor_ChapterHeading_2!80!white}%
+\colorlet{DenKrKomaColor_ChapterHeading_NumberCore}{DenKrKomaColor_ChapterHeading}%
 %
 \colorlet{DenKrKomaColor_ChapterHeading_DecalBase}{DenKrKomaColor_ChapterHeading!80!DenKrKomaColor_ChapterHeading_2}%
 \colorlet{DenKrKomaColor_ChapterHeading_Decal1}{DenKrKomaColor_ChapterHeading!15!white}%
 \colorlet{DenKrKomaColor_ChapterHeading_Decal2}{DenKrKomaColor_ChapterHeading_DecalBase!18!white}%
+\colorlet{DenKrKomaColor_ChapterHeading_DecalAccent}{DenKrKomaColor_ChapterHeading_DecalBase!5!white}%
 %
-\providecommand\DenKrKomaChapnumOutlineWidth{}\renewcommand\DenKrKomaChapnumOutlineWidth{0.1ex}%
+\providecommand\DenKrKomaChapnumOutlineWidth{}\renewcommand\DenKrKomaChapnumOutlineWidth{0.08ex}%
 %
 %
 %________________________________________________________________________
@@ -24,6 +25,10 @@
 \providecommand\DenKrKomaChapterBackgroundDrawing{}%
 \renewcommand\DenKrKomaChapterBackgroundDrawing{%
     \ChapBanderoleVerticalMarginInwardsA%
+    %
+    \ChapBanderoleVerticalMarginOutwardsB%
+    %
+    \ChapAccentLineCornerBBase%
 }%
 %
 %

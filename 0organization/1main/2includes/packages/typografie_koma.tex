@@ -15,11 +15,13 @@
 \newcommand{\DenKrKOMAHookFormatHeadFootFrontmatter}{}%
 \newcommand{\DenKrKOMAHookFormatHeadFootMainmatter}{}%
 % - - - - - - - -
-% - Set the Cmds for Matter-Sectioning
+% - Set the Cmds for Matter-Sectioning (Only relevant for Books)
+\ifChapterExists%
 \makeatletter%
 \renewcommand{\frontmatter}{\cleardoublepage\@mainmatterfalse\renewcommand{\thepage}{\Roman{page}}\DenKrKOMAHookFormatHeadFootFrontmatter}%
 \renewcommand{\mainmatter}{\cleardoublepage\@mainmattertrue\renewcommand{\thepage}{\arabic{page}}\DenKrKOMAHookFormatHeadFootMainmatter}%
 \makeatother%
+\fi%
 %
 % - - - - - - - -
 % Block-Stretching across page
@@ -142,15 +144,22 @@
 \KOMAoptions{%
  	%BCOR=8mm,% Bindeverlust von 8mm am Innenrand einbeziehen
 	DIV=last,%
-	open=right,% any, right, left  % 'openany' at \documentclass
     toc=nolistof,% For NOT adding List-Ofs to the ToC (Default)
     toc=graduated,% Format of the ToC
     toc=nobib,% I take care of that manually
-    chapterentrydots=false,% ToC: No dotted Line between Chapter and Pagenumber
-    % sectionentrydots=true,% ToC: For Sections, when class is Articel-level
-    listof=flat,%
-    listof=nochaptergap,%
+    listof=flat%
 }%
+\ifChapterExists%
+\KOMAoptions{%
+    open=right,% any, right, left  % 'openany' at \documentclass. Only available for Book & Report.
+    chapterentrydots=false,% ToC: No dotted Line between Chapter and Pagenumber
+    listof=nochaptergap%
+}%
+\else%
+\KOMAoptions{%
+    sectionentrydots=true% ToC: For Sections, when class is Article-level
+}%
+\fi%
 %
 %________________________________________________________________________
 % Colors
@@ -169,7 +178,7 @@
 % Counter for "Elements", i.e. Figure, Equation, Algorithm, etc. are set in "./0organization/settings_perDoc.tex"
 % - - - - - - -
 %  Regarding Document Structure
-\renewcommand{\thepart}{\Alph{part}}% \Roman \Alph
+\renewcommand{\thepart}{\Roman{part}}% \Roman \Alph
 %
 %
 %________________________________________________________________________
@@ -178,6 +187,11 @@
 % \usepackage{scrpage2}% Older
 \usepackage{scrlayer-scrpage}%
 \PreventPackageFromLoading{fancyhdr}%
+% - - - - - - -
+% To set the \leftmark\rightmark\headmark in Article-Docs
+\ifChapterExists\else%
+  \automark[subsection]{section}%
+\fi%
 %------------------------------------------------------------------------
 % Now it is getting interesting. We are going into detail, define pagestyles and layers and make them dynamically adjustable throughout the Document
 \newkomafont{dynamicFoot}{\usekomafont{pageheadfoot}\normalfont\color{DenKrKomaColor_HeadLine}}%
@@ -274,7 +288,9 @@
 \newkomafont{pageheadfootOriginal}{\normalfont\normalcolor\slshape}% NOTE: There is also "pagehead" but this is only an alternative name for "pageheadfoot"
 \newkomafont{pagefootOriginal}{}%
 % - - - - - - -
-\newcommand*{\chaptermarkformatOriginal}{\chapappifchapterprefix{\ }\thechapter\autodot\enskip}%
+\ifChapterExists%
+    \newcommand*{\chaptermarkformatOriginal}{\chapappifchapterprefix{\ }\thechapter\autodot\enskip}%
+\fi%
 \newcommand*{\sectionmarkformatOriginal}{\thesection\autodot\enskip}%
 \newcommand*{\subsectionmarkformatOriginal}{\thesubsection\autodot\enskip}%
 %========================================================================
@@ -311,7 +327,9 @@
 % - - - - - - - -
 % - Make Backup-Copies of other Heading Format related Macros (that may be changed by my Designs included below)
 \NewCommandCopy{\partformatOriginal}{\partformat}%
-\NewCommandCopy{\chapterformatOriginal}{\chapterformat}%
+\ifChapterExists%
+    \NewCommandCopy{\chapterformatOriginal}{\chapterformat}%
+\fi%
 \NewCommandCopy{\sectionformatOriginal}{\sectionformat}%
 \NewCommandCopy{\subsectionformatOriginal}{\subsectionformat}%
 \NewCommandCopy{\subsubsectionformatOriginal}{\subsubsectionformat}%
@@ -332,8 +350,10 @@
 %\sffamily\bfseries
 \newkomafont{partnumberOriginal}{}%
 \newkomafont{partOriginal}{}%
-\newkomafont{chapterOriginal}{\sffamily\bfseries\huge}%
-\newkomafont{chapterprefixOriginal}{}%
+\ifChapterExists%
+    \newkomafont{chapterOriginal}{\sffamily\bfseries\huge}%
+    \newkomafont{chapterprefixOriginal}{}%
+\fi%
 \newkomafont{sectionOriginal}{\sffamily\bfseries\Large}%
 \newkomafont{subsectionOriginal}{\sffamily\bfseries\large}%
 \newkomafont{subsubsectionOriginal}{\sffamily\bfseries\normalsize}%
@@ -351,10 +371,12 @@
 %========================================================================
 %         Designing the Headings
 %========================================================================
-\newkomafont{chapternumberN}{\mdseries\fontsize{60pt}{54pt}\selectfont}%
-\newkomafont{chapternumberS}{\mdseries\fontsize{50pt}{44pt}\selectfont}%
-\newkomafont{chapternumberSS}{\mdseries\fontsize{40pt}{34pt}\selectfont}%
-\newkomafont{chapternumber}{\usekomafont{chapternumberN}}%
+\ifChapterExists%
+    \newkomafont{chapternumberN}{\mdseries\fontsize{60pt}{54pt}\selectfont}%
+    \newkomafont{chapternumberS}{\mdseries\fontsize{50pt}{44pt}\selectfont}%
+    \newkomafont{chapternumberSS}{\mdseries\fontsize{40pt}{34pt}\selectfont}%
+    \newkomafont{chapternumber}{\usekomafont{chapternumberN}}%
+\fi%
 %\setkomafont{disposition}{\normalcolor\bfseries}%
 \addtokomafont{disposition}{\color{DenKrKomaColor_ChapterHeading}}%
 % - - - - - - - -
@@ -374,6 +396,7 @@
     }{\partlineswithprefixformatOriginal{#1}{#2}{#3}}%
 }%
 %
+\ifChapterExists%
 \NewCommandCopy{\chapterlinesformatOriginal}{\chapterlinesformat}%
 \renewcommand*\chapterlinesformat[3]{%
     \Ifstr{#1}{chapter}{%
@@ -389,6 +412,7 @@
         % \par%
     }{\chapterlineswithprefixformatOriginal{#1}{#2}{#3}}%
 }%
+\fi%
 %
 \NewCommandCopy{\sectionlinesformatOriginal}{\sectionlinesformat}%
 \renewcommand*\sectionlinesformat[4]{%
@@ -419,15 +443,19 @@
 % - Set the Hooks to the (boring) Default
 \makeatletter%
 \newcommand{\DenKrKOMAHookFormatPartWithPrefixOriginal}[3]{#2#3}%
-\newcommand{\DenKrKOMAHookFormatChapterOriginal}[3]{\@hangfrom{#2}{#3}}%
-\newcommand{\DenKrKOMAHookFormatChapterWithPrefixOriginal}[3]{#2#3}%
+\ifChapterExists%
+    \newcommand{\DenKrKOMAHookFormatChapterOriginal}[3]{\@hangfrom{#2}{#3}}%
+    \newcommand{\DenKrKOMAHookFormatChapterWithPrefixOriginal}[3]{#2#3}%
+\fi%
 \newcommand{\DenKrKOMAHookFormatSectionOriginal}[4]{\@hangfrom{\hskip #2#3}{#4}}%
 \newcommand{\DenKrKOMAHookFormatSubSectionOriginal}[4]{\@hangfrom{\hskip #2#3}{#4}}%
 \newcommand{\DenKrKOMAHookFormatSubSubSectionOriginal}[4]{\@hangfrom{\hskip #2#3}{#4}}%
 %
 \newcommand{\DenKrKOMAHookFormatPartWithPrefix}[3]{}%
-\newcommand{\DenKrKOMAHookFormatChapter}[3]{}%
-\newcommand{\DenKrKOMAHookFormatChapterWithPrefix}[3]{}%
+\ifChapterExists%
+    \newcommand{\DenKrKOMAHookFormatChapter}[3]{}%
+    \newcommand{\DenKrKOMAHookFormatChapterWithPrefix}[3]{}%
+\fi%
 \newcommand{\DenKrKOMAHookFormatSection}[4]{}%
 \newcommand{\DenKrKOMAHookFormatSubSection}[4]{}%
 \newcommand{\DenKrKOMAHookFormatSubSubSection}[4]{}%
@@ -440,8 +468,10 @@
 % \renewcommand{\DenKrKOMAHookFormatSubSubSection}[4]{\DenKrKOMAHookFormatSubSubSectionOriginal{#1}{#2}{#3}{#4}}%
 %
 \renewcommand\DenKrKOMAHookFormatPartWithPrefix\DenKrKOMAHookFormatPartWithPrefixOriginal%
-\renewcommand\DenKrKOMAHookFormatChapter\DenKrKOMAHookFormatChapterOriginal%
-\renewcommand\DenKrKOMAHookFormatChapterWithPrefix\DenKrKOMAHookFormatChapterWithPrefixOriginal%
+\ifChapterExists%
+    \renewcommand\DenKrKOMAHookFormatChapter\DenKrKOMAHookFormatChapterOriginal%
+    \renewcommand\DenKrKOMAHookFormatChapterWithPrefix\DenKrKOMAHookFormatChapterWithPrefixOriginal%
+\fi%
 \renewcommand\DenKrKOMAHookFormatSection\DenKrKOMAHookFormatSectionOriginal%
 \renewcommand\DenKrKOMAHookFormatSubSection\DenKrKOMAHookFormatSubSectionOriginal%
 \renewcommand\DenKrKOMAHookFormatSubSubSection\DenKrKOMAHookFormatSubSubSectionOriginal%
@@ -456,8 +486,17 @@
 %		design_part_5
 %		design_part_6
 %		design_part_7
-\DenKrInputKOMAFile{design_part_1}%
+%		%   %   %   %
+%		design_part_noPageBreak_1
+%		design_part_noPageBreak_2
+%		design_part_noPageBreak_3% ToDo
+\ifChapterExists%
+  \DenKrInputKOMAFile{design_part_1}%
+\else%
+  \DenKrInputKOMAFile{design_part_noPageBreak_1}%
+\fi%
 % - - - - - - - -
+\ifChapterExists%
 %	> Available »Chapter« Design-Files:
 %		design_chapter_1
 %		design_chapter_2
@@ -550,11 +589,13 @@
 %			% - Chap-Num in Chap-2nd-Color, Number-Contour in Chap-Color
 %			% - Accent-BG gradient Curve + gradient outwards slanted middle + accentuating pinnacle line (Chap-Color)
 \DenKrInputKOMAFile{design_chapter_1}%
+\fi%
 % - - - - - - - -
 %	> Available »Section« Design-Files:
 %		design_section_1
 %		design_section_2
 %		design_section_3
+%		design_section_3_1
 %		design_section_4
 %		design_section_5
 %		design_section_6
@@ -648,6 +689,7 @@
 %            \part{Thesis}%
 %            \headingOpenTempRestore\makeatother%
 %            \label{part:thesis}%
+\ifChapterExists%
 \makeatletter%
 \newcommand{\currentOpenAtCheck}{%
     \if@openright%
@@ -681,6 +723,13 @@
     \destroyCollectVar{prevOpen}{Heading}%
 }%
 \makeatother%
+\else%
+\newcommand{\currentOpenAtCheck}{}%
+\newcommand{\recordCurrentOpen}{}%
+\newcommand{\headingOpenTempRight}{}%
+\newcommand{\headingOpenTempAny}{}%
+\newcommand{\headingOpenTempRestore}{}%
+\fi%
 %________________________________________________________________________
 %           Macros DONE
 %------------------------------------------------------------------------

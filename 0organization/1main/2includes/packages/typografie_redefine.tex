@@ -6,15 +6,12 @@
 %________________________________________________________________________
 %           Actually independent of KOMA, but also enhances features from there. E.g. is the Chapter-Label-Tracking required for the Hyperlinks in the Headmark
 %========================================================================
+%
+\ifChapterExists%
 \def\DenKrCurChap{chapnt:ToC}%
-\def\DenKrCurSec{chapnt:ToC}%
 \let\chapterDefault=\chapter%
-\let\sectionDefault=\section%
 \newcounter{runningChapterTrack}%
 \setcounter{runningChapterTrack}{0}%
-\newcounter{runningSectionTrack}%
-\setcounter{runningSectionTrack}{0}%
-%
 \makeatletter%
 \RenewDocumentCommand{\chapter}{%
     s% Whether or not "Star-Cmd", i.e. \chapter vs \chapter*
@@ -30,6 +27,7 @@
         %       - Exactly like with the non-stared Cmd, except without Number. The AlternativeTitle is put to ToC, etc..
     m% The actual argument, i.e. Title of Chapter/Section
 }{% \chapter*[<opt>]{<man>}
+    \def\@currentlabel{}% Make sure, that the (numeric) Label is reset in all occasions
     \IfBooleanTF{#1}{%
         % Stared: \chapter*
         \IfValueTF{#2}{%
@@ -63,12 +61,23 @@
             \chapterDefault{#3}%
         }%
     }%
+    \def\@currentlabelname{#3}% A patch to have it work properly with \nameref (in edge-cases like using the Stared-Cmd after \backmatter)
     \label{chapTrack:\the\value{runningChapterTrack}}%
     \edef\DenKrCurChap{chapTrack:\the\value{runningChapterTrack}}%
     \edef\DenKrCurSec{chapTrack:\the\value{runningChapterTrack}}%
     \stepcounter{runningChapterTrack}%
 }%
+\makeatother%
+\fi%
+%
+%
+\def\DenKrCurSec{chapnt:ToC}%
+\let\sectionDefault=\section%
+\newcounter{runningSectionTrack}%
+\setcounter{runningSectionTrack}{0}%
+\makeatletter%
 \RenewDocumentCommand{\section}{s o m}{% \chapter*[<opt>]{<man>}
+    \def\@currentlabel{}%
     \IfBooleanTF{#1}{%
         % Stared: \chapter*
         \IfValueTF{#2}{%
@@ -99,9 +108,55 @@
             \sectionDefault{#3}%
         }%
     }%
+    \def\@currentlabelname{#3}%
     \label{secTrack:\the\value{runningSectionTrack}}%
     \edef\DenKrCurSec{secTrack:\the\value{runningSectionTrack}}%
     \stepcounter{runningSectionTrack}%
+}%
+\makeatother%
+%
+%
+\def\DenKrCurSubSec{}%
+\let\subsectionDefault=\subsection%
+\newcounter{runningSubSectionTrack}%
+\setcounter{runningSubSectionTrack}{0}%
+\makeatletter%
+\RenewDocumentCommand{\subsection}{s o m}{% \chapter*[<opt>]{<man>}
+    \def\@currentlabel{}%
+    \IfBooleanTF{#1}{%
+        % Stared: \chapter*
+        \IfValueTF{#2}{%
+            % Whether or not optional Argument supplied: \chapter*[..]{...}
+            \ifx\empty#2\empty%
+                % The optional argument was set and is empty
+                \def\@AltTitle{#3}%
+            \else%
+                % The optional argument was set to some value
+                \def\@AltTitle{#2}%
+            \fi%
+            \subsectionDefault*{#3}%
+            % \addcontentsline{toc}{section}{\protect\numberline{}\@AltTitle}% Add regular title to ToC
+            \addcontentsline{toc}{subsection}{\@AltTitle}% Add regular title to ToC
+            %\markright{\@AltTitle}% Set marks based on optional argument
+            \addtocounter{subsection}{1}%
+        }{%
+            % \chapter*{...}
+            \subsectionDefault*{#3}%
+        }%
+    }{%
+        % No-Star: \chapter
+        \IfValueTF{#2}{%
+            % Optional: \chapter[..]{...}
+            \subsectionDefault[#2]{#3}%
+        }{%
+            % No-Optional: \chapter{...}
+            \subsectionDefault{#3}%
+        }%
+    }%
+    \def\@currentlabelname{#3}%
+    \label{subsecTrack:\the\value{runningSubSectionTrack}}%
+    \edef\DenKrCurSubSec{subsecTrack:\the\value{runningSubSectionTrack}}%
+    \stepcounter{runningSubSectionTrack}%
 }%
 \makeatother%
 %

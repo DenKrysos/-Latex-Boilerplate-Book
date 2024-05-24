@@ -1,8 +1,10 @@
-% Remark that the List-of are put after \backmatter, which makes only unnumbered Chapters as default. Using still a stared-Cmd would mess up \nameref. Hence, only normal Chapter Cmds
+% REMARK: Just to say: The List-of are put after \backmatter, which makes only unnumbered Chapters as default. This may interfer with \nameref, when still using a Stared-Cmd. Hence, in a Document with \backmater, one should normally only issue Chapter Cmds without Star in the backmatter.
+% -> However, my re-definition of the \chapter/section/subsection, I've done in "typografie_redefine.tex", patches against that. Hence, putting Stared-Cmds of these 3 in the backmatter, using my entire Boilerplate, should work fine.
 %
+\def\DenKrListOfHeading{\DenKrHeadingTopLvlCmd}%
 \makeatletter%
 \newcommand{\tableofcontentsDenKr}{%
-	\chapter*{\contentsname}%
+	\DenKrListOfHeading*{\contentsname}%
 	\label{chap:ToC}%
 	%\markboth{\nameref{#2}}{\nameref{#3}}%
 	%\markboth{\contentsname}{\contentsname}%
@@ -10,7 +12,7 @@
 }%
 \newcommand{\listoffiguresDenKr}{%
     %\chapnt{\listfigurename}[chapnt:LoF]%
-	\chapter{\listfigurename}%
+	\DenKrListOfHeading*[]{\listfigurename}%
 	\label{chap:LoF}%
     \listoffigures%
 }%
@@ -18,7 +20,7 @@
 \makeatletter%
 \newcommand{\listoftablesDenKr}{%
     %\chapnt{\listtablename}[chapnt:LoT]%
-	\chapter{\listtablename}%
+	\DenKrListOfHeading*[]{\listtablename}%
 	\label{chap:LoT}%
     \listoftables%
 }%
@@ -26,7 +28,7 @@
 \makeatletter%
 \newcommand{\listoflistingsDenKr}{%
     %\chapnt{\lstlistlistingname}[chapnt:LoL]%
-	\chapter{\lstlistlistingname}%
+	\DenKrListOfHeading*[]{\lstlistlistingname}%
 	\label{chap:LoL}%
     \lstlistoflistings%
 }%
@@ -34,7 +36,7 @@
 \makeatletter%
 \newcommand{\listofalgorithmsDenKr}{%
     %\chapnt{\listalgorithmname}[chapnt:LoA]%
-	\chapter{\listalgorithmname}%
+	\DenKrListOfHeading*[]{\listalgorithmname}%
 	\label{chap:LoA}%
     \listofalgorithms%
 }%
@@ -78,9 +80,11 @@
 \RedeclareSectionCommand[%
   tocnumwidth=2em% Default: 2em
 ]{part}%
+\ifChapterExists%
 \RedeclareSectionCommand[%
   tocnumwidth=1.5em% Default: 1.5em
 ]{chapter}%
+\fi%
 \RedeclareSectionCommand[%
   tocnumwidth=2.3em% Default: 2.3em
 ]{section}%

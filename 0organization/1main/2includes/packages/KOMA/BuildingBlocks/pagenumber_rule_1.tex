@@ -3,8 +3,10 @@
 %
 % \clearpairofpagestyles%
 % Remove the Page-Number from the Pagestyle-Pair  [plain.scrheadings]{scrheadings}
+% NOTE: In one-sided printing, only right-hand pages exist, and LATEX designates these as odd pages regardless of their page number.
 \lefoot[]{}%
 \rofoot[]{}%
+\cofoot[]{}% Clearing the central pagenumber of one-sided
 %Define Layer for new Page-Number Style
 \providecommand*\pagenumberrule{}%
 \renewcommand*\pagenumberrule{%

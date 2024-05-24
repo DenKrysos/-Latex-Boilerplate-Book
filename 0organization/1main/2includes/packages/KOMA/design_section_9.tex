@@ -15,15 +15,27 @@
 \settoheight{\sectionMinHeight}{\usekomafont{section}ÜÉÂgqQ}%
 \setlength{\sectionMinHeight}{1.4\sectionMinHeight}%
 %
+\makeatletter%
+\newif\if@DeKrRight%
 \renewcommand*{\DenKrKOMAHookFormatSection}[4]{%
     \def\bandIndentOut{0.7cm}%
     \def\bandIndentIn{0.2cm}%
     \begin{tikzpicture}[remember picture]%
-        \Ifthispageodd{%Right
+        \if@twoside% Twoside Document
+            \Ifthispageodd{%Right
+                \@DeKrRighttrue
+            }{%Left
+                \@DeKrRightfalse
+            }%
+        \else% Oneside Document: Treat every Page as 'right'
+            \@DeKrRighttrue
+        \fi%
+        %
+        \if@DeKrRight%Right
             \def\secTitleIndent{\bandIndentIn}%
-        }{%Left
+        \else%
             \def\secTitleIndent{0pt}%
-        }%
+        \fi%
         \begin{pgfonlayer}{foreground}%
             \coordinate(section_anchor)at(0,0);%
             \node[draw=none,line width=0pt,shape=rectangle,anchor=north west,inner sep=0pt,minimum height=\sectionMinHeight](section_title)at($(section_anchor)+(\secTitleIndent,0)$){%
@@ -48,7 +60,7 @@
             rectangle%
             (current bounding box.south east);%
         \begin{pgfonlayer}{background}%
-        \Ifthispageodd{%Right
+        \if@DeKrRight%Right
             \path let\p1=(bgSepOut),\p2=(bgSepIn),\p3=(bgFadeLen)in%
                 coordinate(bgLT_T)at($(section_title.north west)+(0,\y2)$)%
                 coordinate(bgLT_L)at($(section_title.north west)+(-\x2,0)$)%
@@ -93,7 +105,7 @@
             \path[draw=secTFrame,line width=0.2ex,line cap=round,line join=round]%
                 (bgLT_T)to[out=180,in=90](bgLT_L)--(bgLB_L)to[in=180,out=270](bgLB_B)%
                 ;%
-        }{%Left
+        \else%Left
             \path let\p1=(bgSepOut),\p2=(bgSepIn),\p3=(bgFadeLen)in%
                 coordinate(bgLT)at($(section_title.north west)+(-\x1,\y1)$)%
                 coordinate(bgLB)at($(section_title.south west)+(-\x1,-\y1)$)%
@@ -139,8 +151,9 @@
             \path[draw=secTFrame,line width=0.2ex,line cap=round,line join=round]%
             (bgRT_T)to[out=0,in=90](bgRT_R)--(bgRB_R)to[in=0,out=270](bgRB_B)%
                 ;%
-        }%
+        \fi%
     \end{pgfonlayer}%
     \end{tikzpicture}%
     % \par%
 }%
+\makeatother%

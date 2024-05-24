@@ -15,8 +15,10 @@
 % Nummerierungen, Counter
 %========================================================================
 % \renewcommand\thefigure{\arabic{section}.\arabic{figure}}
+\ifChapterExists%
 \renewcommand\theequation{\arabic{chapter}.\arabic{equation}}%
 \renewcommand\thealgorithm{\arabic{chapter}.\arabic{algorithm}}%
+\fi%
 %
 %
 %

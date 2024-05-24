@@ -15,13 +15,14 @@
 %
 % % % %
 % Note: This "\chapter*[]{Chapname}" only works with including my "typografie_redefine.tex", as this redefines \chapter with an own implementation. Otherwise, you may want to use my "\chapnt{}[]" from "typografie_cmd.tex".
-% But anyway: Remark that the Bibliography is put after \backmatter, which makes only unnumbered Chapters as default. Using still a stared-Cmd would mess up \nameref
-%\defbibheading{literature}{\chapnt{Literature}{chap:literature}\addtocounter{chapter}{-1}}%
-\defbibheading{literature}{\chapter{Literature}\label{chap:literature}\addtocounter{chapter}{-1}}%
-\defbibheading{literature_techspec}{\chapter{Technical Specifications}\label{chap:literature_techspec}\addtocounter{chapter}{-1}}%
-\defbibheading{literature_secondary}{\chapter{Secondary Literature}\label{chap:literature_secondary}\addtocounter{chapter}{-1}}%
-\defbibheading{literature_figures}{\chapter{Figure Sources}\label{chap:fig_src}\addtocounter{chapter}{-1}}%
-\defbibheading{literature_tables}{\chapter{Table Sources}\label{chap:tab_src}\addtocounter{chapter}{-1}}%
+% But anyway: Remark that the Bibliography is put after \backmatter, which makes only unnumbered Chapters as default. Using still a stared-Cmd is just redundant in Book-Class, but required in Article-Class.
+\def\DenKrBibHeadingLvlCmd{\DenKrHeadingTopLvlCmd*[]}% Resolves to simply either '\chapter' or '\section' depending on the documentclass
+%\defbibheading{literature}{\DenKrBibHeadingLvlCmd{Literature}\label{chap:literature}\addtocounter{\DenKrBibHeadingLvl}{-1}}%
+\defbibheading{literature}{\DenKrBibHeadingLvlCmd{Literature}\label{chap:literature}}%
+\defbibheading{literature_techspec}{\DenKrBibHeadingLvlCmd{Technical Specifications}\label{chap:literature_techspec}}%
+\defbibheading{literature_secondary}{\DenKrBibHeadingLvlCmd{Secondary Literature}\label{chap:literature_secondary}}%
+\defbibheading{literature_figures}{\DenKrBibHeadingLvlCmd{Figure Sources}\label{chap:fig_src}}%
+\defbibheading{literature_tables}{\DenKrBibHeadingLvlCmd{Table Sources}\label{chap:tab_src}}%
 %========================================================================================================
 %      Alternative Methods
 %--------------------------------------------------------------------------------------------------------

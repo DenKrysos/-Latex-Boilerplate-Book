@@ -1,9 +1,14 @@
 # -Latex-Boilerplate_Book
 
-A quite nice Boilerplate/Template together with some Macros and ready-to-use set up surroundings for LaTeX. Document-Type "Book-Level", i.e. enabling "Chapter" as Structuring Level (as opposed to "Article").
+A Boilerplate/Template together with some Macros and ready-to-use set-up surroundings for LaTeX.
+This Project is mainly optimized for using "KOMA Script".
 <br/>
 
-Just saying, there are also Boilerplates for Article-type Documents:<br/>
+Lead development \documentclass is "scrbook": Document-Type on the level of a *Book*, which is usually used for large documents and enables *Chapter* as Structuring Level (as opposed to "Article").
+Nonetheless, "scrarticle" is also included to work (of course then without \chapter).
+<br/>
+
+Just saying, there are also Boilerplates for "target-specific" Article-type Documents (e.g. IEEE, ACM, etc):<br/>
 
 > [https://github.com/DenKrysos/-Latex-Boilerplate-Paper_Poster](https://github.com/DenKrysos/-Latex-Boilerplate-Paper_Poster "DenKr Latex Paper/Poster-Boilerplate Sophisticated")
 

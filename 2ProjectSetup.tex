@@ -3,9 +3,12 @@
 % ----  Project-Settings
 %----------------------------------------------------------------------------------
 %
-%Valid Layout Values
+%======================
+%== Valid Layout Values
 % - scrbook % Optimized "book" for Using KOMA-Script.
 % - scrbook_print % Pretty much the same as "scrbook" but optimized for a print-Version in that it uses a different Page-Geometry and perhaps font-size
+%  %  %  %  %
+% - scrartcl % The KOMA variant for "Article". For smaller, more concise documents. Has no Chapter. E.g. for "scientific Papers". But in this project optimized for using KOMA-Script
 %  %  %  %  %
 % - tikz_standalone % Sort of a special layout type. Used for Tikz-Pictures compiled in standalone-mode
 % = = = Not for Paper but big Documents, like books = = = = =
@@ -94,3 +97,15 @@
     semi-con-duc-tor
     time-stamp
 }%
+%
+%
+%
+%
+%
+%
+%==================================================================================
+% ----  Some 'further Definitions' that shouldn't be required to touch.
+%----------------------------------------------------------------------------------
+\newcommand{\DenKrLayoutCommonDirPATH}{1common}%
+% - - - - - - - - - - - - - - - - - - - -
+\newcommand{\DenKrLayoutCommonDir}{\DenKrSubDirPrefix\DenKrLayoutBaseRootDirPATH/\DenKrLayoutCommonDirPATH}%

@@ -1,7 +1,13 @@
 % !TEX root = ../1main.tex
 %
 
-\chapter[Alternative \enquote{Some Chap} Title. Shorter for page-heading]{Some Chap: An absurd Title, way too long to be a reasonable choice, but to see the effect on multi-line}
+% \headingOpenTempRight%
+% \part[Test NewLine]{Test\\Linebreak}%
+% \headingOpenTempRestore%
+% \label{part:TestingNLinPart}%
+
+% REMARK: These weird "\DenKrHeadingCmdLvl" are only created by be because this Boilerplate supports both Book-&-Article (having \chapter or not). After you opted for one in "./ProjectSetup.tex", you can simply and safely just use '\chapter' or '\section'
+\DenKrHeadingCmdLvlA[Alternative \enquote{Some Chap} Title. Shorter for page-heading]{Some Chap: An absurd Title, way too long to be a reasonable choice, but to see the effect on multi-line}
 \label{chap:chapter1}
 
 
@@ -411,8 +417,8 @@ Two different Packages and by that Methods are supplied here:
 
 
 
-\setcounter{chapter}{9}
-\chapter{A Chapter with two-digit number}
+\setcounter{\DenKrHeadingTopLvl}{9}
+\DenKrHeadingCmdLvlA{A Chapter with two-digit number}
 \section{And more Sections}
 \subsection{to make the ToC two pages}
 \section{More Sec}
@@ -424,7 +430,7 @@ Two different Packages and by that Methods are supplied here:
 
 
 \headingOpenTempAny%
-\chapter{Chapter opened Left}
+\DenKrHeadingCmdLvlA{Chapter opened Left}
 \headingOpenTempRestore%
 
 Temporary set to open Chapters on any side, which makes this on the left side.

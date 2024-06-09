@@ -106,11 +106,24 @@
 %________________________________________________________________________
 %\input{"\DenKrLayoutMainRootDir/2includes/packages/ToC_tocloft".tex}%
 %  With KOMA rather use the other below "ToC_tableOf_ContFigTabAlg".
-%  REMARK: The "typografie_redefine" below needs to be put after all KOMA Settings are done, especially after all
-%     "RedeclareSectionCommand"
-%    because this Sets the respective Sectioning-Cmds.
 %________________________________________________________________________
 %				END Additional
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%
+%
+%
+%
+%
+%/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+%				Redecleration of \chapter, \section, ...
+%________________________________________________________________________
+%  REMARK: The "typografie_redefine" below redefines sectioning commands to insert some new functionality of mine.
+%    One must to mind that "RedeclareSectionCommand" from KOMA also sets the respective Sectioning-Cmds.
+%    -> Hence, I am doing it this way: The below file defines Macros for setting the sectioning-cmds (\DenKrSetChapter...), while carrying over current configuration.
+%    => The respective setting Macro must be called after a 'RedeclareSectionCommand' was issued. (Or rather before the concerning section-cmd was used)
+%    - typografie_redefine.tex is included after ToC_ however, because it relies on stuff done inside there.
+%________________________________________________________________________
+%				END Redefine
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %
 %

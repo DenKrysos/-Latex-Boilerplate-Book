@@ -3,6 +3,7 @@
     beforeskip=7ex,%
     afterskip=2ex,%
 ]{section}%
+\makeatletter\@ifundefined{DenKrSetSection}{}{\DenKrSetSection}\makeatother% Workaround to reset to my macro after RedeclareSectionCommand
 \renewcommand*{\sectionformat}{\usekomafont{section}\thesection}%
 %
 \colorlet{secTFrame}{DenKrKomaColor_ChapterHeading!60!white}%

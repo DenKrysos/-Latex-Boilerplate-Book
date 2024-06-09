@@ -736,6 +736,22 @@
 %========================================================================
 %
 %
+%________________________________________________________________________
+%			Make sure the Redefined Section-Cmds from "typografie_redefine.tex" are active
+%               (Because "RedeclareSectionCommand" overwrites)
+%========================================================================
+\makeatletter\@ifundefined{DenKrSetChapter}{}{\DenKrSetChapter}\makeatother% Workaround to reset to my macro after RedeclareSectionCommand
+\makeatletter\@ifundefined{DenKrSetSection}{}{\DenKrSetSection}\makeatother% Workaround to reset to my macro after RedeclareSectionCommand
+\makeatletter\@ifundefined{DenKrSetSubsection}{}{\DenKrSetSubsection}\makeatother% Workaround to reset to my macro after RedeclareSectionCommand
+\makeatletter\@ifundefined{DenKrSetSubsubsection}{}{\DenKrSetSubsubsection}\makeatother% Workaround to reset to my macro after RedeclareSectionCommand
+\makeatletter\@ifundefined{DenKrSetParagraph}{}{\DenKrSetSuDenKrSetParagraphbsection}\makeatother% Workaround to reset to my macro after RedeclareSectionCommand
+\makeatletter\@ifundefined{DenKrSetSubpargraph}{}{\DenKrSetSubpargraph}\makeatother% Workaround to reset to my macro after RedeclareSectionCommand
+%________________________________________________________________________
+%           Redefine DONE
+%------------------------------------------------------------------------
+%========================================================================
+%
+%
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 %							Dokument Formatierungen fertig
 %------------------------------------------------------------------------

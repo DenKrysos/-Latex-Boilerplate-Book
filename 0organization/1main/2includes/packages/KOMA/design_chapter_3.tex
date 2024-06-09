@@ -10,6 +10,7 @@
     %innerskip=0pt,%
     %afterskip=1.725\baselineskip plus .115\baselineskip minus .192\baselineskip%
 ]{chapter}%
+\makeatletter\@ifundefined{DenKrSetChapter}{}{\DenKrSetChapter}\makeatother% Workaround to reset to my macro after RedeclareSectionCommand
 %
 % \makeatletter%
 % \def\s@plit<#1#2>{%

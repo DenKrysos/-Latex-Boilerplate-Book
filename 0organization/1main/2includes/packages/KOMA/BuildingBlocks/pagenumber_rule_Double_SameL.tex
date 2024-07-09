@@ -8,9 +8,11 @@
 \rofoot[]{}%
 \cofoot[]{}% Clearing the central pagenumber of one-sided
 %Define Layer for new Page-Number Style
-\providecommand*\pagenumberrule{}%
-\renewcommand*\pagenumberrule{%
+\providecommand*\pagenumberruleA{}\renewcommand*\pagenumberruleA{%
   {\color{DenKrKomaColor_ChapterHeading}\rule[-90pt]{1.25pt}{100pt}}%
+}%
+\providecommand*\pagenumberruleB{}\renewcommand*\pagenumberruleB{%
+{\color{DenKrKomaColor_ChapterHeading}\rule[-90pt]{0.625pt}{100pt}}%
 }%
 \DeclareLayer[%
   background,%
@@ -18,9 +20,9 @@
   foot,%
   contents={%
     \hfill%
-    \makebox[0pt][l]{%
-      \pagenumberrule%
-      \hspace*{10pt}%
+    \makebox[2.125pt][l]{%
+      \pagenumberruleB\hspace*{1.5pt}%
+      \pagenumberruleA\hspace*{10pt}%
       {\pagemark}%
     }%
   }%
@@ -30,10 +32,10 @@
   evenpage,%
   foot,%
   contents={%
-    \makebox[0pt][r]{%
+    \makebox[2.125pt][r]{%
       {\pagemark}%
-      \hspace*{10pt}%
-      \pagenumberrule%
+      \hspace*{10pt}\pagenumberruleA%
+      \hspace*{1.5pt}\pagenumberruleB%
     }%
   }%
 ]{pagenumber.even}%

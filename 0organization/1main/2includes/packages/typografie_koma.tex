@@ -303,9 +303,18 @@
 % = Select Custom Header/Footer Designs
 %	> Available Header/Footer Design-Files:
 %		design_HeadFoot_1
+%			% PageNumber: One Vertical Line; Straight BG Color; Sloped BG Color
 %		design_HeadFoot_2
+%		design_HeadFoot_2_1
+%		design_HeadFoot_2_2
+%			% PageNumber: Two Vertical Lines (sameLength); Straight BG Color; Sloped BG Color
 %		design_HeadFoot_3
+%		design_HeadFoot_3_1
+%		design_HeadFoot_3_2
+%			% PageNumber: Two Vertical Lines (InnerShorter); Straight BG Color; Sloped BG Color
 %		design_HeadFoot_4
+%		design_HeadFoot_4_1
+%		design_HeadFoot_4_2
 % % % % % % % % % % % % % % %
 %-- This is active unless/if no "\frontmatter, \mainmatter" Cmd is invoked
 \DenKrInputKOMAFile{design_HeadFoot_1}%
@@ -490,6 +499,10 @@
 %		design_part_noPageBreak_1
 %		design_part_noPageBreak_2
 %		design_part_noPageBreak_3% ToDo
+%		%   %   %   %
+%		design_part_noPart_noPageBreak_1
+%		design_part_noPart_noPageBreak_2
+%		design_part_noPart_noPageBreak_3% ToDo
 \ifChapterExists%
   \DenKrInputKOMAFile{design_part_1}%
 \else%

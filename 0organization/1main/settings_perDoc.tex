@@ -16,8 +16,8 @@
 %========================================================================
 % \renewcommand\thefigure{\arabic{section}.\arabic{figure}}
 \ifChapterExists%
-\renewcommand\theequation{\arabic{chapter}.\arabic{equation}}%
-\renewcommand\thealgorithm{\arabic{chapter}.\arabic{algorithm}}%
+\makeatletter\@ifundefined{theequation}{}{\renewcommand\theequation{\arabic{chapter}.\arabic{equation}}}\makeatother%
+\makeatletter\@ifundefined{thealgorithm}{}{\renewcommand\thealgorithm{\arabic{chapter}.\arabic{algorithm}}}\makeatother%
 \fi%
 %
 %

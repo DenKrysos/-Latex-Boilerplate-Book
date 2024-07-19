@@ -8,37 +8,37 @@
 	\label{chap:ToC}%
 	%\markboth{\nameref{#2}}{\nameref{#3}}%
 	%\markboth{\contentsname}{\contentsname}%
-    \tableofcontents%
+	\tableofcontents%
 }%
 \newcommand{\listoffiguresDenKr}{%
-    %\chapnt{\listfigurename}[chapnt:LoF]%
+	%\chapnt{\listfigurename}[chapnt:LoF]%
 	\DenKrListOfHeading*[]{\listfigurename}%
 	\label{chap:LoF}%
-    \listoffigures%
+	\listoffigures%
 }%
 \makeatother%
 \makeatletter%
 \newcommand{\listoftablesDenKr}{%
-    %\chapnt{\listtablename}[chapnt:LoT]%
+	%\chapnt{\listtablename}[chapnt:LoT]%
 	\DenKrListOfHeading*[]{\listtablename}%
 	\label{chap:LoT}%
-    \listoftables%
+	\listoftables%
 }%
 \makeatother%
 \makeatletter%
 \newcommand{\listoflistingsDenKr}{%
-    %\chapnt{\lstlistlistingname}[chapnt:LoL]%
+	%\chapnt{\lstlistlistingname}[chapnt:LoL]%
 	\DenKrListOfHeading*[]{\lstlistlistingname}%
 	\label{chap:LoL}%
-    \lstlistoflistings%
+	\lstlistoflistings%
 }%
 \makeatother%
 \makeatletter%
 \newcommand{\listofalgorithmsDenKr}{%
-    %\chapnt{\listalgorithmname}[chapnt:LoA]%
+	%\chapnt{\listalgorithmname}[chapnt:LoA]%
 	\DenKrListOfHeading*[]{\listalgorithmname}%
 	\label{chap:LoA}%
-    \listofalgorithms%
+	\listofalgorithms%
 }%
 \makeatother%
 %
@@ -61,13 +61,33 @@
 \makeatletter%
 %Remove the Title Heading for every List-of Environment
 \AddToHook{begindocument/before}{%
-    \doforeachtocfile{%
-        \typeout{»DenKr: Remove Title-Heading for List-of (Content/Fig/Tab/Alg/Lst) Environment:}%
-        \typeout{       - \@currext}%
-        \deftocheading{\@currext}{}%
-    }%
+	\typeout{»DenKr: Remove Title-Heading for List-of (Content/Fig/Tab/Alg/Lst) Environments [automatically]:}%
+	\doforeachtocfile{%
+		\typeout{»  »   - \@currext}%
+		\deftocheading{\@currext}{}%
+	}%
+	\typeout{»DenKr: Remove Title-Heading for List-of [manually]:}%
+	\typeout{»  »   - LoL (Listings)}%
+	\deftocheading{lol}{}%
+	\typeout{»  »   - LoA (Algorithms)}%
+	\deftocheading{loa}{}%
 }%
 \makeatother%
+%
+%
+%
+%
+%
+%======================================
+% The List-of itself
+%======================================
+\AtBeginDocument{%
+	\DeclareTOCStyleEntries[%
+		indent=-.5ex,% negative?
+		numwidth=5ex,%
+		%entrynumberformat=\textbf,% Should be a command with exactly one argument.
+	]{tocline}{lstlisting}%
+}
 %
 %
 %
@@ -87,19 +107,19 @@
 % - - - - - - - - - -
 % The width to be occupied by the Number in the ToC
 \RedeclareSectionCommand[%
-  tocnumwidth=2em% Default: 2em
+	tocnumwidth=2em% Default: 2em
 ]{part}%
 \ifChapterExists%
 \RedeclareSectionCommand[%
-  tocnumwidth=1.5em% Default: 1.5em
+	tocnumwidth=1.5em% Default: 1.5em
 ]{chapter}%
 \fi%
 \RedeclareSectionCommand[%
-  tocnumwidth=2.3em% Default: 2.3em
+	tocnumwidth=2.3em% Default: 2.3em
 ]{section}%
 \RedeclareSectionCommand[%
-  tocnumwidth=3.2em% Default: 3.2em
+	tocnumwidth=3.2em% Default: 3.2em
 ]{subsection}%
 \RedeclareSectionCommand[%
-  tocnumwidth=4.1em% Default: 4.1em
+	tocnumwidth=4.1em% Default: 4.1em
 ]{subsubsection}%

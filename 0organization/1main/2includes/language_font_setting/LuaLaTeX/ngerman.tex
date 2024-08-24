@@ -5,7 +5,9 @@
 %					Basic Language depending Packages
 %/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 % \usepackage[english,german,ngerman]{babel}%
-\usepackage[babelshorthands]{polyglossia}%
+\usepackage{polyglossia}% [babelshorthands]
+%\AddToHook{begindocument/before}{\usebabelshorthands{german}}% Because loading order messes with activation of shorthands
+\usebabelshorthands{german}%
 \setmainlanguage[spelling=new]{german}% Synonym: \setdefaultlanguage
 \setotherlanguage[variant=british]{english}%
 %\selectlanguage{japanese}%

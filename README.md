@@ -1,3 +1,7 @@
+# Deprecated
+This is no longer maintained. Instead, rather refer to:
+> [https://github.com/DenKrysos/-Latex-Boilerplate-](https://github.com/DenKrysos/-Latex-Boilerplate- "DenKr Latex-Boilerplate Sophisticated, Book/Paper/Poster/etc. unified")
+
 # -Latex-Boilerplate_Book
 
 A Boilerplate/Template together with some Macros and ready-to-use set-up surroundings for LaTeX.
